@@ -29,6 +29,12 @@
       "type": "dart",
       "program": "app/talky_app/lib/main_production.dart",
       "args": ["--flavor", "production", "--target", "lib/main_production.dart"]
+    },
+    {
+      "name": "Storybook",
+      "request": "launch",
+      "type": "dart",
+      "program": "app/storybook/lib/main.dart",
     }
   ]
 }
