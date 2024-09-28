@@ -10,9 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+
+flutter:
+  assets:
+    - assets/icons/
+    - assets/images/
+  uses-material-design: true

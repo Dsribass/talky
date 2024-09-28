@@ -1,4 +1,5 @@
 /// Talky UI Kit
 library;
 
-export 'src/talky_ui_kit.dart';
+export 'src/theme/theme.dart';
+export 'src/tokens/tokens.dart';
