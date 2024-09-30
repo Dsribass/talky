@@ -18,6 +18,7 @@ final class TalkyIcons {
 
   SvgPicture svgIcon(String icon, {Color? color}) => SvgPicture.asset(
         'assets/icons/$icon.svg',
+        package: 'talky_ui_kit',
         colorFilter:
             color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
       );

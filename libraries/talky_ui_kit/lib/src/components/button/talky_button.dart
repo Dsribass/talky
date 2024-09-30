@@ -38,6 +38,7 @@ extension TalkyButton on ButtonStyle {
         TalkyTextStyles.paragraph.bold,
       ),
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      visualDensity: VisualDensity.compact,
     );
   }
 }
