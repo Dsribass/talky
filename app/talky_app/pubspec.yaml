@@ -14,6 +14,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.19.0
+  talky_ui_kit:
+    path: ../../libraries/talky_ui_kit
 
 dev_dependencies:
   bloc_test: ^9.1.7

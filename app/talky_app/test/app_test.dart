@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:talky_app/app/app.dart';
+import 'package:talky_app/app.dart';
 import 'package:talky_app/counter/counter.dart';
 
 void main() {
