@@ -1,0 +1,19 @@
+{
+  "@@locale": "pt",
+  "introLogo": "Talky",
+  "@introLogo": {
+    "description": "Texto do logo na tela de introdução"
+  },
+  "introSignInButton": "Entrar",
+  "@introSignInButton": {
+    "description": "Texto do botão de entrar na tela de introdução"
+  },
+  "introSignUpInfo": "Ainda não possui uma conta?",
+  "@introSignUpInfo": {
+    "description": "Texto de informação para cadastro na tela de introdução"
+  },
+  "introSignUpButton": "Registre-se aqui!",
+  "@introSignUpButton": {
+    "description": "Texto do botão de cadastrar na tela de introdução"
+  }
+}

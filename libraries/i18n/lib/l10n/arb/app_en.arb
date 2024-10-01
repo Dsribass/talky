@@ -1,0 +1,19 @@
+{
+    "@@locale": "en",
+    "introLogo": "Talky",
+    "@introLogo": {
+      "description": "Logo text on the introduction screen"
+    },
+    "introSignInButton": "Sign In",
+    "@introSignInButton": {
+      "description": "Sign in button text on the introduction screen"
+    },
+    "introSignUpInfo": "Don't have an account yet?",
+    "@introSignUpInfo": {
+      "description": "Sign up information text on the introduction screen"
+    },
+    "introSignUpButton": "Register here!",
+    "@introSignUpButton": {
+      "description": "Sign up button text on the introduction screen"
+    }
+}

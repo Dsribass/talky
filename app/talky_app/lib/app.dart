@@ -1,6 +1,6 @@
+import 'package:auth/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:talky_app/counter/counter.dart';
-import 'package:talky_app/l10n/l10n.dart';
+import 'package:i18n/app_localizations.dart';
 import 'package:talky_ui_kit/talky_ui_kit.dart';
 
 class App extends StatelessWidget {
@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       theme: TalkyThemeData.lightTheme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const IntroPage(),
     );
   }
 }
