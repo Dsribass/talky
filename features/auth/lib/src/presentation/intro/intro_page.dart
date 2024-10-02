@@ -1,3 +1,5 @@
+import 'package:auth/src/router/auth_router.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:i18n/l10n/l10n.dart';
 import 'package:talky_ui_kit/talky_ui_kit.dart';
@@ -23,7 +25,9 @@ class _IntroPageState extends State<IntroPage> {
               SizedBox(
                 width: double.infinity,
                 child: FilledButton(
-                  onPressed: () {},
+                  onPressed: () => context.navigateToInternalRoute(
+                    route: AuthRoutes.signIn,
+                  ),
                   child: Text(context.l10n.introSignInButton),
                 ),
               ),
@@ -33,7 +37,9 @@ class _IntroPageState extends State<IntroPage> {
                 style: TalkyTextStyles.paragraph.medium,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => context.navigateToInternalRoute(
+                  route: AuthRoutes.signUpEmailStep,
+                ),
                 child: Text(context.l10n.introSignUpButton),
               ),
               const SizedBox(height: TKSpacing.x10),

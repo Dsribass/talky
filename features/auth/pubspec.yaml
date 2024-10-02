@@ -8,12 +8,14 @@ environment:
   flutter: ^3.24.0
 
 dependencies:
+  core:
+    path: ../../libraries/core
   flutter:
     sdk: flutter
-  talky_ui_kit:
-    path: ../../libraries/talky_ui_kit
   i18n:
     path: ../../libraries/i18n
+  talky_ui_kit:
+    path: ../../libraries/talky_ui_kit
 
 dev_dependencies:
   flutter_test:
