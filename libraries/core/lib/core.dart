@@ -1,8 +1,8 @@
 /// Talky - Core Library
 library;
 
-// Export common dependencies
+export 'package:dio/dio.dart';
 export 'package:go_router/go_router.dart';
-
-// Export all the core dependencies
+export 'src/network/network.dart';
 export 'src/router/router.dart';
+export 'src/utils/utils.dart';
