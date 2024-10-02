@@ -1,4 +1,5 @@
 import 'package:auth/auth.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:i18n/app_localizations.dart';
 import 'package:talky_ui_kit/talky_ui_kit.dart';
@@ -8,11 +9,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: TalkyThemeData.lightTheme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const IntroPage(),
+      routerConfig: TKRouterConfig.createRouter([
+        AuthRouterModule(),
+      ]),
     );
   }
 }

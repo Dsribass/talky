@@ -9,16 +9,18 @@ environment:
 dependencies:
   auth:
     path: ../../features/auth
-  talky_ui_kit:
-    path: ../../libraries/talky_ui_kit
-  i18n:
-    path: ../../libraries/i18n
   bloc: ^8.1.4
+  core:
+    path: ../../libraries/core
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_localizations:
     sdk: flutter
+  i18n:
+    path: ../../libraries/i18n
+  talky_ui_kit:
+    path: ../../libraries/talky_ui_kit
 
 dev_dependencies:
   bloc_test: ^9.1.7
