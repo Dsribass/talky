@@ -21,14 +21,12 @@ abstract class TalkyColors {
   ColorScheme get colorScheme =>
       ColorScheme.fromSeed(seedColor: primary).copyWith(
         primary: primary,
-        secondary: primary,
         surface: surface,
         error: error,
         outline: outline,
         primaryContainer: primaryContainer,
         surfaceContainer: surfaceContainer,
         onPrimary: onPrimary,
-        onSecondary: onPrimary,
         onSurface: onSurface,
         onError: onError,
         onSurfaceVariant: onSurfaceVariant,

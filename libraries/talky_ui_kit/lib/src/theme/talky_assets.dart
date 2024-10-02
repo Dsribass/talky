@@ -13,15 +13,39 @@ final class TalkyImages {
   const TalkyImages._();
 }
 
+@immutable
+final class SvgConfiguration {
+  const SvgConfiguration({
+    this.color,
+    this.width,
+    this.height,
+  });
+
+  final Color? color;
+  final double? width;
+  final double? height;
+}
+
 final class TalkyIcons {
   const TalkyIcons._();
 
-  SvgPicture svgIcon(String icon, {Color? color}) => SvgPicture.asset(
-        'assets/icons/$icon.svg',
-        package: 'talky_ui_kit',
-        colorFilter:
-            color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
-      );
+  SvgPicture svgIcon(String icon, {SvgConfiguration? config}) {
+    config ??= const SvgConfiguration();
 
-  SvgPicture logo({Color? color}) => svgIcon('logo', color: color);
+    return SvgPicture.asset(
+      'assets/icons/$icon.svg',
+      package: 'talky_ui_kit',
+      colorFilter: config.color != null
+          ? ColorFilter.mode(config.color!, BlendMode.srcIn)
+          : null,
+      width: config.width,
+      height: config.height,
+    );
+  }
+
+  SvgPicture logo({SvgConfiguration? config}) =>
+      svgIcon('logo', config: config);
+
+  SvgPicture arrowBack({SvgConfiguration? config}) =>
+      svgIcon('arrow-back', config: config);
 }
