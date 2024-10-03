@@ -13,3 +13,8 @@ command:
       build_runner: ^2.4.12
       mocktail: ^1.0.4
       very_good_analysis: ^6.0.0
+
+scripts:
+  generate_translations:
+    run: cd libraries/i18n && flutter gen-l10n
+    description: Generates translation files.

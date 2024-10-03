@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/features/auth/melos_auth.iml" filepath="$PROJECT_DIR$/features/auth/melos_auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/core/melos_core.iml" filepath="$PROJECT_DIR$/libraries/core/melos_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/i18n/melos_i18n.iml" filepath="$PROJECT_DIR$/libraries/i18n/melos_i18n.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/storybook/melos_storybook.iml" filepath="$PROJECT_DIR$/app/storybook/melos_storybook.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/talky_app/melos_talky_app.iml" filepath="$PROJECT_DIR$/app/talky_app/melos_talky_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/talky_ui_kit/melos_talky_ui_kit.iml" filepath="$PROJECT_DIR$/libraries/talky_ui_kit/melos_talky_ui_kit.iml" />
       <module fileurl="file://$PROJECT_DIR$/melos_talky.iml" filepath="$PROJECT_DIR$/melos_talky.iml" />
     </modules>
   </component>
