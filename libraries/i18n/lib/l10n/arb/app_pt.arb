@@ -15,5 +15,57 @@
   "introSignUpButton": "Registre-se aqui!",
   "@introSignUpButton": {
     "description": "Texto do botão de cadastrar na tela de introdução"
+  },
+  "signInAppBarTitle": "Login",
+  "@signInAppBarTitle": {
+    "description": "Título da barra de aplicativo na tela de login"
+  },
+  "signInTitle": "Bem-vindo de volta!",
+  "@signInTitle": {
+    "description": "Título de boas-vindas na tela de login"
+  },
+  "signInEmailFieldLabel": "Digite seu e-mail",
+  "@signInEmailFieldLabel": {
+    "description": "Rótulo do campo de e-mail na tela de login"
+  },
+  "signInPasswordFieldLabel": "Digite sua senha",
+  "@signInPasswordFieldLabel": {
+    "description": "Rótulo do campo de senha na tela de login"
+  },
+  "signInButton": "Entrar",
+  "@signInButton": {
+    "description": "Texto do botão de entrar na tela de login"
+  },
+  "signInForgotPassword": "Esqueceu a senha?",
+  "@signInForgotPassword": {
+    "description": "Texto de esqueceu a senha na tela de login"
+  },
+  "signUpAppBarTitle": "Cadastro",
+  "@signUpAppBarTitle": {
+    "description": "Título da barra de aplicativo na tela de cadastro"
+  },
+  "signUpEmailTitle": "Digite seu e-mail",
+  "@signUpEmailTitle": {
+    "description": "Título do campo de e-mail na tela de cadastro"
+  },
+  "signUpEmailFieldLabel": "E-mail",
+  "@signUpEmailFieldLabel": {
+    "description": "Rótulo do campo de e-mail na tela de cadastro"
+  },
+  "signUpPasswordTitle": "Digite sua senha",
+  "@signUpPasswordTitle": {
+    "description": "Título do campo de senha na tela de cadastro"
+  },
+  "signUpPasswordFieldLabel": "Senha",
+  "@signUpPasswordFieldLabel": {
+    "description": "Rótulo do campo de senha na tela de cadastro"
+  },
+  "signUpEmailButton": "Próximo",
+  "@signUpEmailButton": {
+    "description": "Texto do botão de próximo na tela de cadastro"
+  },
+  "signUpPasswordButton": "Finalizar",
+  "@signUpPasswordButton": {
+    "description": "Texto do botão de finalizar na tela de cadastro"
   }
 }
