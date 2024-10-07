@@ -24,13 +24,25 @@
   "@signInTitle": {
     "description": "Título de boas-vindas na tela de login"
   },
-  "signInEmailFieldLabel": "Digite seu e-mail",
+  "signInEmailFieldLabel": "Digite seu email",
   "@signInEmailFieldLabel": {
-    "description": "Rótulo do campo de e-mail na tela de login"
+    "description": "Rótulo do campo de email na tela de login"
   },
   "signInPasswordFieldLabel": "Digite sua senha",
   "@signInPasswordFieldLabel": {
     "description": "Rótulo do campo de senha na tela de login"
+  },
+  "signInIncorrectError": "Email ou senha estão incorretos",
+  "@signInIncorrectError": {
+    "description": "Mensagem de erro quando o email ou a senha estão incorretos na tela de login"
+  },
+  "signInInvalidError": "Campo inválido",
+  "@signInInvalidError": {
+    "description": "Mensagem de erro quando o campo de email é inválido na tela de login"
+  },
+  "signInEmptyError": "Campo obrigatório",
+  "@signInEmptyError": {
+    "description": "Mensagem de erro quando o campo de email está vazio na tela de login"
   },
   "signInButton": "Entrar",
   "@signInButton": {
@@ -44,13 +56,13 @@
   "@signUpAppBarTitle": {
     "description": "Título da barra de aplicativo na tela de cadastro"
   },
-  "signUpEmailTitle": "Digite seu e-mail",
+  "signUpEmailTitle": "Digite seu email",
   "@signUpEmailTitle": {
-    "description": "Título do campo de e-mail na tela de cadastro"
+    "description": "Título do campo de email na tela de cadastro"
   },
-  "signUpEmailFieldLabel": "E-mail",
+  "signUpEmailFieldLabel": "Email",
   "@signUpEmailFieldLabel": {
-    "description": "Rótulo do campo de e-mail na tela de cadastro"
+    "description": "Rótulo do campo de email na tela de cadastro"
   },
   "signUpPasswordTitle": "Digite sua senha",
   "@signUpPasswordTitle": {

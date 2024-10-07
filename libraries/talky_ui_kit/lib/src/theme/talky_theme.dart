@@ -35,6 +35,9 @@ extension TalkyThemeData on ThemeData {
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: TalkyTextStyles.paragraph.medium,
         labelStyle: TalkyTextStyles.paragraph.medium,
+        errorStyle: TalkyTextStyles.caption.semibold.copyWith(
+          color: colors.error,
+        ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 18,

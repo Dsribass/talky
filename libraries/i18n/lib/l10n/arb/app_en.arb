@@ -32,6 +32,18 @@
     "@signInPasswordFieldLabel": {
       "description": "Password field label on the login screen"
     },
+    "signInIncorrectError": "Email or password is incorrect",
+    "@signInIncorrectError": {
+      "description": "Error message when email field is Wrong on the sign in screen"
+    },
+    "signInInvalidError": "Field is invalid",
+    "@signInInvalidError": {
+      "description": "Error message when email field is invalid on the sign in screen"
+    },
+    "signInEmptyError": "Field is required",
+    "@signInEmptyError": {
+      "description": "Error message when email field is empty on the sign in screen"
+    },
     "signInButton": "Sign In",
     "@signInButton": {
       "description": "Sign in button text on the login screen"
