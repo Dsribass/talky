@@ -11,11 +11,11 @@ abstract base class UseCase<T extends Object, P> {
   final Logger logger;
 
   @protected
-  AsyncResult<T, TKException> execute(P params);
+  Future<T> execute(P params);
 
   AsyncResult<T, TKException> call(P params) async {
     try {
-      return await execute(params);
+      return successOf(await execute(params));
     } catch (e, stackTrace) {
       logger(
         e.toString(),
