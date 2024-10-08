@@ -31,7 +31,11 @@ class HttpClient with DioMixin implements Dio {
         onReceiveProgress: onReceiveProgress,
       );
     } catch (e, stackTrace) {
-      throw HttpErrorMapper.mapError(e, stackTrace);
+      if (e is DioException) {
+        throw HttpErrorMapper.tryMapDioError(e, stackTrace);
+      }
+
+      rethrow;
     }
   }
 }

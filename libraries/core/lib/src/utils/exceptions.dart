@@ -1,4 +1,4 @@
-class TKException implements Exception {
+sealed class TKException implements Exception {
   TKException({
     required this.message,
     this.originalError,
@@ -13,7 +13,15 @@ class TKException implements Exception {
   String toString() => message;
 }
 
-class TKNetworkException extends TKException {
+final class TKGenericException extends TKException {
+  TKGenericException({
+    required super.message,
+    super.originalError,
+    super.originalStackTrace,
+  });
+}
+
+final class TKNetworkException extends TKException {
   TKNetworkException({
     required super.message,
     required this.type,
