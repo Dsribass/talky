@@ -1,4 +1,4 @@
-sealed class TKException implements Exception {
+abstract class TKException implements Exception {
   TKException({
     required this.message,
     this.originalError,
@@ -19,6 +19,18 @@ final class TKGenericException extends TKException {
     super.originalError,
     super.originalStackTrace,
   });
+}
+
+sealed class TKInputValidationException extends TKException {
+  TKInputValidationException({required super.message});
+}
+
+final class TKInvalidInputException extends TKInputValidationException {
+  TKInvalidInputException({required super.message});
+}
+
+final class TKEmptyInputException extends TKInputValidationException {
+  TKEmptyInputException({required super.message});
 }
 
 final class TKNetworkException extends TKException {
