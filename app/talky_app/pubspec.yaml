@@ -13,8 +13,6 @@ dependencies:
     path: ../../libraries/core
   flutter:
     sdk: flutter
-  i18n:
-    path: ../../libraries/i18n
   talky_ui_kit:
     path: ../../libraries/talky_ui_kit
 
@@ -26,4 +24,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  generate: true

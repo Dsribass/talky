@@ -195,13 +195,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-  i18n:
-    dependency: "direct main"
-    description:
-      path: "../../libraries/i18n"
-      relative: true
-    source: path
-    version: "0.1.0+1"
   intl:
     dependency: transitive
     description:

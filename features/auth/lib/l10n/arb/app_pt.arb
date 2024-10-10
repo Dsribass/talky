@@ -1,0 +1,84 @@
+{
+    "@@locale": "pt",
+    "introLogo": "Talky",
+    "@introLogo": {
+      "description": "Texto do logo na tela de introdução"
+    },
+    "introSignInButton": "Entrar",
+    "@introSignInButton": {
+      "description": "Texto do botão de entrar na tela de introdução"
+    },
+    "introSignUpInfo": "Ainda não possui uma conta?",
+    "@introSignUpInfo": {
+      "description": "Texto de informação para cadastro na tela de introdução"
+    },
+    "introSignUpButton": "Registre-se aqui!",
+    "@introSignUpButton": {
+      "description": "Texto do botão de cadastrar na tela de introdução"
+    },
+    "signInAppBarTitle": "Login",
+    "@signInAppBarTitle": {
+      "description": "Título da barra de aplicativo na tela de login"
+    },
+    "signInTitle": "Bem-vindo de volta!",
+    "@signInTitle": {
+      "description": "Título de boas-vindas na tela de login"
+    },
+    "signInEmailFieldLabel": "Digite seu email",
+    "@signInEmailFieldLabel": {
+      "description": "Rótulo do campo de email na tela de login"
+    },
+    "signInPasswordFieldLabel": "Digite sua senha",
+    "@signInPasswordFieldLabel": {
+      "description": "Rótulo do campo de senha na tela de login"
+    },
+    "signInIncorrectError": "Email ou senha estão incorretos",
+    "@signInIncorrectError": {
+      "description": "Mensagem de erro quando o email ou a senha estão incorretos na tela de login"
+    },
+    "signInInvalidError": "Campo inválido",
+    "@signInInvalidError": {
+      "description": "Mensagem de erro quando o campo de email é inválido na tela de login"
+    },
+    "signInEmptyError": "Campo obrigatório",
+    "@signInEmptyError": {
+      "description": "Mensagem de erro quando o campo de email está vazio na tela de login"
+    },
+    "signInButton": "Entrar",
+    "@signInButton": {
+      "description": "Texto do botão de entrar na tela de login"
+    },
+    "signInForgotPassword": "Esqueceu a senha?",
+    "@signInForgotPassword": {
+      "description": "Texto de esqueceu a senha na tela de login"
+    },
+    "signUpAppBarTitle": "Cadastro",
+    "@signUpAppBarTitle": {
+      "description": "Título da barra de aplicativo na tela de cadastro"
+    },
+    "signUpEmailTitle": "Digite seu email",
+    "@signUpEmailTitle": {
+      "description": "Título do campo de email na tela de cadastro"
+    },
+    "signUpEmailFieldLabel": "Email",
+    "@signUpEmailFieldLabel": {
+      "description": "Rótulo do campo de email na tela de cadastro"
+    },
+    "signUpPasswordTitle": "Digite sua senha",
+    "@signUpPasswordTitle": {
+      "description": "Título do campo de senha na tela de cadastro"
+    },
+    "signUpPasswordFieldLabel": "Senha",
+    "@signUpPasswordFieldLabel": {
+      "description": "Rótulo do campo de senha na tela de cadastro"
+    },
+    "signUpEmailButton": "Próximo",
+    "@signUpEmailButton": {
+      "description": "Texto do botão de próximo na tela de cadastro"
+    },
+    "signUpPasswordButton": "Finalizar",
+    "@signUpPasswordButton": {
+      "description": "Texto do botão de finalizar na tela de cadastro"
+    }
+  }
+  

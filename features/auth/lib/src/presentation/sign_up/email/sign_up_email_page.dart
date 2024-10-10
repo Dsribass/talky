@@ -1,7 +1,8 @@
 import 'package:auth/auth.dart';
+import 'package:auth/src/presentation/l10n.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:i18n/l10n/l10n.dart';
+
 import 'package:talky_ui_kit/talky_ui_kit.dart';
 
 class SignUpEmailPage extends StatelessWidget {
