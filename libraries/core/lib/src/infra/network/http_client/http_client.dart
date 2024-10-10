@@ -1,4 +1,4 @@
-import 'package:core/src/network/http_client/http_error_mapper.dart';
+import 'package:core/src/infra/network/http_client/http_error_mapper.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 

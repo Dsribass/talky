@@ -1,17 +1,8 @@
 /// Talky - Core Library
 library;
 
-export 'package:bloc/bloc.dart';
-export 'package:dio/dio.dart';
-export 'package:flutter_bloc/flutter_bloc.dart';
-export 'package:go_router/go_router.dart';
-export 'package:meta/meta.dart';
-export 'package:result_dart/functions.dart';
-export 'package:result_dart/result_dart.dart';
-export 'package:rxdart/rxdart.dart';
-
-export 'src/env/environment.dart';
-export 'src/env/environment_variables.dart';
-export 'src/network/network.dart';
-export 'src/router/router.dart';
-export 'src/utils/utils.dart';
+export 'dependencies.dart';
+export 'env.dart';
+export 'infra.dart';
+export 'router.dart';
+export 'utils.dart';
