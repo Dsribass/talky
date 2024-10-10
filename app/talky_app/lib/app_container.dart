@@ -13,7 +13,7 @@ class AppContainer implements ContainerModule {
 
   @override
   void registerDependencies(GetIt injector) {
-    injector.registerSingleton(FakeAppLogger.new);
+    injector.registerSingleton<Logger>(FakeAppLogger());
 
     for (final module in modules) {
       module.registerDependencies(injector);
