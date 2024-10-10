@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:auth/auth.dart';
 import 'package:core/dependencies.dart';
 import 'package:flutter/widgets.dart';
 import 'package:talky_app/app_container.dart';
@@ -28,7 +29,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   Bloc.observer = const AppBlocObserver();
 
-  AppContainer.setup(modules: {});
+  AppContainer.setup(
+    modules: {
+      AuthContainer(),
+    },
+  );
 
   // Add cross-flavor configuration here
 
