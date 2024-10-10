@@ -14,12 +14,27 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  late final SignInBloc _bloc;
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
 
-  final _bloc = SignInBloc();
+  @override
+  void initState() {
+    _bloc = SignInBloc(
+      validateEmail: inject(),
+      validatePassword: inject(),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _bloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

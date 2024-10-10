@@ -1,9 +1,15 @@
+import 'package:auth/src/domain/domain.dart';
 import 'package:auth/src/presentation/sign_in/sign_in_models.dart';
 import 'package:core/core.dart';
 
 // TODO(any): Remove mock data and implement real authentication logic
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  SignInBloc() : super(const SignInState.initial()) {
+  SignInBloc({
+    required ValidateEmail validateEmail,
+    required ValidatePassword validatePassword,
+  })  : _validateEmail = validateEmail,
+        _validatePassword = validatePassword,
+        super(const SignInState.initial()) {
     on<SignInEmailChanged>(
       _onSignInEmailChanged,
       transformer: _debounce(),
@@ -15,63 +21,49 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInFormSubmitted>(_onSignInFormSubmitted);
   }
 
+  final ValidateEmail _validateEmail;
+  final ValidatePassword _validatePassword;
+
   EventTransformer<Event> _debounce<Event>() => (events, mapper) => events
       .debounceTime(
         const Duration(milliseconds: 300),
       )
       .flatMap(mapper);
 
-  void _onSignInEmailChanged(
+  Future<void> _onSignInEmailChanged(
     SignInEmailChanged event,
     Emitter<SignInState> emit,
-  ) {
-    final emailInputStatus = event.email.isEmpty
-        ? SignInModelInputStatus.empty
-        : _isEmailValid(event.email)
-            ? SignInModelInputStatus.valid
-            : SignInModelInputStatus.invalid;
+  ) async {
+    final validationResult = await _validateEmailInput(event.email);
 
     emit(
       state.copyWith(
         email: event.email,
-        emailInputStatus: emailInputStatus,
+        emailInputStatus: validationResult,
       ),
     );
   }
 
-  void _onSignInPasswordChanged(
+  Future<void> _onSignInPasswordChanged(
     SignInPasswordChanged event,
     Emitter<SignInState> emit,
-  ) {
-    final passwordInputStatus = event.password.isEmpty
-        ? SignInModelInputStatus.empty
-        : _isPasswordValid(event.password)
-            ? SignInModelInputStatus.valid
-            : SignInModelInputStatus.invalid;
+  ) async {
+    final validationResult = await _validatePasswordInput(event.password);
 
     emit(
       state.copyWith(
         password: event.password,
-        passwordInputStatus: passwordInputStatus,
+        passwordInputStatus: validationResult,
       ),
     );
   }
 
-  void _onSignInFormSubmitted(
+  Future<void> _onSignInFormSubmitted(
     SignInFormSubmitted event,
     Emitter<SignInState> emit,
-  ) {
-    final emailInputStatus = event.email.isEmpty
-        ? SignInModelInputStatus.empty
-        : _isEmailValid(event.email)
-            ? SignInModelInputStatus.valid
-            : SignInModelInputStatus.invalid;
-
-    final passwordInputStatus = event.password.isEmpty
-        ? SignInModelInputStatus.empty
-        : _isPasswordValid(event.password)
-            ? SignInModelInputStatus.valid
-            : SignInModelInputStatus.invalid;
+  ) async {
+    final emailInputStatus = await _validateEmailInput(event.email);
+    final passwordInputStatus = await _validatePasswordInput(event.password);
 
     if (emailInputStatus != SignInModelInputStatus.valid ||
         passwordInputStatus != SignInModelInputStatus.valid) {
@@ -105,11 +97,27 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     );
   }
 
-  bool _isEmailValid(String email) {
-    return email.isNotEmpty && email.length > 5 && email.contains('@');
-  }
+  Future<SignInModelInputStatus> _validatePasswordInput(String password) =>
+      _validatePassword(
+        (password: password),
+      ).fold(
+        (success) => SignInModelInputStatus.valid,
+        (error) => switch (error) {
+          TKEmptyInputException() => SignInModelInputStatus.empty,
+          TKInvalidInputException() => SignInModelInputStatus.invalid,
+          _ => SignInModelInputStatus.invalid,
+        },
+      );
 
-  bool _isPasswordValid(String password) {
-    return password.isNotEmpty && password.length > 5;
-  }
+  Future<SignInModelInputStatus> _validateEmailInput(String email) =>
+      _validateEmail(
+        (email: email),
+      ).fold(
+        (success) => SignInModelInputStatus.valid,
+        (error) => switch (error) {
+          TKEmptyInputException() => SignInModelInputStatus.empty,
+          TKInvalidInputException() => SignInModelInputStatus.invalid,
+          _ => SignInModelInputStatus.invalid,
+        },
+      );
 }
