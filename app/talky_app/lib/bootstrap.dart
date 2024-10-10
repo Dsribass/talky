@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
+import 'package:core/dependencies.dart';
 import 'package:flutter/widgets.dart';
+import 'package:talky_app/app_container.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -26,6 +27,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   Bloc.observer = const AppBlocObserver();
+
+  AppContainer.setup(modules: {});
 
   // Add cross-flavor configuration here
 
