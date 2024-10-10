@@ -2,6 +2,14 @@ import 'package:core/core.dart';
 
 typedef ValidateEmailParams = ({String email});
 
+/// A use case for validating email addresses.
+///
+/// This class provides functionality to validate email addresses.
+/// It checks if the email is not empty and if it has a valid format.
+///
+/// Throws:
+/// - [TKEmptyInputException] if the email is empty.
+/// - [TKInvalidInputException] if the email format is invalid.
 final class ValidateEmail extends UseCase<Unit, ValidateEmailParams> {
   ValidateEmail({required super.logger});
 
