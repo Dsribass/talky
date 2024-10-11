@@ -1,18 +1,6 @@
-import 'package:core/src/router/routes.dart';
+import 'package:core/src/modular/router/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-
-abstract class RouterModule {
-  List<GoRoute> get configuration;
-}
-
-extension TKRouterConfig on GoRouter {
-  static GoRouter createRouter(List<RouterModule> modules) {
-    return GoRouter(
-      routes: modules.expand((module) => module.configuration).toList(),
-    );
-  }
-}
 
 extension TKRouterExtension on BuildContext {
   void navigateToGlobalRoute({
