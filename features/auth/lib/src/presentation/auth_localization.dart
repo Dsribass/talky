@@ -1,15 +1,15 @@
-import 'package:auth/l10n/gen/auth_localizations.dart';
+import 'package:auth/l10n/gen/module_localizations.dart';
 import 'package:core/modular.dart';
 import 'package:flutter/widgets.dart';
 
 class AuthLocalization extends LocalizationModule {
   AuthLocalization()
       : super(
-          localizationsDelegates: AuthLocalizations.localizationsDelegates,
-          supportedLocales: AuthLocalizations.supportedLocales,
+          localizationsDelegates: ModuleLocalizations.localizationsDelegates,
+          supportedLocales: ModuleLocalizations.supportedLocales,
         );
 }
 
-extension AppLocalizationsX on BuildContext {
-  AuthLocalizations get l10n => AuthLocalizations.of(this);
+extension ModuleLocalizationExtension on BuildContext {
+  ModuleLocalizations get l10n => ModuleLocalizations.of(this);
 }

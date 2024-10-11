@@ -5,24 +5,24 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'auth_localizations_en.dart';
-import 'auth_localizations_pt.dart';
+import 'module_localizations_en.dart';
+import 'module_localizations_pt.dart';
 
 // ignore_for_file: type=lint
 
-/// Callers can lookup localized strings with an instance of AuthLocalizations
-/// returned by `AuthLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of ModuleLocalizations
+/// returned by `ModuleLocalizations.of(context)`.
 ///
-/// Applications need to include `AuthLocalizations.delegate()` in their app's
+/// Applications need to include `ModuleLocalizations.delegate()` in their app's
 /// `localizationDelegates` list, and the locales they support in the app's
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'gen/auth_localizations.dart';
+/// import 'gen/module_localizations.dart';
 ///
 /// return MaterialApp(
-///   localizationsDelegates: AuthLocalizations.localizationsDelegates,
-///   supportedLocales: AuthLocalizations.supportedLocales,
+///   localizationsDelegates: ModuleLocalizations.localizationsDelegates,
+///   supportedLocales: ModuleLocalizations.supportedLocales,
 ///   home: MyApplicationHome(),
 /// );
 /// ```
@@ -59,18 +59,18 @@ import 'auth_localizations_pt.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the AuthLocalizations.supportedLocales
+/// be consistent with the languages listed in the ModuleLocalizations.supportedLocales
 /// property.
-abstract class AuthLocalizations {
-  AuthLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+abstract class ModuleLocalizations {
+  ModuleLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static AuthLocalizations of(BuildContext context) {
-    return Localizations.of<AuthLocalizations>(context, AuthLocalizations)!;
+  static ModuleLocalizations of(BuildContext context) {
+    return Localizations.of<ModuleLocalizations>(context, ModuleLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AuthLocalizations> delegate = _AuthLocalizationsDelegate();
+  static const LocalizationsDelegate<ModuleLocalizations> delegate = _ModuleLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -216,32 +216,32 @@ abstract class AuthLocalizations {
   String get signUpPasswordButton;
 }
 
-class _AuthLocalizationsDelegate extends LocalizationsDelegate<AuthLocalizations> {
-  const _AuthLocalizationsDelegate();
+class _ModuleLocalizationsDelegate extends LocalizationsDelegate<ModuleLocalizations> {
+  const _ModuleLocalizationsDelegate();
 
   @override
-  Future<AuthLocalizations> load(Locale locale) {
-    return SynchronousFuture<AuthLocalizations>(lookupAuthLocalizations(locale));
+  Future<ModuleLocalizations> load(Locale locale) {
+    return SynchronousFuture<ModuleLocalizations>(lookupModuleLocalizations(locale));
   }
 
   @override
   bool isSupported(Locale locale) => <String>['en', 'pt'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_AuthLocalizationsDelegate old) => false;
+  bool shouldReload(_ModuleLocalizationsDelegate old) => false;
 }
 
-AuthLocalizations lookupAuthLocalizations(Locale locale) {
+ModuleLocalizations lookupModuleLocalizations(Locale locale) {
 
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AuthLocalizationsEn();
-    case 'pt': return AuthLocalizationsPt();
+    case 'en': return ModuleLocalizationsEn();
+    case 'pt': return ModuleLocalizationsPt();
   }
 
   throw FlutterError(
-    'AuthLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'ModuleLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.'

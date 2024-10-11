@@ -1,10 +1,10 @@
-import 'auth_localizations.dart';
+import 'module_localizations.dart';
 
 // ignore_for_file: type=lint
 
 /// The translations for Portuguese (`pt`).
-class AuthLocalizationsPt extends AuthLocalizations {
-  AuthLocalizationsPt([String locale = 'pt']) : super(locale);
+class ModuleLocalizationsPt extends ModuleLocalizations {
+  ModuleLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
   String get introLogo => 'Talky';
