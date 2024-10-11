@@ -8,7 +8,7 @@ void main() {
     (modules) => ModularApp(
       modules: modules,
       builder: (context, configuration) => App(configuration: configuration),
-      injectionContainer: AppContainer(),
+      container: AppContainer(),
     ),
   );
 }

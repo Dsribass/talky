@@ -7,7 +7,7 @@ void main() {
   bootstrap(
     (modules) => ModularApp(
       modules: modules,
-      injectionContainer: AppContainer(),
+      container: AppContainer(),
       builder: (context, configuration) => App(configuration: configuration),
     ),
   );
