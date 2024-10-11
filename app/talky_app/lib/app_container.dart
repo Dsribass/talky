@@ -1,23 +1,11 @@
 import 'package:core/dependencies.dart';
+import 'package:core/modular.dart';
 import 'package:core/utils.dart';
 
-class AppContainer implements ContainerModule {
-  AppContainer.setup({
-    required this.modules,
-  }) : injector = GetIt.instance {
-    registerDependencies(injector);
-  }
-
-  final Set<ContainerModule> modules;
-  final GetIt injector;
-
+final class AppContainer extends InjectionContainer {
   @override
-  void registerDependencies(GetIt injector) {
+  void registerMainDependencies(GetIt injector) {
     injector.registerSingleton<Logger>(FakeAppLogger());
-
-    for (final module in modules) {
-      module.registerDependencies(injector);
-    }
   }
 }
 

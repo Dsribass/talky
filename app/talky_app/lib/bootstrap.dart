@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:auth/auth.dart';
 import 'package:core/dependencies.dart';
+import 'package:core/modular.dart';
 import 'package:flutter/widgets.dart';
-import 'package:talky_app/app_container.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -22,20 +22,20 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(
+  Widget Function(Set<Module> modules) builder,
+) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
   Bloc.observer = const AppBlocObserver();
 
-  AppContainer.setup(
-    modules: {
-      AuthContainer(),
-    },
-  );
-
   // Add cross-flavor configuration here
 
-  runApp(await builder());
+  final modules = <Module>{
+    AuthModule(),
+  };
+
+  runApp(builder(modules));
 }
