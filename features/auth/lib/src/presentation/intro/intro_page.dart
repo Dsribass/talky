@@ -1,4 +1,4 @@
-import 'package:auth/src/presentation/l10n.dart';
+import 'package:auth/src/presentation/auth_localization.dart';
 import 'package:auth/src/router/auth_router.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';

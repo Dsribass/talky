@@ -1,4 +1,4 @@
-import 'package:auth/src/presentation/l10n.dart';
+import 'package:auth/src/presentation/auth_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:talky_ui_kit/talky_ui_kit.dart';

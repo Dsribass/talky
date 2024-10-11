@@ -17,7 +17,7 @@ enum AuthRoutes implements InternalRoutes {
   String get name => toString().split('.').last;
 }
 
-final class AuthRouterModule implements RouterModule {
+final class AuthRouter implements RouterModule {
   @override
   List<GoRoute> get configuration => [
         GoRoute(
