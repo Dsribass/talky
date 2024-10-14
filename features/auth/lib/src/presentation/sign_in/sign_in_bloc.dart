@@ -2,13 +2,14 @@ import 'package:auth/src/domain/domain.dart';
 import 'package:auth/src/presentation/sign_in/sign_in_models.dart';
 import 'package:core/core.dart';
 
-// TODO(any): Remove mock data and implement real authentication logic
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({
     required ValidateEmail validateEmail,
     required ValidatePassword validatePassword,
+    required SignIn signIn,
   })  : _validateEmail = validateEmail,
         _validatePassword = validatePassword,
+        _signIn = signIn,
         super(const SignInState.initial()) {
     on<SignInEmailChanged>(
       _onSignInEmailChanged,
@@ -23,6 +24,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   final ValidateEmail _validateEmail;
   final ValidatePassword _validatePassword;
+  final SignIn _signIn;
 
   EventTransformer<Event> _debounce<Event>() => (events, mapper) => events
       .debounceTime(
@@ -77,22 +79,25 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       );
     }
 
-    const fakeEmail = 'lorem_ipsum@email.com';
-    const fakePassword = '12345678';
+    final signInResult = await _signIn(
+      (email: event.email, password: event.password),
+    );
 
-    final isEmailCorrect = fakeEmail == event.email;
-    final isPasswordCorrect = fakePassword == event.password;
+    final invalidCredentials =
+        signInResult.exceptionOrNull() is TKInvalidCredentialsException;
+
+    // TODO(any): Handle other exceptions
 
     emit(
       state.copyWith(
         email: event.email,
         password: event.password,
-        emailInputStatus: isEmailCorrect
-            ? SignInModelInputStatus.valid
-            : SignInModelInputStatus.incorrect,
-        passwordInputStatus: isPasswordCorrect
-            ? SignInModelInputStatus.valid
-            : SignInModelInputStatus.incorrect,
+        emailInputStatus: invalidCredentials
+            ? SignInModelInputStatus.incorrect
+            : SignInModelInputStatus.valid,
+        passwordInputStatus: invalidCredentials
+            ? SignInModelInputStatus.incorrect
+            : SignInModelInputStatus.valid,
       ),
     );
   }

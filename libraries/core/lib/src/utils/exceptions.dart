@@ -33,6 +33,10 @@ final class TKEmptyInputException extends TKInputValidationException {
   TKEmptyInputException({required super.message});
 }
 
+final class TKInvalidCredentialsException extends TKException {
+  TKInvalidCredentialsException({required super.message});
+}
+
 final class TKNetworkException extends TKException {
   TKNetworkException({
     required super.message,

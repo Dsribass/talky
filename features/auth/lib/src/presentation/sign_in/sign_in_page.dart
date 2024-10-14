@@ -27,6 +27,7 @@ class _SignInPageState extends State<SignInPage> {
     _bloc = SignInBloc(
       validateEmail: inject(),
       validatePassword: inject(),
+      signIn: inject(),
     );
     super.initState();
   }
