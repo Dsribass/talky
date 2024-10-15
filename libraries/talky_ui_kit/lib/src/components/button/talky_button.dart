@@ -1,44 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:talky_ui_kit/src/theme/theme.dart';
-import 'package:talky_ui_kit/src/tokens/tokens.dart';
+import 'package:meta/meta.dart';
 
-extension TalkyButton on ButtonStyle {
-  static ButtonStyle filled(TalkyColors colors) {
-    return ButtonStyle(
-      backgroundColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.disabled)) {
-          return colors.onSurface.withOpacity(0.12);
-        }
-        return colors.primary;
-      }),
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.disabled)) {
-          return colors.onSurface.withOpacity(0.38);
-        }
-        return colors.onPrimary;
-      }),
-      textStyle: WidgetStateProperty.all<TextStyle>(TalkyTextStyles.button),
-      fixedSize: WidgetStateProperty.all(const Size.fromHeight(54)),
-      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-        RoundedRectangleBorder(borderRadius: TKRadius.sm.borderRadius),
-      ),
-    );
-  }
+@internal
+abstract class TalkyButton extends StatelessWidget {
+  const TalkyButton({
+    required this.label,
+    required this.onPressed,
+    this.isLoading = false,
+    this.iconAlignment = IconAlignment.start,
+    this.icon,
+    this.width,
+    super.key,
+  });
 
-  static ButtonStyle text(TalkyColors colors) {
-    return ButtonStyle(
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.disabled)) {
-          return colors.onSurface.withOpacity(0.38);
-        }
-        return colors.primary;
-      }),
-      textStyle: WidgetStateProperty.all<TextStyle>(
-        TalkyTextStyles.paragraph.bold,
-      ),
-      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
-    );
-  }
+  final Widget label;
+  final bool isLoading;
+  final IconAlignment iconAlignment;
+  final VoidCallback? onPressed;
+  final Icon? icon;
+  final double? width;
 }
