@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:talky_ui_kit/src/components/button/talky_button.dart';
-import 'package:talky_ui_kit/talky_ui_kit.dart';
+import 'package:talky_ui_kit/src/components/button/button.dart';
+import 'package:talky_ui_kit/src/theme/theme.dart';
+import 'package:talky_ui_kit/src/tokens/tokens.dart';
 
 extension TalkyThemeData on ThemeData {
   static ThemeData get lightTheme {
@@ -14,10 +15,14 @@ extension TalkyThemeData on ThemeData {
       textTheme: GoogleFonts.interTextTheme(),
       fontFamily: GoogleFonts.inter().fontFamily,
       filledButtonTheme: FilledButtonThemeData(
-        style: TalkyButton.filled(colors),
+        style: TalkyFilledButtonStyle.filled(
+          colors.colorScheme,
+        ),
       ),
       textButtonTheme: TextButtonThemeData(
-        style: TalkyButton.text(colors),
+        style: TalkyTextButtonStyle.text(
+          colors.colorScheme,
+        ),
       ),
       actionIconTheme: ActionIconThemeData(
         backButtonIconBuilder: (context) => TalkyAssets.icons.arrowBack(
