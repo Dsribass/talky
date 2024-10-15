@@ -64,17 +64,23 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     SignInFormSubmitted event,
     Emitter<SignInState> emit,
   ) async {
+    emit(
+      state.copyWith(isLoading: true),
+    );
+
     final emailInputStatus = await _validateEmailInput(event.email);
     final passwordInputStatus = await _validatePasswordInput(event.password);
+    final inputIsNotValid = emailInputStatus != SignInModelInputStatus.valid ||
+        passwordInputStatus != SignInModelInputStatus.valid;
 
-    if (emailInputStatus != SignInModelInputStatus.valid ||
-        passwordInputStatus != SignInModelInputStatus.valid) {
+    if (inputIsNotValid) {
       return emit(
         state.copyWith(
           email: event.email,
           password: event.password,
           emailInputStatus: emailInputStatus,
           passwordInputStatus: passwordInputStatus,
+          isLoading: false,
         ),
       );
     }
@@ -83,10 +89,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       (email: event.email, password: event.password),
     );
 
+    // TODO(any): Handle other exceptions
     final invalidCredentials =
         signInResult.exceptionOrNull() is TKInvalidCredentialsException;
-
-    // TODO(any): Handle other exceptions
 
     emit(
       state.copyWith(
@@ -98,6 +103,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         passwordInputStatus: invalidCredentials
             ? SignInModelInputStatus.incorrect
             : SignInModelInputStatus.valid,
+        isLoading: false,
       ),
     );
   }

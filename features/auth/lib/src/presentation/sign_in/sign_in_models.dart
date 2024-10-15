@@ -7,6 +7,7 @@ final class SignInState {
     required this.password,
     required this.emailInputStatus,
     required this.passwordInputStatus,
+    required this.isLoading,
   });
 
   const SignInState.initial()
@@ -15,24 +16,34 @@ final class SignInState {
           password: '',
           emailInputStatus: SignInModelInputStatus.valid,
           passwordInputStatus: SignInModelInputStatus.valid,
+          isLoading: false,
         );
 
   final String email;
   final String password;
   final SignInModelInputStatus emailInputStatus;
   final SignInModelInputStatus passwordInputStatus;
+  final bool isLoading;
+
+  bool get shouldEnableSignInButton =>
+      (emailInputStatus == SignInModelInputStatus.valid &&
+          passwordInputStatus == SignInModelInputStatus.valid) ||
+      emailInputStatus == SignInModelInputStatus.incorrect ||
+      passwordInputStatus == SignInModelInputStatus.incorrect;
 
   SignInState copyWith({
     String? email,
     String? password,
     SignInModelInputStatus? emailInputStatus,
     SignInModelInputStatus? passwordInputStatus,
+    bool? isLoading,
   }) {
     return SignInState(
       email: email ?? this.email,
       password: password ?? this.password,
       emailInputStatus: emailInputStatus ?? this.emailInputStatus,
       passwordInputStatus: passwordInputStatus ?? this.passwordInputStatus,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 }

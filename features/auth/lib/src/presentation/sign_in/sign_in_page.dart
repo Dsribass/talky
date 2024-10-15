@@ -65,6 +65,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     const SizedBox(height: TKSpacing.x8),
                     TextFormField(
+                      enabled: !state.isLoading,
                       controller: _emailController,
                       focusNode: _emailFocusNode,
                       style: TalkyTextStyles.paragraph.medium,
@@ -82,6 +83,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     const SizedBox(height: TKSpacing.x4),
                     TextFormField(
+                      enabled: !state.isLoading,
                       controller: _passwordController,
                       focusNode: _passwordFocusNode,
                       style: TalkyTextStyles.paragraph.medium,
@@ -108,28 +110,29 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ),
                     const Spacer(),
-                    SizedBox(
+                    TalkyFilledButton(
                       width: double.infinity,
-                      child: FilledButton(
-                        onPressed: () => _bloc.add(
-                          SignInFormSubmitted(
-                            email: _emailController.text,
-                            password: _passwordController.text,
-                          ),
+                      isLoading: state.isLoading,
+                      onPressed: () => _bloc.add(
+                        SignInFormSubmitted(
+                          email: _emailController.text,
+                          password: _passwordController.text,
                         ),
-                        child: Text(context.l10n.signInButton),
                       ),
+                      label: Text(context.l10n.signInButton),
                     ),
                     const SizedBox(height: TKSpacing.x7),
                     Text(
                       context.l10n.introSignUpInfo,
                       style: TalkyTextStyles.paragraph.medium,
                     ),
-                    TextButton(
-                      onPressed: () => context.navigateToInternalRoute(
-                        route: AuthRoutes.signUpEmailStep,
-                      ),
-                      child: Text(context.l10n.introSignUpButton),
+                    TalkyTextButton(
+                      onPressed: !state.isLoading
+                          ? () => context.navigateToInternalRoute(
+                                route: AuthRoutes.signUpEmailStep,
+                              )
+                          : null,
+                      label: Text(context.l10n.introSignUpButton),
                     ),
                     const SizedBox(height: TKSpacing.x10),
                   ],
