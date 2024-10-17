@@ -1,4 +1,6 @@
-import 'package:auth/src/data/repositories/mock_auth_repository.dart';
+import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
+import 'package:auth/src/data/data_sources/remote/impl/default_auth_remote_data_source.dart';
+import 'package:auth/src/data/repositories/default_auth_repository.dart';
 import 'package:auth/src/domain/repositories/auth_repository.dart';
 import 'package:auth/src/domain/use_cases/use_cases.dart';
 import 'package:core/core.dart';
@@ -6,12 +8,29 @@ import 'package:core/core.dart';
 final class AuthContainer implements ContainerModule {
   @override
   void registerDependencies(GetIt injector) {
+    _registerCoreDependencies(injector);
     _registerDataDependencies(injector);
     _registerDomainDependencies(injector);
   }
 
+  void _registerCoreDependencies(GetIt injector) {
+    injector.registerLazySingleton(
+      () => HttpClient(
+        options: HttpOptions(baseUrl: env.chatApiBaseUrl),
+      ),
+    );
+  }
+
   void _registerDataDependencies(GetIt injector) {
-    injector.registerCachedFactory<AuthRepository>(MockAuthRepository.new);
+    injector
+      ..registerCachedFactory<AuthRemoteDataSource>(
+        () => DefaultAuthRemoteDataSource(injector.get()),
+      )
+      ..registerCachedFactory<AuthRepository>(
+        () => DefaultAuthRepository(
+          authRemoteDataSource: injector.get(),
+        ),
+      );
   }
 
   void _registerDomainDependencies(GetIt injector) {
