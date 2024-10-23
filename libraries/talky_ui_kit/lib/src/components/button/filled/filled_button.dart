@@ -21,7 +21,7 @@ class TalkyFilledButton extends TalkyButton {
       style: TalkyFilledButtonStyle.filled(context.colors),
       icon: icon,
       iconAlignment: iconAlignment,
-      onPressed: onPressed,
+      onPressed: isLoading ? null : onPressed,
       label: ButtonContent(
         width: width,
         label: label,

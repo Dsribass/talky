@@ -161,6 +161,12 @@ abstract class ModuleLocalizations {
   /// **'Field is required'**
   String get signInEmptyError;
 
+  /// Error message when something went wrong on the sign in screen
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong'**
+  String get signInError;
+
   /// Sign in button text on the login screen
   ///
   /// In en, this message translates to:

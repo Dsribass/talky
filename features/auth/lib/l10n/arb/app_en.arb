@@ -1,83 +1,87 @@
 {
-    "@@locale": "en",
-    "introLogo": "Talky",
-    "@introLogo": {
-      "description": "Logo text on the introduction screen"
-    },
-    "introSignInButton": "Sign In",
-    "@introSignInButton": {
-      "description": "Sign in button text on the introduction screen"
-    },
-    "introSignUpInfo": "Don't have an account yet?",
-    "@introSignUpInfo": {
-      "description": "Sign up information text on the introduction screen"
-    },
-    "introSignUpButton": "Register here!",
-    "@introSignUpButton": {
-      "description": "Sign up button text on the introduction screen"
-    },
-    "signInAppBarTitle": "Login",
-    "@signInAppBarTitle": {
-      "description": "App bar title on the login screen"
-    },
-    "signInTitle": "Welcome back!",
-    "@signInTitle": {
-      "description": "Welcome title on the login screen"
-    },
-    "signInEmailFieldLabel": "Enter your email",
-    "@signInEmailFieldLabel": {
-      "description": "Email field label on the login screen"
-    },
-    "signInPasswordFieldLabel": "Enter your password",
-    "@signInPasswordFieldLabel": {
-      "description": "Password field label on the login screen"
-    },
-    "signInIncorrectError": "Email or password is incorrect",
-    "@signInIncorrectError": {
-      "description": "Error message when email field is Wrong on the sign in screen"
-    },
-    "signInInvalidError": "Field is invalid",
-    "@signInInvalidError": {
-      "description": "Error message when email field is invalid on the sign in screen"
-    },
-    "signInEmptyError": "Field is required",
-    "@signInEmptyError": {
-      "description": "Error message when email field is empty on the sign in screen"
-    },
-    "signInButton": "Sign In",
-    "@signInButton": {
-      "description": "Sign in button text on the login screen"
-    },
-    "signInForgotPassword": "Forgot password?",
-    "@signInForgotPassword": {
-      "description": "Forgot password text on the login screen"
-    },
-    "signUpAppBarTitle": "Sign Up",
-    "@signUpAppBarTitle": {
-      "description": "App bar title on the sign up screen"
-    },
-    "signUpEmailTitle": "Enter your email",
-    "@signUpEmailTitle": {
-      "description": "Email field title on the sign up screen"
-    },
-    "signUpEmailFieldLabel": "Email",
-    "@signUpEmailFieldLabel": {
-      "description": "Email field label on the sign up screen"
-    },
-    "signUpPasswordTitle": "Enter your password",
-    "@signUpPasswordTitle": {
-      "description": "Password field title on the sign up screen"
-    },
-    "signUpPasswordFieldLabel": "Password",
-    "@signUpPasswordFieldLabel": {
-      "description": "Password field label on the sign up screen"
-    },
-    "signUpEmailButton": "Next",
-    "@signUpEmailButton": {
-      "description": "Next button text on the sign up screen"
-    },
-    "signUpPasswordButton": "Finish",
-    "@signUpPasswordButton": {
-      "description": "Finish button text on the sign up screen"
-    }
+  "@@locale": "en",
+  "introLogo": "Talky",
+  "@introLogo": {
+    "description": "Logo text on the introduction screen"
+  },
+  "introSignInButton": "Sign In",
+  "@introSignInButton": {
+    "description": "Sign in button text on the introduction screen"
+  },
+  "introSignUpInfo": "Don't have an account yet?",
+  "@introSignUpInfo": {
+    "description": "Sign up information text on the introduction screen"
+  },
+  "introSignUpButton": "Register here!",
+  "@introSignUpButton": {
+    "description": "Sign up button text on the introduction screen"
+  },
+  "signInAppBarTitle": "Login",
+  "@signInAppBarTitle": {
+    "description": "App bar title on the login screen"
+  },
+  "signInTitle": "Welcome back!",
+  "@signInTitle": {
+    "description": "Welcome title on the login screen"
+  },
+  "signInEmailFieldLabel": "Enter your email",
+  "@signInEmailFieldLabel": {
+    "description": "Email field label on the login screen"
+  },
+  "signInPasswordFieldLabel": "Enter your password",
+  "@signInPasswordFieldLabel": {
+    "description": "Password field label on the login screen"
+  },
+  "signInIncorrectError": "Email or password is incorrect",
+  "@signInIncorrectError": {
+    "description": "Error message when email field is Wrong on the sign in screen"
+  },
+  "signInInvalidError": "Field is invalid",
+  "@signInInvalidError": {
+    "description": "Error message when email field is invalid on the sign in screen"
+  },
+  "signInEmptyError": "Field is required",
+  "@signInEmptyError": {
+    "description": "Error message when email field is empty on the sign in screen"
+  },
+  "signInError": "Oops! Something went wrong",
+  "@signInError": {
+    "description": "Error message when something went wrong on the sign in screen"
+  },
+  "signInButton": "Sign In",
+  "@signInButton": {
+    "description": "Sign in button text on the login screen"
+  },
+  "signInForgotPassword": "Forgot password?",
+  "@signInForgotPassword": {
+    "description": "Forgot password text on the login screen"
+  },
+  "signUpAppBarTitle": "Sign Up",
+  "@signUpAppBarTitle": {
+    "description": "App bar title on the sign up screen"
+  },
+  "signUpEmailTitle": "Enter your email",
+  "@signUpEmailTitle": {
+    "description": "Email field title on the sign up screen"
+  },
+  "signUpEmailFieldLabel": "Email",
+  "@signUpEmailFieldLabel": {
+    "description": "Email field label on the sign up screen"
+  },
+  "signUpPasswordTitle": "Enter your password",
+  "@signUpPasswordTitle": {
+    "description": "Password field title on the sign up screen"
+  },
+  "signUpPasswordFieldLabel": "Password",
+  "@signUpPasswordFieldLabel": {
+    "description": "Password field label on the sign up screen"
+  },
+  "signUpEmailButton": "Next",
+  "@signUpEmailButton": {
+    "description": "Next button text on the sign up screen"
+  },
+  "signUpPasswordButton": "Finish",
+  "@signUpPasswordButton": {
+    "description": "Finish button text on the sign up screen"
+  }
 }

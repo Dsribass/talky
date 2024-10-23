@@ -44,6 +44,10 @@
     "@signInEmptyError": {
       "description": "Mensagem de erro quando o campo de email está vazio na tela de login"
     },
+    "signInError": "Oops! Algo deu errado",
+    "@signInError": {
+      "description": "Mensagem de erro quando algo deu errado na tela de login"
+    },
     "signInButton": "Entrar",
     "@signInButton": {
       "description": "Texto do botão de entrar na tela de login"

@@ -40,6 +40,9 @@ class ModuleLocalizationsPt extends ModuleLocalizations {
   String get signInEmptyError => 'Campo obrigatório';
 
   @override
+  String get signInError => 'Oops! Algo deu errado';
+
+  @override
   String get signInButton => 'Entrar';
 
   @override

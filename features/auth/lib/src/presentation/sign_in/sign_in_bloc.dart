@@ -1,3 +1,4 @@
+import 'package:auth/src/data/exceptions.dart';
 import 'package:auth/src/domain/domain.dart';
 import 'package:auth/src/presentation/sign_in/sign_in_models.dart';
 import 'package:core/core.dart';
@@ -89,20 +90,18 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       (email: event.email, password: event.password),
     );
 
-    // TODO(any): Handle other exceptions
-    final invalidCredentials =
-        signInResult.exceptionOrNull() is TKInvalidCredentialsException;
+    final inputStatus = switch (signInResult.exceptionOrNull()) {
+      TKInvalidCredentialsException() => SignInModelInputStatus.incorrect,
+      Exception() => SignInModelInputStatus.error,
+      _ => SignInModelInputStatus.valid,
+    };
 
     emit(
       state.copyWith(
         email: event.email,
         password: event.password,
-        emailInputStatus: invalidCredentials
-            ? SignInModelInputStatus.incorrect
-            : SignInModelInputStatus.valid,
-        passwordInputStatus: invalidCredentials
-            ? SignInModelInputStatus.incorrect
-            : SignInModelInputStatus.valid,
+        emailInputStatus: inputStatus,
+        passwordInputStatus: inputStatus,
         isLoading: false,
       ),
     );

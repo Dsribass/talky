@@ -68,6 +68,7 @@ enum SignInModelInputStatus {
   invalid,
   incorrect,
   empty,
+  error,
 }
 
 @immutable

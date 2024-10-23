@@ -40,6 +40,9 @@ class ModuleLocalizationsEn extends ModuleLocalizations {
   String get signInEmptyError => 'Field is required';
 
   @override
+  String get signInError => 'Oops! Something went wrong';
+
+  @override
   String get signInButton => 'Sign In';
 
   @override

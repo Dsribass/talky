@@ -4,7 +4,6 @@ import 'package:auth/src/presentation/sign_in/sign_in_models.dart';
 import 'package:auth/src/router/auth_router.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-
 import 'package:talky_ui_kit/talky_ui_kit.dart';
 
 class SignInPage extends StatefulWidget {
@@ -153,6 +152,7 @@ class _SignInPageState extends State<SignInPage> {
         SignInModelInputStatus.empty => context.l10n.signInEmptyError,
         SignInModelInputStatus.invalid => context.l10n.signInInvalidError,
         SignInModelInputStatus.incorrect => context.l10n.signInIncorrectError,
+        SignInModelInputStatus.error => context.l10n.signInError,
         _ => null,
       };
 }
