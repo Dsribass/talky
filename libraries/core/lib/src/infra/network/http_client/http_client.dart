@@ -46,7 +46,7 @@ class HttpOptions extends BaseOptions {
   HttpOptions({
     required super.baseUrl,
     super.connectTimeout = const Duration(seconds: 5),
-    super.receiveTimeout = const Duration(seconds: 3),
+    super.receiveTimeout = const Duration(seconds: 10),
     super.headers,
     super.contentType = Headers.jsonContentType,
   });

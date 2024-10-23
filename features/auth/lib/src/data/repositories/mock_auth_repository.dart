@@ -1,3 +1,4 @@
+import 'package:auth/src/data/exceptions.dart';
 import 'package:auth/src/domain/repositories/auth_repository.dart';
 import 'package:core/core.dart';
 

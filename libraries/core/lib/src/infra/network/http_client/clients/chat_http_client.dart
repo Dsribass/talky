@@ -21,6 +21,7 @@ class ChatHttpClient extends HttpClient {
       type: networkErrorType,
       originalError: error,
       originalStackTrace: stackTrace,
+      statusCode: response.statusCode ?? 0,
       inputIssues: mappedResponse.inputIssues,
       message: '${mappedResponse.message} (${mappedResponse.error})',
     );

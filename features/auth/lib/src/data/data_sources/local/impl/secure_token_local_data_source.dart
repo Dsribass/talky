@@ -1,6 +1,6 @@
 import 'package:auth/src/data/data_sources/local/token_local_data_source.dart';
-import 'package:auth/src/data/exceptions.dart';
 import 'package:core/dependencies.dart';
+import 'package:core/utils.dart';
 
 class SecureTokenLocalDataSource implements TokenLocalDataSource {
   SecureTokenLocalDataSource(this._secureStorage);
@@ -31,7 +31,7 @@ class SecureTokenLocalDataSource implements TokenLocalDataSource {
     final accessToken = await _secureStorage.read(key: _accessTokenKey);
 
     if (accessToken == null) {
-      throw TKTokenNotFoundException(message: 'Access token not found');
+      throw TKItemNotFoundException(message: 'Access token not found');
     }
 
     return accessToken;
@@ -42,7 +42,7 @@ class SecureTokenLocalDataSource implements TokenLocalDataSource {
     final refreshToken = await _secureStorage.read(key: _refreshTokenKey);
 
     if (refreshToken == null) {
-      throw TKTokenNotFoundException(message: 'Refresh token not found');
+      throw TKItemNotFoundException(message: 'Refresh token not found');
     }
 
     return refreshToken;

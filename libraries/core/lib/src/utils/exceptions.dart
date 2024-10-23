@@ -33,19 +33,21 @@ final class TKEmptyInputException extends TKInputValidationException {
   TKEmptyInputException({required super.message});
 }
 
-final class TKInvalidCredentialsException extends TKException {
-  TKInvalidCredentialsException({required super.message});
+final class TKItemNotFoundException extends TKException {
+  TKItemNotFoundException({required super.message});
 }
 
 final class TKNetworkException extends TKException {
   TKNetworkException({
     required super.message,
     required this.type,
+    required this.statusCode,
     this.inputIssues = const {},
     super.originalError,
     super.originalStackTrace,
   });
 
+  final int statusCode;
   final NetworkErrorType type;
   final Map<String, List<String>> inputIssues;
 

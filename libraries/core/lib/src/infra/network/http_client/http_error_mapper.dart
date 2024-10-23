@@ -14,6 +14,7 @@ class HttpErrorMapper {
       message: error.message ?? 'Unknown error',
       type: networkErrorType,
       originalError: error,
+      statusCode: error.response?.statusCode ?? 0,
       originalStackTrace: stackTrace,
     );
   }
