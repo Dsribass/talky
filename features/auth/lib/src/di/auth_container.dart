@@ -1,3 +1,5 @@
+import 'package:auth/src/data/data_sources/local/impl/secure_token_local_data_source.dart';
+import 'package:auth/src/data/data_sources/local/token_local_data_source.dart';
 import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
 import 'package:auth/src/data/data_sources/remote/impl/default_auth_remote_data_source.dart';
 import 'package:auth/src/data/repositories/default_auth_repository.dart';
@@ -14,21 +16,35 @@ final class AuthContainer implements ContainerModule {
   }
 
   void _registerCoreDependencies(GetIt injector) {
-    injector.registerLazySingleton(
-      () => HttpClient(
-        options: HttpOptions(baseUrl: env.chatApiBaseUrl),
-      ),
-    );
+    injector
+      ..registerSingleton(
+        HttpClient(options: HttpOptions(baseUrl: env.chatApiBaseUrl)),
+      )
+      ..registerSingleton(
+        const FlutterSecureStorage(
+          aOptions: AndroidOptions(
+            encryptedSharedPreferences: true,
+            preferencesKeyPrefix: 'talky_',
+          ),
+          iOptions: IOSOptions(
+            accountName: 'talky',
+          ),
+        ),
+      );
   }
 
   void _registerDataDependencies(GetIt injector) {
     injector
+      ..registerCachedFactory<TokenLocalDataSource>(
+        () => SecureTokenLocalDataSource(injector.get()),
+      )
       ..registerCachedFactory<AuthRemoteDataSource>(
         () => DefaultAuthRemoteDataSource(injector.get()),
       )
       ..registerCachedFactory<AuthRepository>(
         () => DefaultAuthRepository(
           authRemoteDataSource: injector.get(),
+          tokenLocalDataSource: injector.get(),
         ),
       );
   }
