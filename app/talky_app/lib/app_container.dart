@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:core/dependencies.dart';
 import 'package:core/modular.dart';
 import 'package:core/utils.dart';
@@ -5,12 +7,13 @@ import 'package:core/utils.dart';
 final class AppContainer extends InjectionContainer {
   @override
   void registerMainDependencies(GetIt injector) {
-    injector.registerSingleton<Logger>(FakeAppLogger());
+    injector.registerSingleton<Logger>(AppLogger());
   }
 }
 
-// TODO(any): Implement the AppLogger class
-class FakeAppLogger implements Logger {
+class AppLogger implements Logger {
   @override
-  void call(String message, {required Object error, StackTrace? stackTrace}) {}
+  void call(String message, {required Object error, StackTrace? stackTrace}) {
+    log(message, error: error, stackTrace: stackTrace);
+  }
 }
