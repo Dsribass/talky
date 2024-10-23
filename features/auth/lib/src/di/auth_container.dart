@@ -18,7 +18,7 @@ final class AuthContainer implements ContainerModule {
   void _registerCoreDependencies(GetIt injector) {
     injector
       ..registerSingleton(
-        HttpClient(options: HttpOptions(baseUrl: env.chatApiBaseUrl)),
+        ChatHttpClient(options: HttpOptions(baseUrl: env.chatApiBaseUrl)),
       )
       ..registerSingleton(
         const FlutterSecureStorage(
@@ -39,7 +39,7 @@ final class AuthContainer implements ContainerModule {
         () => SecureTokenLocalDataSource(injector.get()),
       )
       ..registerCachedFactory<AuthRemoteDataSource>(
-        () => DefaultAuthRemoteDataSource(injector.get()),
+        () => DefaultAuthRemoteDataSource(injector.get<ChatHttpClient>()),
       )
       ..registerCachedFactory<AuthRepository>(
         () => DefaultAuthRepository(

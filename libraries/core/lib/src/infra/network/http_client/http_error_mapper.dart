@@ -8,7 +8,7 @@ class HttpErrorMapper {
     DioException error,
     StackTrace stackTrace,
   ) {
-    final networkErrorType = _networkErrorType(error);
+    final networkErrorType = getNetworkErrorType(error);
 
     return TKNetworkException(
       message: error.message ?? 'Unknown error',
@@ -18,7 +18,7 @@ class HttpErrorMapper {
     );
   }
 
-  static NetworkErrorType _networkErrorType(DioException error) {
+  static NetworkErrorType getNetworkErrorType(DioException error) {
     if (error is SocketException) {
       return NetworkErrorType.noConnection;
     }

@@ -41,22 +41,30 @@ final class TKNetworkException extends TKException {
   TKNetworkException({
     required super.message,
     required this.type,
+    this.inputIssues = const {},
     super.originalError,
     super.originalStackTrace,
   });
 
   final NetworkErrorType type;
+  final Map<String, List<String>> inputIssues;
 
-  @override
-  String toString() {
+  String get detailedMessage {
     final message = StringBuffer()
       ..write('NetworkException')
       ..write('[${type.name}]')
       ..write(': ')
       ..write(this.message)
-      ..write('\n')
+      ..write('\n\n')
       ..write('Original error: ')
       ..write(originalError);
+
+    if (inputIssues.isNotEmpty) {
+      message
+        ..write('\n')
+        ..write('Input issues: ')
+        ..write(inputIssues.toString());
+    }
 
     return message.toString();
   }

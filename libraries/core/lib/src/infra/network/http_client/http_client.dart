@@ -1,14 +1,16 @@
-import 'package:core/src/infra/network/http_client/http_error_mapper.dart';
+import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-class HttpClient with DioMixin implements Dio {
+abstract class HttpClient with DioMixin implements Dio {
   HttpClient({
     required HttpOptions options,
   }) {
     super.options = options;
     httpClientAdapter = IOHttpClientAdapter();
   }
+
+  Exception errorMapper(DioException error, StackTrace stackTrace);
 
   @override
   Future<Response<T>> request<T>(
@@ -32,7 +34,7 @@ class HttpClient with DioMixin implements Dio {
       );
     } catch (e, stackTrace) {
       if (e is DioException) {
-        throw HttpErrorMapper.tryMapDioError(e, stackTrace);
+        throw errorMapper(e, stackTrace);
       }
 
       rethrow;
