@@ -20,32 +20,32 @@ void main() {
 
       // Act & Assert
       expect(
-        () async => await validatePassword.execute(params),
+        () async => validatePassword.execute(params),
         throwsA(isA<TKEmptyInputException>()),
       );
     });
 
     test(
-        'should throw TKInvalidInputException when password is less than 6 characters',
+        'should throw TKInvalidInputException when password is less than 8 characters',
         () async {
       // Arrange
       const params = (password: 'abc12');
 
       // Act & Assert
       expect(
-        () async => await validatePassword.execute(params),
-        throwsA(isA<TKInvalidInputException>()),
+        () async => validatePassword.execute(params),
+        throwsA(isA<TKInvalidInputLengthException>()),
       );
     });
 
     test('should throw TKInvalidInputException when password has no digits',
         () async {
       // Arrange
-      const params = (password: 'abcdef');
+      const params = (password: 'abdcefgh');
 
       // Act & Assert
       expect(
-        () async => await validatePassword.execute(params),
+        () async => validatePassword.execute(params),
         throwsA(isA<TKInvalidInputException>()),
       );
     });
@@ -53,18 +53,18 @@ void main() {
     test('should throw TKInvalidInputException when password has no letters',
         () async {
       // Arrange
-      const params = (password: '123456');
+      const params = (password: '12345678');
 
       // Act & Assert
       expect(
-        () async => await validatePassword.execute(params),
+        () async => validatePassword.execute(params),
         throwsA(isA<TKInvalidInputException>()),
       );
     });
 
-    test('should return Unit when password is valid', () async {
+    test('should allow special characters in password', () async {
       // Arrange
-      const params = (password: 'abc123');
+      const params = (password: 'abc123!@#');
 
       // Act
       final result = await validatePassword.execute(params);
@@ -73,21 +73,15 @@ void main() {
       expect(result, equals(unit));
     });
 
-    test('should log an error when password is invalid', () async {
+    test('should return Unit when password is valid', () async {
       // Arrange
-      const params = (password: '123456');
+      const params = (password: 'abc12399');
 
       // Act
-      await expectLater(
-        () async => await validatePassword.execute(params),
-        throwsA(isA<TKInvalidInputException>()),
-      );
+      final result = await validatePassword.execute(params);
 
-      // Assert that the logger has been called with the appropriate message
-      expect(
-          fakeLogger.getErrorLogs(),
-          contains(
-              'ERROR: Password must contain at least one letter and one number - TKInvalidInputException'));
+      // Assert
+      expect(result, equals(unit));
     });
   });
 }

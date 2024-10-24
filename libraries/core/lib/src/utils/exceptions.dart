@@ -29,6 +29,10 @@ final class TKInvalidInputException extends TKInputValidationException {
   TKInvalidInputException({required super.message});
 }
 
+final class TKInvalidInputLengthException extends TKInputValidationException {
+  TKInvalidInputLengthException({required super.message});
+}
+
 final class TKEmptyInputException extends TKInputValidationException {
   TKEmptyInputException({required super.message});
 }

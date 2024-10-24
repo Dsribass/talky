@@ -7,7 +7,7 @@ typedef ValidatePasswordParams = ({String password});
 /// This use case checks if the provided password meets certain criteria:
 /// - It must not be empty.
 /// - It must contain at least one letter and one number.
-/// - It must be at least 6 characters long.
+/// - It must be at least 8 characters long.
 ///
 /// Throws:
 /// - `TKEmptyInputException` if the password is empty.
@@ -23,8 +23,14 @@ final class ValidatePassword extends UseCase<Unit, ValidatePasswordParams> {
       throw TKEmptyInputException(message: 'Password cannot be empty');
     }
 
+    if (password.length < 8) {
+      throw TKInvalidInputLengthException(
+        message: 'Password must be at least 8 characters long',
+      );
+    }
+
     // Regex to validate password with at least one letter and one number
-    final regex = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$');
+    final regex = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\W]{8,}$');
 
     if (!regex.hasMatch(password)) {
       throw TKInvalidInputException(
