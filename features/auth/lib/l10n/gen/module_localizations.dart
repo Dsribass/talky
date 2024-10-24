@@ -197,6 +197,18 @@ abstract class ModuleLocalizations {
   /// **'Email'**
   String get signUpEmailFieldLabel;
 
+  /// Error message when the email is invalid on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email'**
+  String get signUpEmailInvalidError;
+
+  /// Error message when the email field is empty on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Field is required'**
+  String get signUpEmailEmptyError;
+
   /// Password field title on the sign up screen
   ///
   /// In en, this message translates to:

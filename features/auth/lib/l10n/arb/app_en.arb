@@ -68,6 +68,14 @@
   "@signUpEmailFieldLabel": {
     "description": "Email field label on the sign up screen"
   },
+  "signUpEmailInvalidError": "Invalid email",
+  "@signUpEmailInvalidError": {
+    "description": "Error message when the email is invalid on the sign up screen"
+  },
+  "signUpEmailEmptyError": "Field is required",
+  "@signUpEmailEmptyError": {
+    "description": "Error message when the email field is empty on the sign up screen"
+  },
   "signUpPasswordTitle": "Enter your password",
   "@signUpPasswordTitle": {
     "description": "Password field title on the sign up screen"

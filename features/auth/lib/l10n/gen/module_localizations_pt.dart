@@ -58,6 +58,12 @@ class ModuleLocalizationsPt extends ModuleLocalizations {
   String get signUpEmailFieldLabel => 'Email';
 
   @override
+  String get signUpEmailInvalidError => 'Email inválido';
+
+  @override
+  String get signUpEmailEmptyError => 'Campo obrigatório';
+
+  @override
   String get signUpPasswordTitle => 'Digite sua senha';
 
   @override

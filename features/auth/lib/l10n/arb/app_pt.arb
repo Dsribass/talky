@@ -68,6 +68,14 @@
     "@signUpEmailFieldLabel": {
       "description": "Rótulo do campo de email na tela de cadastro"
     },
+    "signUpEmailInvalidError": "Email inválido",
+    "@signUpEmailInvalidError": {
+      "description": "Mensagem de erro quando o email é inválido na tela de cadastro"
+    },
+    "signUpEmailEmptyError": "Campo obrigatório",
+    "@signUpEmailEmptyError": {
+      "description": "Mensagem de erro quando o campo de email está vazio na tela de cadastro"
+    },
     "signUpPasswordTitle": "Digite sua senha",
     "@signUpPasswordTitle": {
       "description": "Título do campo de senha na tela de cadastro"
