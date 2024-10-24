@@ -3,6 +3,13 @@ import 'package:auth/src/presentation/sign_in/sign_in.dart';
 import 'package:auth/src/presentation/sign_up/sign_up.dart';
 import 'package:core/core.dart';
 
+enum AuthRouteParameters implements RouteParameter {
+  email;
+
+  @override
+  String get name => toString().split('.').last;
+}
+
 enum AuthRoutes implements InternalRoutes {
   signIn('sign-in'),
   signUpEmailStep('sign-up/email'),
@@ -23,22 +30,29 @@ final class AuthRouter implements RouterModule {
         GoRoute(
           name: GlobalRoutes.root.name,
           path: GlobalRoutes.root.path,
-          builder: (context, state) => const IntroPage(),
+          builder: (_, __) => const IntroPage(),
           routes: [
             GoRoute(
               name: AuthRoutes.signIn.name,
               path: AuthRoutes.signIn.path,
-              builder: (context, state) => const SignInPage(),
+              builder: (_, __) => const SignInPage(),
             ),
             GoRoute(
               name: AuthRoutes.signUpEmailStep.name,
               path: AuthRoutes.signUpEmailStep.path,
-              builder: (context, state) => const SignUpEmailPage(),
+              builder: (_, __) => const SignUpEmailPage(),
               routes: [
                 GoRoute(
                   name: AuthRoutes.signUpPasswordStep.name,
-                  path: AuthRoutes.signUpPasswordStep.path,
-                  builder: (context, state) => const SignUpPasswordPage(),
+                  path: AuthRoutes.signUpPasswordStep.pathWithParameters(
+                    [AuthRouteParameters.email],
+                  ),
+                  builder: (_, state) {
+                    final emailParameter = AuthRouteParameters.email.name;
+                    return SignUpPasswordPage(
+                      email: state.pathParameters[emailParameter]!,
+                    );
+                  },
                 ),
               ],
             ),

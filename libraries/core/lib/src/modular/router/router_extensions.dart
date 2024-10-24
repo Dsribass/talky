@@ -5,23 +5,31 @@ import 'package:go_router/go_router.dart';
 extension TKRouterExtension on BuildContext {
   void navigateToGlobalRoute({
     required GlobalRoutes route,
-    Map<String, String> pathParameters = const <String, String>{},
-    Map<String, dynamic> queryParameters = const <String, dynamic>{},
+    Map<RouteParameter, String> pathParameters = const {},
+    Map<RouteParameter, dynamic> queryParameters = const {},
   }) =>
       goNamed(
         route.name,
-        pathParameters: pathParameters,
-        queryParameters: queryParameters,
+        pathParameters: pathParameters.map(
+          (key, value) => MapEntry(key.name, value),
+        ),
+        queryParameters: queryParameters.map(
+          (key, value) => MapEntry(key.name, value),
+        ),
       );
 
   void navigateToInternalRoute({
     required InternalRoutes route,
-    Map<String, String> pathParameters = const <String, String>{},
-    Map<String, dynamic> queryParameters = const <String, dynamic>{},
+    Map<RouteParameter, String> pathParameters = const {},
+    Map<RouteParameter, dynamic> queryParameters = const {},
   }) =>
       goNamed(
         route.name,
-        pathParameters: pathParameters,
-        queryParameters: queryParameters,
+        pathParameters: pathParameters.map(
+          (key, value) => MapEntry(key.name, value),
+        ),
+        queryParameters: queryParameters.map(
+          (key, value) => MapEntry(key.name, value),
+        ),
       );
 }
