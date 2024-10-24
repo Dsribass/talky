@@ -3,7 +3,8 @@ import 'package:auth/src/domain/domain.dart';
 import 'package:auth/src/presentation/sign_in/sign_in_models.dart';
 import 'package:core/core.dart';
 
-class SignInBloc extends Bloc<SignInEvent, SignInState> {
+class SignInBloc extends Bloc<SignInEvent, SignInState>
+    with RxEventTransformer {
   SignInBloc({
     required ValidateEmail validateEmail,
     required ValidatePassword validatePassword,
@@ -14,11 +15,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         super(const SignInState.initial()) {
     on<SignInEmailChanged>(
       _onSignInEmailChanged,
-      transformer: _debounce(),
+      transformer: debounce(),
     );
     on<SignInPasswordChanged>(
       _onSignInPasswordChanged,
-      transformer: _debounce(),
+      transformer: debounce(),
     );
     on<SignInFormSubmitted>(_onSignInFormSubmitted);
   }
@@ -26,12 +27,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final ValidateEmail _validateEmail;
   final ValidatePassword _validatePassword;
   final SignIn _signIn;
-
-  EventTransformer<Event> _debounce<Event>() => (events, mapper) => events
-      .debounceTime(
-        const Duration(milliseconds: 300),
-      )
-      .flatMap(mapper);
 
   Future<void> _onSignInEmailChanged(
     SignInEmailChanged event,
