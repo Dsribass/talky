@@ -3,6 +3,7 @@ import 'package:talky_ui_kit/src/components/button/button_content.dart';
 import 'package:talky_ui_kit/src/components/button/talky_button.dart';
 import 'package:talky_ui_kit/src/theme/colors/color_extensions.dart';
 import 'package:talky_ui_kit/src/theme/talky_text_styles.dart';
+import 'package:talky_ui_kit/talky_ui_kit.dart';
 
 class TalkyTextButton extends TalkyButton {
   const TalkyTextButton({
@@ -32,7 +33,7 @@ class TalkyTextButton extends TalkyButton {
 }
 
 extension TalkyTextButtonStyle on ButtonStyle {
-  static ButtonStyle text(ColorScheme colors) {
+  static ButtonStyle text(TalkyColors colors) {
     return ButtonStyle(
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {

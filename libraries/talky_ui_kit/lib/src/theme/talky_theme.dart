@@ -8,6 +8,7 @@ extension TalkyThemeData on ThemeData {
   static ThemeData get lightTheme {
     final colors = TalkyColors.light();
     return ThemeData(
+      extensions: [colors],
       useMaterial3: true,
       colorScheme: colors.colorScheme,
       canvasColor: colors.surface,
@@ -15,14 +16,10 @@ extension TalkyThemeData on ThemeData {
       textTheme: GoogleFonts.interTextTheme(),
       fontFamily: GoogleFonts.inter().fontFamily,
       filledButtonTheme: FilledButtonThemeData(
-        style: TalkyFilledButtonStyle.filled(
-          colors.colorScheme,
-        ),
+        style: TalkyFilledButtonStyle.filled(colors),
       ),
       textButtonTheme: TextButtonThemeData(
-        style: TalkyTextButtonStyle.text(
-          colors.colorScheme,
-        ),
+        style: TalkyTextButtonStyle.text(colors),
       ),
       actionIconTheme: ActionIconThemeData(
         backButtonIconBuilder: (context) => TalkyAssets.icons.arrowBack(

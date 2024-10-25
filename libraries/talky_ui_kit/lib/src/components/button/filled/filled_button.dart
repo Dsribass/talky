@@ -32,7 +32,7 @@ class TalkyFilledButton extends TalkyButton {
 }
 
 extension TalkyFilledButtonStyle on ButtonStyle {
-  static ButtonStyle filled(ColorScheme colors) {
+  static ButtonStyle filled(TalkyColors colors) {
     return ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {

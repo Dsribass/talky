@@ -50,4 +50,16 @@ class TalkyLightColors extends TalkyColors {
 
   @override
   Color get surfaceContainer => grey2;
+
+  @override
+  Color get success => green;
+
+  @override
+  Color get onSuccess => greenSoft;
+
+  @override
+  Color get warning => yellow;
+
+  @override
+  Color get onWarning => yellowSoft;
 }
