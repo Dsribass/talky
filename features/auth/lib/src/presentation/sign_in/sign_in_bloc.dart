@@ -22,6 +22,14 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
       transformer: debounce(),
     );
     on<SignInFormSubmitted>(_onSignInFormSubmitted);
+
+    on<SignInObscurePasswordChanged>(
+      (_, emit) => emit(
+        state.copyWith(
+          isObscurePassword: !state.isObscurePassword,
+        ),
+      ),
+    );
   }
 
   final ValidateEmail _validateEmail;

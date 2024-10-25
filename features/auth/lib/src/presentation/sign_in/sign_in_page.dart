@@ -86,11 +86,23 @@ class _SignInPageState extends State<SignInPage> {
                       controller: _passwordController,
                       focusNode: _passwordFocusNode,
                       style: TalkyTextStyles.paragraph.medium,
+                      obscureText: state.isObscurePassword,
                       decoration: InputDecoration(
                         hintText: context.l10n.signInPasswordFieldLabel,
                         errorText: _getErrorMessage(
                           context,
                           state.passwordInputStatus,
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            state.isObscurePassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: context.colors.outline,
+                          ),
+                          onPressed: () => _bloc.add(
+                            const SignInObscurePasswordChanged(),
+                          ),
                         ),
                       ),
                       onChanged: (value) => _bloc.add(

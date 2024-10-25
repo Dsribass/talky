@@ -8,6 +8,7 @@ final class SignInState {
     required this.emailInputStatus,
     required this.passwordInputStatus,
     required this.isLoading,
+    required this.isObscurePassword,
   });
 
   const SignInState.initial()
@@ -17,6 +18,7 @@ final class SignInState {
           emailInputStatus: SignInModelInputStatus.valid,
           passwordInputStatus: SignInModelInputStatus.valid,
           isLoading: false,
+          isObscurePassword: true,
         );
 
   final String email;
@@ -24,6 +26,7 @@ final class SignInState {
   final SignInModelInputStatus emailInputStatus;
   final SignInModelInputStatus passwordInputStatus;
   final bool isLoading;
+  final bool isObscurePassword;
 
   bool get shouldEnableSignInButton =>
       (emailInputStatus == SignInModelInputStatus.valid &&
@@ -37,6 +40,7 @@ final class SignInState {
     SignInModelInputStatus? emailInputStatus,
     SignInModelInputStatus? passwordInputStatus,
     bool? isLoading,
+    bool? isObscurePassword,
   }) {
     return SignInState(
       email: email ?? this.email,
@@ -44,6 +48,7 @@ final class SignInState {
       emailInputStatus: emailInputStatus ?? this.emailInputStatus,
       passwordInputStatus: passwordInputStatus ?? this.passwordInputStatus,
       isLoading: isLoading ?? this.isLoading,
+      isObscurePassword: isObscurePassword ?? this.isObscurePassword,
     );
   }
 }
@@ -83,4 +88,9 @@ final class SignInPasswordChanged extends SignInEvent {
   const SignInPasswordChanged(this.password);
 
   final String password;
+}
+
+@immutable
+final class SignInObscurePasswordChanged extends SignInEvent {
+  const SignInObscurePasswordChanged();
 }
