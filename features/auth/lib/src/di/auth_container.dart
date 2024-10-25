@@ -59,6 +59,9 @@ final class AuthContainer implements ContainerModule {
       )
       ..registerCachedFactory(
         () => SignIn(logger: injector.get(), authRepository: injector.get()),
+      )
+      ..registerCachedFactory(
+        () => SignUp(logger: injector.get(), repository: injector.get()),
       );
   }
 }

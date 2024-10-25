@@ -84,6 +84,18 @@
   "@signUpPasswordFieldLabel": {
     "description": "Password field label on the sign up screen"
   },
+  "signUpPasswordInvalidLengthError": "Invalid password. Must be at least 8 characters long",
+  "@signUpPasswordInvalidLengthError": {
+    "description": "Error message when the password is less than N characters on the sign up screen"
+  },
+  "signUpPasswordInvalidTypeError": "Invalid password. Must contain at least one number and one letter",
+  "@signUpPasswordInvalidTypeError": {
+    "description": "Error message when the password does not contain at least one number and one letter on the sign up screen"
+  },
+  "signUpPasswordEmptyError": "Field is required",
+  "@signUpPasswordEmptyError": {
+    "description": "Error message when the password field is empty on the sign up screen"
+  },
   "signUpEmailButton": "Next",
   "@signUpEmailButton": {
     "description": "Next button text on the sign up screen"

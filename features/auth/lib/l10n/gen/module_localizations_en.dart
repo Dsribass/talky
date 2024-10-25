@@ -70,6 +70,15 @@ class ModuleLocalizationsEn extends ModuleLocalizations {
   String get signUpPasswordFieldLabel => 'Password';
 
   @override
+  String get signUpPasswordInvalidLengthError => 'Invalid password. Must be at least 8 characters long';
+
+  @override
+  String get signUpPasswordInvalidTypeError => 'Invalid password. Must contain at least one number and one letter';
+
+  @override
+  String get signUpPasswordEmptyError => 'Field is required';
+
+  @override
   String get signUpEmailButton => 'Next';
 
   @override

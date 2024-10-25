@@ -84,6 +84,18 @@
     "@signUpPasswordFieldLabel": {
       "description": "Rótulo do campo de senha na tela de cadastro"
     },
+    "signUpPasswordInvalidLengthError": "Senha inválida. Deve conter pelo menos 8 caracteres",
+    "@signUpPasswordInvalidLengthError": {
+      "description": "Mensagem de erro quando a senha tem menos de N caracteres na tela de cadastro"
+    },
+    "signUpPasswordInvalidTypeError": "Senha inválida. Deve conter pelo menos um número e uma letra",
+    "@signUpPasswordInvalidTypeError": {
+      "description": "Mensagem de erro quando a senha não contém pelo menos um número e uma letra na tela de cadastro"
+    },
+    "signUpPasswordEmptyError": "Campo obrigatório",
+    "@signUpPasswordEmptyError": {
+      "description": "Mensagem de erro quando o campo de senha está vazio na tela de cadastro"
+    },
     "signUpEmailButton": "Próximo",
     "@signUpEmailButton": {
       "description": "Texto do botão de próximo na tela de cadastro"

@@ -70,6 +70,15 @@ class ModuleLocalizationsPt extends ModuleLocalizations {
   String get signUpPasswordFieldLabel => 'Senha';
 
   @override
+  String get signUpPasswordInvalidLengthError => 'Senha inválida. Deve conter pelo menos 8 caracteres';
+
+  @override
+  String get signUpPasswordInvalidTypeError => 'Senha inválida. Deve conter pelo menos um número e uma letra';
+
+  @override
+  String get signUpPasswordEmptyError => 'Campo obrigatório';
+
+  @override
   String get signUpEmailButton => 'Próximo';
 
   @override

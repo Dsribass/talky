@@ -221,6 +221,24 @@ abstract class ModuleLocalizations {
   /// **'Password'**
   String get signUpPasswordFieldLabel;
 
+  /// Error message when the password is less than N characters on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid password. Must be at least 8 characters long'**
+  String get signUpPasswordInvalidLengthError;
+
+  /// Error message when the password does not contain at least one number and one letter on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid password. Must contain at least one number and one letter'**
+  String get signUpPasswordInvalidTypeError;
+
+  /// Error message when the password field is empty on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Field is required'**
+  String get signUpPasswordEmptyError;
+
   /// Next button text on the sign up screen
   ///
   /// In en, this message translates to:

@@ -50,6 +50,9 @@ class _SignUpEmailPageState extends State<SignUpEmailPage> {
                 if (state.shouldProceedToNextStep) {
                   context.navigateToInternalRoute(
                     route: AuthRoutes.signUpPasswordStep,
+                    pathParameters: {
+                      AuthRouteParameters.email: _emailController.text,
+                    },
                   );
                 }
               },
