@@ -79,6 +79,18 @@ class ModuleLocalizationsEn extends ModuleLocalizations {
   String get signUpPasswordEmptyError => 'Field is required';
 
   @override
+  String get signUpPasswordRulesTitle => 'Password must contain';
+
+  @override
+  String get signUpPasswordRule1 => '• Least 8 characters';
+
+  @override
+  String get signUpPasswordRule2 => '• Least one number';
+
+  @override
+  String get signUpPasswordRule3 => '• Least one letter';
+
+  @override
   String get signUpEmailButton => 'Next';
 
   @override

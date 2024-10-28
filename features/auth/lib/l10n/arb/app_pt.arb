@@ -96,6 +96,22 @@
     "@signUpPasswordEmptyError": {
       "description": "Mensagem de erro quando o campo de senha está vazio na tela de cadastro"
     },
+    "signUpPasswordRulesTitle": "A senha deve conter",
+    "@signUpPasswordRulesTitle": {
+      "description": "Título das regras de senha na tela de cadastro"
+    },
+    "signUpPasswordRule1": "• Pelo menos 8 caracteres",
+    "@signUpPasswordRule1": {
+      "description": "Regra 1 de senha na tela de cadastro"
+    },
+    "signUpPasswordRule2": "• Pelo menos um número",
+    "@signUpPasswordRule2": {
+      "description": "Regra 2 de senha na tela de cadastro"
+    },
+    "signUpPasswordRule3": "• Pelo menos uma letra",
+    "@signUpPasswordRule3": {
+      "description": "Regra 3 de senha na tela de cadastro"
+    },
     "signUpEmailButton": "Próximo",
     "@signUpEmailButton": {
       "description": "Texto do botão de próximo na tela de cadastro"

@@ -239,6 +239,30 @@ abstract class ModuleLocalizations {
   /// **'Field is required'**
   String get signUpPasswordEmptyError;
 
+  /// Title of the password rules on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Password must contain'**
+  String get signUpPasswordRulesTitle;
+
+  /// Password rule 1 on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'• Least 8 characters'**
+  String get signUpPasswordRule1;
+
+  /// Password rule 2 on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'• Least one number'**
+  String get signUpPasswordRule2;
+
+  /// Password rule 3 on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'• Least one letter'**
+  String get signUpPasswordRule3;
+
   /// Next button text on the sign up screen
   ///
   /// In en, this message translates to:

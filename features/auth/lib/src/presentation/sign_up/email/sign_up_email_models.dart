@@ -25,13 +25,12 @@ final class SignUpEmailState {
   SignUpEmailState copyWith({
     String? email,
     SignUpEmailModelInputStatus? emailInputStatus,
-    bool? shouldProceedToNextStep,
+    bool shouldProceedToNextStep = false,
   }) {
     return SignUpEmailState(
       email: email ?? this.email,
       emailInputStatus: emailInputStatus ?? this.emailInputStatus,
-      shouldProceedToNextStep:
-          shouldProceedToNextStep ?? this.shouldProceedToNextStep,
+      shouldProceedToNextStep: shouldProceedToNextStep,
     );
   }
 }

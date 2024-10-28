@@ -81,6 +81,8 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
                         SignUpPasswordPasswordChanged(password: value),
                       ),
                     ),
+                    const SizedBox(height: TKSpacing.x8),
+                    const _PasswordRules(),
                     const Spacer(),
                     TalkyFilledButton(
                       width: double.infinity,
@@ -102,6 +104,44 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _PasswordRules extends StatelessWidget {
+  const _PasswordRules();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          context.l10n.signUpPasswordRulesTitle,
+          style: TalkyTextStyles.paragraph,
+        ),
+        const SizedBox(height: TKSpacing.x2),
+        Padding(
+          padding: const EdgeInsets.only(left: TKSpacing.x2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.signUpPasswordRule1,
+                style: TalkyTextStyles.paragraph,
+              ),
+              Text(
+                context.l10n.signUpPasswordRule2,
+                style: TalkyTextStyles.paragraph,
+              ),
+              Text(
+                context.l10n.signUpPasswordRule3,
+                style: TalkyTextStyles.paragraph,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

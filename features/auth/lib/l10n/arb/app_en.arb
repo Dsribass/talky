@@ -96,6 +96,22 @@
   "@signUpPasswordEmptyError": {
     "description": "Error message when the password field is empty on the sign up screen"
   },
+  "signUpPasswordRulesTitle": "Password must contain",
+  "@signUpPasswordRulesTitle": {
+    "description": "Title of the password rules on the sign up screen"
+  },
+  "signUpPasswordRule1": "• Least 8 characters",
+  "@signUpPasswordRule1": {
+    "description": "Password rule 1 on the sign up screen"
+  },
+  "signUpPasswordRule2": "• Least one number",
+  "@signUpPasswordRule2": {
+    "description": "Password rule 2 on the sign up screen"
+  },
+  "signUpPasswordRule3": "• Least one letter",
+  "@signUpPasswordRule3": {
+    "description": "Password rule 3 on the sign up screen"
+  },
   "signUpEmailButton": "Next",
   "@signUpEmailButton": {
     "description": "Next button text on the sign up screen"
