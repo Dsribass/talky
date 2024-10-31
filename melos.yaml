@@ -15,8 +15,21 @@ command:
       very_good_analysis: ^6.0.0
 
 scripts:
+  get:
+    run: melos run get:select --no-select
+    description: "Run `flutter pub get` in all packages that depends on Flutter."
+  get:select:
+    run: melos exec -- "flutter pub get"
+    description: "Run `flutter pub get` in selected package."
+    packageFilters:
+      dependsOn: flutter
   generate_translations:
     run: melos exec -- "flutter gen-l10n"
     description: Generates translation files.
     packageFilters:
       dirExists: "lib/l10n"
+  build_runner:
+    run: melos exec -- "dart run build_runner build -d"
+    description: Runs build_runner.
+    packageFilters:
+      dependsOn: build_runner
