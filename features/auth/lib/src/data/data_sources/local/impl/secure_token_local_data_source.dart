@@ -1,4 +1,5 @@
 import 'package:auth/src/data/data_sources/local/token_local_data_source.dart';
+import 'package:auth/src/data/models/token_dto.dart';
 import 'package:core/dependencies.dart';
 import 'package:core/utils.dart';
 
@@ -12,12 +13,11 @@ class SecureTokenLocalDataSource implements TokenLocalDataSource {
 
   @override
   Future<void> saveToken({
-    required String accessToken,
-    required String refreshToken,
+    required TokenCacheDto token,
   }) =>
       Future.wait([
-        _secureStorage.write(key: _accessTokenKey, value: accessToken),
-        _secureStorage.write(key: _refreshTokenKey, value: refreshToken),
+        _secureStorage.write(key: _accessTokenKey, value: token.accessToken),
+        _secureStorage.write(key: _refreshTokenKey, value: token.refreshToken),
       ]);
 
   @override

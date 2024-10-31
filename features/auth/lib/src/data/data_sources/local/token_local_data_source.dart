@@ -1,7 +1,8 @@
+import 'package:auth/src/data/models/token_dto.dart';
+
 abstract interface class TokenLocalDataSource {
   Future<void> saveToken({
-    required String accessToken,
-    required String refreshToken,
+    required TokenCacheDto token,
   });
 
   Future<void> deleteToken();

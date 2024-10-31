@@ -2,7 +2,7 @@ import 'package:auth/src/data/data_sources/local/token_local_data_source.dart';
 import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
 import 'package:auth/src/data/models/user_dto.dart';
 import 'package:auth/src/domain/repositories/auth_repository.dart';
-import 'package:result_dart/src/unit.dart';
+import 'package:core/dependencies.dart';
 
 final class DefaultAuthRepository implements AuthRepository {
   const DefaultAuthRepository({
@@ -21,8 +21,7 @@ final class DefaultAuthRepository implements AuthRepository {
     final token = await _authRemoteDataSource.signIn(userDTO);
 
     await _tokenLocalDataSource.saveToken(
-      accessToken: token.accessToken,
-      refreshToken: token.refreshToken,
+      token: token.toCache(),
     );
 
     return unit;
