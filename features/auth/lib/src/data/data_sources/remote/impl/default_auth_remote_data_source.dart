@@ -30,11 +30,21 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
       };
     }
   }
+
+  @override
+  Future<TokenRemoteDto> signUp(UserRemoteDTO user) async {
+    final response = await _client.post<Map<String, dynamic>>(
+      _AuthEndpoints.signUp.path,
+      data: user.toJson(),
+    );
+
+    return TokenRemoteDto.fromJson(response.data!);
+  }
 }
 
 enum _AuthEndpoints {
-  signIn('/auth/sign-in');
-  // signUp('/auth/sign-up'),
+  signIn('/auth/sign-in'),
+  signUp('/auth/sign-up');
   // refreshToken('/auth/refresh-token');
 
   const _AuthEndpoints(this.path);

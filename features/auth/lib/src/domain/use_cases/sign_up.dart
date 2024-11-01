@@ -15,7 +15,8 @@ final class SignUp extends UseCase<Unit, SignUpParams> {
   final AuthRepository repository;
 
   @override
-  Future<Unit> execute(SignUpParams params) async {
-    return unit;
-  }
+  Future<Unit> execute(SignUpParams params) async => repository.signUp(
+        email: params.email,
+        password: params.password,
+      );
 }

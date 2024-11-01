@@ -3,4 +3,5 @@ import 'package:auth/src/data/models/user_dto.dart';
 
 abstract interface class AuthRemoteDataSource {
   Future<TokenRemoteDto> signIn(UserRemoteDTO user);
+  Future<TokenRemoteDto> signUp(UserRemoteDTO user);
 }

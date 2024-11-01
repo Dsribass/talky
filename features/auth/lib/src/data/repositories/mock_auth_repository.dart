@@ -22,4 +22,11 @@ class MockAuthRepository implements AuthRepository {
       throw TKInvalidCredentialsException(message: 'Invalid email or password');
     }
   }
+
+  @override
+  Future<Unit> signUp({required String email, required String password}) async {
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
+
+    return unit;
+  }
 }

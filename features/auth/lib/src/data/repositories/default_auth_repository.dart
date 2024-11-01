@@ -26,4 +26,17 @@ final class DefaultAuthRepository implements AuthRepository {
 
     return unit;
   }
+
+  @override
+  Future<Unit> signUp({required String email, required String password}) async {
+    final userDTO = UserRemoteDTO(email: email, password: password);
+
+    final token = await _authRemoteDataSource.signUp(userDTO);
+
+    await _tokenLocalDataSource.saveToken(
+      token: token.toCache(),
+    );
+
+    return unit;
+  }
 }
