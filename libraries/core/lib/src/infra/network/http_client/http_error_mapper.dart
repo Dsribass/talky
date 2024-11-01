@@ -12,45 +12,45 @@ class HttpErrorMapper {
 
     return TKNetworkException(
       message: error.message ?? 'Unknown error',
-      type: networkErrorType,
+      statusError: networkErrorType,
       originalError: error,
       statusCode: error.response?.statusCode ?? 0,
       originalStackTrace: stackTrace,
     );
   }
 
-  static NetworkErrorType getNetworkErrorType(DioException error) {
+  static NetworkStatusError getNetworkErrorType(DioException error) {
     if (error is SocketException) {
-      return NetworkErrorType.noConnection;
+      return NetworkStatusError.noConnection;
     }
 
     if (error.type == DioExceptionType.connectionTimeout ||
         error.type == DioExceptionType.receiveTimeout) {
-      return NetworkErrorType.timeout;
+      return NetworkStatusError.timeout;
     }
 
     final statusCode = error.response?.statusCode ?? 0;
 
     if (statusCode == 401) {
-      return NetworkErrorType.unauthorized;
+      return NetworkStatusError.unauthorized;
     }
 
     if (statusCode == 403) {
-      return NetworkErrorType.forbidden;
+      return NetworkStatusError.forbidden;
     }
 
     if (statusCode == 404) {
-      return NetworkErrorType.notFound;
+      return NetworkStatusError.notFound;
     }
 
     if (statusCode >= 400 && statusCode <= 499) {
-      return NetworkErrorType.badRequest;
+      return NetworkStatusError.badRequest;
     }
 
     if (statusCode >= 500 && statusCode <= 599) {
-      return NetworkErrorType.internalServerError;
+      return NetworkStatusError.internalServerError;
     }
 
-    return NetworkErrorType.unknown;
+    return NetworkStatusError.unknown;
   }
 }

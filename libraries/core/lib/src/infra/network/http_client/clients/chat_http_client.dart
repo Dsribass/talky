@@ -18,7 +18,7 @@ class ChatHttpClient extends HttpClient {
     final networkErrorType = HttpErrorMapper.getNetworkErrorType(error);
 
     return TKNetworkException(
-      type: networkErrorType,
+      statusError: networkErrorType,
       originalError: error,
       originalStackTrace: stackTrace,
       statusCode: response.statusCode ?? 0,

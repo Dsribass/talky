@@ -22,9 +22,9 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
     } catch (e) {
       if (e is! TKNetworkException) rethrow;
 
-      throw switch (e.type) {
-        NetworkErrorType.unauthorized ||
-        NetworkErrorType.notFound =>
+      throw switch (e.statusError) {
+        NetworkStatusError.unauthorized ||
+        NetworkStatusError.notFound =>
           TKInvalidCredentialsException(message: e.message),
         _ => e,
       };

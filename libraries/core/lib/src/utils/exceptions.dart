@@ -44,7 +44,7 @@ final class TKItemNotFoundException extends TKException {
 final class TKNetworkException extends TKException {
   TKNetworkException({
     required super.message,
-    required this.type,
+    required this.statusError,
     required this.statusCode,
     this.inputIssues = const {},
     super.originalError,
@@ -52,13 +52,13 @@ final class TKNetworkException extends TKException {
   });
 
   final int statusCode;
-  final NetworkErrorType type;
+  final NetworkStatusError statusError;
   final Map<String, List<String>> inputIssues;
 
   String get detailedMessage {
     final message = StringBuffer()
       ..write('NetworkException')
-      ..write('[${type.name}]')
+      ..write('[${statusError.name}]')
       ..write(': ')
       ..write(this.message)
       ..write('\n\n')
@@ -76,7 +76,7 @@ final class TKNetworkException extends TKException {
   }
 }
 
-enum NetworkErrorType {
+enum NetworkStatusError {
   unknown,
   timeout,
   noConnection,
