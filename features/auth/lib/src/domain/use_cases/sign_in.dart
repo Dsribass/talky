@@ -17,11 +17,11 @@ final class SignIn extends UseCase<Unit, SignInParams> {
     final password = params.password;
 
     if (email.isEmpty) {
-      throw TKEmptyInputException(message: 'Email cannot be empty');
+      throw EmptyInputException(message: 'Email cannot be empty');
     }
 
     if (password.isEmpty) {
-      throw TKEmptyInputException(message: 'Password cannot be empty');
+      throw EmptyInputException(message: 'Password cannot be empty');
     }
 
     return authRepository.signIn(email: email, password: password);

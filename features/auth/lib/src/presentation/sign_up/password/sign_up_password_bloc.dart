@@ -63,9 +63,9 @@ final class SignUpPasswordBloc
       ).fold(
         (success) => SignUpPasswordModelInputStatus.valid,
         (error) => switch (error) {
-          TKEmptyInputException() => SignUpPasswordModelInputStatus.empty,
-          TKInvalidInputException() => SignUpPasswordModelInputStatus.invalid,
-          TKInvalidInputLengthException() =>
+          EmptyInputException() => SignUpPasswordModelInputStatus.empty,
+          InvalidInputException() => SignUpPasswordModelInputStatus.invalid,
+          InvalidInputLengthException() =>
             SignUpPasswordModelInputStatus.invalidLength,
           _ => SignUpPasswordModelInputStatus.invalid,
         },

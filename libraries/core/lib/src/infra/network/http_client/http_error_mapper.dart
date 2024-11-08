@@ -1,16 +1,16 @@
 import 'dart:io';
 
-import 'package:core/src/utils/exceptions.dart';
+import 'package:core/src/exceptions/exceptions.dart';
 import 'package:dio/dio.dart';
 
 class HttpErrorMapper {
-  static TKNetworkException tryMapDioError(
+  static GenericNetworkException tryMapDioError(
     DioException error,
     StackTrace stackTrace,
   ) {
     final networkErrorType = getNetworkErrorType(error);
 
-    return TKNetworkException(
+    return GenericNetworkException(
       message: error.message ?? 'Unknown error',
       statusError: networkErrorType,
       originalError: error,

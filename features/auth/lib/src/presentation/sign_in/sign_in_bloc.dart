@@ -116,8 +116,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
       ).fold(
         (success) => SignInModelInputStatus.valid,
         (error) => switch (error) {
-          TKEmptyInputException() => SignInModelInputStatus.empty,
-          TKInvalidInputException() => SignInModelInputStatus.invalid,
+          EmptyInputException() => SignInModelInputStatus.empty,
+          InvalidInputException() => SignInModelInputStatus.invalid,
           _ => SignInModelInputStatus.invalid,
         },
       );
@@ -128,8 +128,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
       ).fold(
         (success) => SignInModelInputStatus.valid,
         (error) => switch (error) {
-          TKEmptyInputException() => SignInModelInputStatus.empty,
-          TKInvalidInputException() => SignInModelInputStatus.invalid,
+          EmptyInputException() => SignInModelInputStatus.empty,
+          InvalidInputException() => SignInModelInputStatus.invalid,
           _ => SignInModelInputStatus.invalid,
         },
       );

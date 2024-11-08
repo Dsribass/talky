@@ -21,7 +21,7 @@ void main() {
       // Act & Assert
       expect(
         () async => validatePassword.execute(params),
-        throwsA(isA<TKEmptyInputException>()),
+        throwsA(isA<EmptyInputException>()),
       );
     });
 
@@ -34,7 +34,7 @@ void main() {
       // Act & Assert
       expect(
         () async => validatePassword.execute(params),
-        throwsA(isA<TKInvalidInputLengthException>()),
+        throwsA(isA<InvalidInputLengthException>()),
       );
     });
 
@@ -46,7 +46,7 @@ void main() {
       // Act & Assert
       expect(
         () async => validatePassword.execute(params),
-        throwsA(isA<TKInvalidInputException>()),
+        throwsA(isA<InvalidInputException>()),
       );
     });
 
@@ -58,7 +58,7 @@ void main() {
       // Act & Assert
       expect(
         () async => validatePassword.execute(params),
-        throwsA(isA<TKInvalidInputException>()),
+        throwsA(isA<InvalidInputException>()),
       );
     });
 

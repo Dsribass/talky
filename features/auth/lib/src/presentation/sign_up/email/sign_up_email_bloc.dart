@@ -52,8 +52,8 @@ final class SignUpEmailBloc extends Bloc<SignUpEmailEvent, SignUpEmailState>
       ).fold(
         (success) => SignUpEmailModelInputStatus.valid,
         (error) => switch (error) {
-          TKEmptyInputException() => SignUpEmailModelInputStatus.empty,
-          TKInvalidInputException() => SignUpEmailModelInputStatus.invalid,
+          EmptyInputException() => SignUpEmailModelInputStatus.empty,
+          InvalidInputException() => SignUpEmailModelInputStatus.invalid,
           _ => SignUpEmailModelInputStatus.invalid,
         },
       );

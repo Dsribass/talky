@@ -1,6 +1,8 @@
-import 'package:core/core.dart';
+import 'package:core/src/exceptions/exceptions.dart';
 import 'package:core/src/infra/network/http_client/http_error_mapper.dart';
 import 'package:core/src/infra/network/http_client/models/chat_error_response.dart';
+import 'package:core/src/infra/network/network.dart';
+import 'package:dio/dio.dart';
 
 class ChatHttpClient extends HttpClient {
   ChatHttpClient({required super.options});
@@ -17,7 +19,7 @@ class ChatHttpClient extends HttpClient {
     final mappedResponse = ChatErrorResponse.fromJson(data);
     final networkErrorType = HttpErrorMapper.getNetworkErrorType(error);
 
-    return TKNetworkException(
+    return GenericNetworkException(
       statusError: networkErrorType,
       originalError: error,
       originalStackTrace: stackTrace,

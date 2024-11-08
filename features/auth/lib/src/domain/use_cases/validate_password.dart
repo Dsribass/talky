@@ -20,11 +20,11 @@ final class ValidatePassword extends UseCase<Unit, ValidatePasswordParams> {
     final password = params.password;
 
     if (password.isEmpty) {
-      throw TKEmptyInputException(message: 'Password cannot be empty');
+      throw EmptyInputException(message: 'Password cannot be empty');
     }
 
     if (password.length < 8) {
-      throw TKInvalidInputLengthException(
+      throw InvalidInputLengthException(
         message: 'Password must be at least 8 characters long',
       );
     }
@@ -33,7 +33,7 @@ final class ValidatePassword extends UseCase<Unit, ValidatePasswordParams> {
     final regex = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\W]{8,}$');
 
     if (!regex.hasMatch(password)) {
-      throw TKInvalidInputException(
+      throw InvalidInputException(
         message: 'Password must contain at least one letter and one number',
       );
     }

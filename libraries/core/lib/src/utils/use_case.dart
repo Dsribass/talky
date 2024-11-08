@@ -1,4 +1,4 @@
-import 'package:core/src/utils/exceptions.dart';
+import 'package:core/src/exceptions/exceptions.dart';
 import 'package:core/src/utils/logger.dart';
 import 'package:meta/meta.dart';
 import 'package:result_dart/functions.dart';
@@ -13,7 +13,7 @@ abstract base class UseCase<T extends Object, P> {
   @protected
   Future<T> execute(P params);
 
-  AsyncResult<T, TKException> call(P params) async {
+  AsyncResult<T, CoreException> call(P params) async {
     try {
       return successOf(await execute(params));
     } catch (e, stackTrace) {
@@ -23,12 +23,12 @@ abstract base class UseCase<T extends Object, P> {
         stackTrace: stackTrace,
       );
 
-      if (e is TKException) {
+      if (e is CoreException) {
         return failureOf(e);
       }
 
       return failureOf(
-        TKGenericException(
+        GenericException(
           message: e.toString(),
           originalError: e,
           originalStackTrace: stackTrace,

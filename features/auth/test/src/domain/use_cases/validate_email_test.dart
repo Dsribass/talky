@@ -23,10 +23,10 @@ void main() {
 
       // Assert
       expect(result.isError(), isTrue);
-      expect(result.exceptionOrNull(), isA<TKEmptyInputException>());
+      expect(result.exceptionOrNull(), isA<EmptyInputException>());
       final logs = fakeLogger.getErrorLogs();
       expect(logs.length, equals(1));
-      expect(logs.first, isA<TKEmptyInputException>());
+      expect(logs.first, isA<EmptyInputException>());
     });
 
     test(
@@ -40,10 +40,10 @@ void main() {
 
       // Assert
       expect(result.isError(), isTrue);
-      expect(result.exceptionOrNull(), isA<TKInvalidInputException>());
+      expect(result.exceptionOrNull(), isA<InvalidInputException>());
       final logs = fakeLogger.getErrorLogs();
       expect(logs.length, equals(1));
-      expect(logs.first, isA<TKInvalidInputException>());
+      expect(logs.first, isA<InvalidInputException>());
     });
 
     test('should return TKInvalidInputException when password has no digits',
@@ -56,10 +56,10 @@ void main() {
 
       // Assert
       expect(result.isError(), isTrue);
-      expect(result.exceptionOrNull(), isA<TKInvalidInputException>());
+      expect(result.exceptionOrNull(), isA<InvalidInputException>());
       final logs = fakeLogger.getErrorLogs();
       expect(logs.length, equals(1));
-      expect(logs.first, isA<TKInvalidInputException>());
+      expect(logs.first, isA<InvalidInputException>());
     });
 
     test('should return TKInvalidInputException when password has no letters',
@@ -72,10 +72,10 @@ void main() {
 
       // Assert
       expect(result.isError(), isTrue);
-      expect(result.exceptionOrNull(), isA<TKInvalidInputException>());
+      expect(result.exceptionOrNull(), isA<InvalidInputException>());
       final logs = fakeLogger.getErrorLogs();
       expect(logs.length, equals(1));
-      expect(logs.first, isA<TKInvalidInputException>());
+      expect(logs.first, isA<InvalidInputException>());
     });
 
     test('should return success when password is valid', () async {

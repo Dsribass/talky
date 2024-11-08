@@ -8,8 +8,8 @@ typedef ValidateEmailParams = ({String email});
 /// It checks if the email is not empty and if it has a valid format.
 ///
 /// Throws:
-/// - [TKEmptyInputException] if the email is empty.
-/// - [TKInvalidInputException] if the email format is invalid.
+/// - [EmptyInputException] if the email is empty.
+/// - [InvalidInputException] if the email format is invalid.
 final class ValidateEmail extends UseCase<Unit, ValidateEmailParams> {
   ValidateEmail({required super.logger});
 
@@ -18,7 +18,7 @@ final class ValidateEmail extends UseCase<Unit, ValidateEmailParams> {
     final email = params.email;
 
     if (email.isEmpty) {
-      throw TKEmptyInputException(message: 'Email cannot be empty');
+      throw EmptyInputException(message: 'Email cannot be empty');
     }
 
     // Regex to validate email format
@@ -27,7 +27,7 @@ final class ValidateEmail extends UseCase<Unit, ValidateEmailParams> {
     );
 
     if (!regex.hasMatch(email)) {
-      throw TKInvalidInputException(message: 'Invalid email format');
+      throw InvalidInputException(message: 'Invalid email format');
     }
 
     return unit;
