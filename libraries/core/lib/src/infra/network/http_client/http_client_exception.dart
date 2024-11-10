@@ -1,18 +1,16 @@
 import 'package:core/src/exceptions/core_exception.dart';
 
-class GenericNetworkException extends CoreException {
-  GenericNetworkException({
+class HttpClientException extends CoreException {
+  HttpClientException({
     required super.message,
     required this.statusError,
     required this.statusCode,
-    this.inputIssues = const {},
     super.originalError,
     super.originalStackTrace,
   });
 
   final int statusCode;
-  final NetworkStatusError statusError;
-  final Map<String, List<String>> inputIssues;
+  final HttpStatusError statusError;
 
   String get detailedMessage {
     final message = StringBuffer()
@@ -24,18 +22,11 @@ class GenericNetworkException extends CoreException {
       ..write('Original error: ')
       ..write(originalError);
 
-    if (inputIssues.isNotEmpty) {
-      message
-        ..write('\n')
-        ..write('Input issues: ')
-        ..write(inputIssues.toString());
-    }
-
     return message.toString();
   }
 }
 
-enum NetworkStatusError {
+enum HttpStatusError {
   unknown,
   timeout,
   noConnection,

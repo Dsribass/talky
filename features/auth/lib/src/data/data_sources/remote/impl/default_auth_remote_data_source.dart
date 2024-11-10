@@ -2,7 +2,6 @@ import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
 import 'package:auth/src/data/exceptions.dart';
 import 'package:auth/src/data/models/token_dto.dart';
 import 'package:auth/src/data/models/user_dto.dart';
-import 'package:core/exceptions.dart';
 import 'package:core/infra.dart';
 
 final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
@@ -20,11 +19,11 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
 
       return TokenRemoteDto.fromJson(response.data!);
     } catch (e) {
-      if (e is! GenericNetworkException) rethrow;
+      if (e is! HttpClientException) rethrow;
 
       throw switch (e.statusError) {
-        NetworkStatusError.unauthorized ||
-        NetworkStatusError.notFound =>
+        HttpStatusError.unauthorized ||
+        HttpStatusError.notFound =>
           TKInvalidCredentialsException(message: e.message),
         _ => e,
       };

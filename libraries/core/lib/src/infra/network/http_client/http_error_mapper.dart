@@ -1,16 +1,16 @@
 import 'dart:io';
 
-import 'package:core/src/exceptions/exceptions.dart';
+import 'package:core/src/infra/network/http_client/http_client_exception.dart';
 import 'package:dio/dio.dart';
 
 class HttpErrorMapper {
-  static GenericNetworkException tryMapDioError(
+  static HttpClientException tryMapDioError(
     DioException error,
     StackTrace stackTrace,
   ) {
     final networkErrorType = getNetworkErrorType(error);
 
-    return GenericNetworkException(
+    return HttpClientException(
       message: error.message ?? 'Unknown error',
       statusError: networkErrorType,
       originalError: error,
@@ -19,38 +19,38 @@ class HttpErrorMapper {
     );
   }
 
-  static NetworkStatusError getNetworkErrorType(DioException error) {
+  static HttpStatusError getNetworkErrorType(DioException error) {
     if (error is SocketException) {
-      return NetworkStatusError.noConnection;
+      return HttpStatusError.noConnection;
     }
 
     if (error.type == DioExceptionType.connectionTimeout ||
         error.type == DioExceptionType.receiveTimeout) {
-      return NetworkStatusError.timeout;
+      return HttpStatusError.timeout;
     }
 
     final statusCode = error.response?.statusCode ?? 0;
 
     if (statusCode == 401) {
-      return NetworkStatusError.unauthorized;
+      return HttpStatusError.unauthorized;
     }
 
     if (statusCode == 403) {
-      return NetworkStatusError.forbidden;
+      return HttpStatusError.forbidden;
     }
 
     if (statusCode == 404) {
-      return NetworkStatusError.notFound;
+      return HttpStatusError.notFound;
     }
 
     if (statusCode >= 400 && statusCode <= 499) {
-      return NetworkStatusError.badRequest;
+      return HttpStatusError.badRequest;
     }
 
     if (statusCode >= 500 && statusCode <= 599) {
-      return NetworkStatusError.internalServerError;
+      return HttpStatusError.internalServerError;
     }
 
-    return NetworkStatusError.unknown;
+    return HttpStatusError.unknown;
   }
 }

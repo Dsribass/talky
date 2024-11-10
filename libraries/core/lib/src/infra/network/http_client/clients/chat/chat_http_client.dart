@@ -1,7 +1,7 @@
-import 'package:core/src/exceptions/exceptions.dart';
+import 'package:core/src/infra/network/http_client/clients/chat/chat_error_response.dart';
+import 'package:core/src/infra/network/http_client/clients/chat/chat_http_client_exception.dart';
+import 'package:core/src/infra/network/http_client/http_client.dart';
 import 'package:core/src/infra/network/http_client/http_error_mapper.dart';
-import 'package:core/src/infra/network/http_client/models/chat_error_response.dart';
-import 'package:core/src/infra/network/network.dart';
 import 'package:dio/dio.dart';
 
 class ChatHttpClient extends HttpClient {
@@ -19,13 +19,14 @@ class ChatHttpClient extends HttpClient {
     final mappedResponse = ChatErrorResponse.fromJson(data);
     final networkErrorType = HttpErrorMapper.getNetworkErrorType(error);
 
-    return GenericNetworkException(
+    return ChatHttpClientException(
       statusError: networkErrorType,
       originalError: error,
       originalStackTrace: stackTrace,
       statusCode: response.statusCode ?? 0,
       inputIssues: mappedResponse.inputIssues,
       message: '${mappedResponse.message} (${mappedResponse.error})',
+      responseErrorType: mappedResponse.type,
     );
   }
 }
