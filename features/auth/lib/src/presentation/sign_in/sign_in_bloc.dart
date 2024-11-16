@@ -94,7 +94,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
     );
 
     final inputStatus = switch (signInResult.exceptionOrNull()) {
-      TKInvalidCredentialsException() => SignInModelInputStatus.incorrect,
+      InvalidCredentialsException() => SignInModelInputStatus.incorrect,
       Exception() => SignInModelInputStatus.error,
       _ => SignInModelInputStatus.valid,
     };

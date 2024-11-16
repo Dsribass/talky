@@ -19,7 +19,7 @@ class MockAuthRepository implements AuthRepository {
     if (isEmailCorrect && isPasswordCorrect) {
       return unit;
     } else {
-      throw TKInvalidCredentialsException(message: 'Invalid email or password');
+      throw InvalidCredentialsException(message: 'Invalid email or password');
     }
   }
 

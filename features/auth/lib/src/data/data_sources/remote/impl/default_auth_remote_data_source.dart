@@ -18,13 +18,11 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
       );
 
       return TokenRemoteDto.fromJson(response.data!);
-    } catch (e) {
-      if (e is! HttpClientException) rethrow;
-
+    } on HttpClientException catch (e) {
       throw switch (e.statusError) {
         HttpStatusError.unauthorized ||
         HttpStatusError.notFound =>
-          TKInvalidCredentialsException(message: e.message),
+          InvalidCredentialsException(message: e.message),
         _ => e,
       };
     }
@@ -32,12 +30,20 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
 
   @override
   Future<TokenRemoteDto> signUp(UserRemoteDTO user) async {
-    final response = await _client.post<Map<String, dynamic>>(
-      _AuthEndpoints.signUp.path,
-      data: user.toJson(),
-    );
+    try {
+      final response = await _client.post<Map<String, dynamic>>(
+        _AuthEndpoints.signUp.path,
+        data: user.toJson(),
+      );
 
-    return TokenRemoteDto.fromJson(response.data!);
+      return TokenRemoteDto.fromJson(response.data!);
+    } on ChatHttpClientException catch (e) {
+      throw switch (e.responseErrorType) {
+        ResponseErrorType.itemAlreadyExists =>
+          ItemAlreadyExistsException(message: e.message),
+        _ => e,
+      };
+    }
   }
 }
 

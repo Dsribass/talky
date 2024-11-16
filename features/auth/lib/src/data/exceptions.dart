@@ -1,5 +1,9 @@
 import 'package:core/core.dart';
 
-final class TKInvalidCredentialsException extends CoreException {
-  TKInvalidCredentialsException({required super.message});
+final class InvalidCredentialsException extends CoreException {
+  InvalidCredentialsException({required super.message});
+}
+
+final class ItemAlreadyExistsException extends CoreException {
+  ItemAlreadyExistsException({required super.message});
 }
