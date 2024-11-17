@@ -1,5 +1,7 @@
 enum GlobalRoutes {
-  root('/');
+  root('/'),
+  profile('/profile'),
+  chat('/chat');
 
   const GlobalRoutes(this.path);
 

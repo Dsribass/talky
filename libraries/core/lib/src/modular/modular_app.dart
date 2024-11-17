@@ -7,7 +7,8 @@ import 'package:go_router/go_router.dart';
 ///
 /// The `ModularApp` class is responsible for setting up the application's
 /// dependency injection container and providing the necessary configuration
-/// for the app's modules.
+/// for the app's modules. Also, it creates an instance of `AppBloc` and
+/// provides it to the widget tree.
 ///
 /// The `ModularApp` requires the following parameters:
 /// - `modules`: A set of `Module` instances that define the app's features.
@@ -58,8 +59,10 @@ class _ModularAppState extends State<ModularApp> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      widget.builder(context, widget.appConfiguration);
+  Widget build(BuildContext context) => widget.builder(
+        context,
+        widget.appConfiguration,
+      );
 }
 
 /// Configuration class for a modular app.
@@ -76,8 +79,7 @@ class _ModularAppState extends State<ModularApp> {
 ///   from all the provided modules.
 /// - `supportedLocales`: A list of supported locales aggregated from all the
 ///   provided modules.
-/// - `routerConfig`: The router configuration aggregated from all the provided
-///   modules.
+/// - `routes`: A list of routes aggregated from all the provided modules.
 class ModularAppConfiguration {
   const ModularAppConfiguration({
     required Set<Module> modules,
@@ -93,10 +95,8 @@ class ModularAppConfiguration {
       .expand((module) => module.localization.supportedLocales)
       .toList();
 
-  RouterConfig<Object> get routerConfig => GoRouter(
-        routes: _modules
-            .map((module) => module.router)
-            .expand((module) => module.configuration)
-            .toList(),
-      );
+  List<RouteBase> get routes => _modules
+      .map((module) => module.router)
+      .expand((module) => module.configuration)
+      .toList();
 }

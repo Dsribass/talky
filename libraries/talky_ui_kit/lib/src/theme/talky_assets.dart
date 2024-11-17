@@ -11,6 +11,13 @@ final class TalkyAssets {
 
 final class TalkyImages {
   const TalkyImages._();
+
+  AssetImage image(String name) => AssetImage(
+        'assets/images/$name',
+        package: 'talky_ui_kit',
+      );
+
+  AssetImage splashLogo() => image('splash.png');
 }
 
 @immutable
@@ -48,4 +55,7 @@ final class TalkyIcons {
 
   SvgPicture arrowBack({SvgConfiguration? config}) =>
       svgIcon('arrow-back', config: config);
+
+  SvgPicture splash({SvgConfiguration? config}) =>
+      svgIcon('splash', config: config);
 }

@@ -3,8 +3,6 @@ import 'dart:developer';
 
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
-import 'package:core/dependencies.dart';
-import 'package:core/modular.dart';
 import 'package:flutter/widgets.dart';
 
 class AppBlocObserver extends BlocObserver {

@@ -7,7 +7,9 @@ import 'package:core/utils.dart';
 final class AppContainer extends InjectionContainer {
   @override
   void registerMainDependencies(GetIt injector) {
-    injector.registerSingleton<Logger>(AppLogger());
+    injector
+      ..registerSingleton<Logger>(AppLogger())
+      ..registerSingleton<GlobalStateNotifier>(GlobalStateNotifier());
   }
 }
 
