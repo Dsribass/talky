@@ -1,5 +1,6 @@
 enum GlobalRoutes {
   root('/'),
+  auth('/auth'),
   profile('/profile'),
   chat('/chat');
 

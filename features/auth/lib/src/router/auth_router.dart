@@ -28,8 +28,8 @@ final class AuthRouter implements RouterModule {
   @override
   List<GoRoute> get configuration => [
         GoRoute(
-          name: GlobalRoutes.root.name,
-          path: GlobalRoutes.root.path,
+          name: GlobalRoutes.auth.name,
+          path: GlobalRoutes.auth.path,
           builder: (_, __) => const IntroPage(),
           routes: [
             GoRoute(

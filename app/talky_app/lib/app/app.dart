@@ -1,5 +1,6 @@
 import 'package:core/dependencies.dart';
 import 'package:core/modular.dart';
+import 'package:core/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:talky_app/app/app_bloc.dart';
 import 'package:talky_app/app/app_models.dart';
@@ -19,6 +20,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   late final AppBloc _appBloc;
+  final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   void initState() {
@@ -28,36 +30,80 @@ class _AppState extends State<App> {
     super.initState();
   }
 
+  String? handleRedirection(
+    AppState appState,
+    GoRouterState routerState,
+  ) {
+    final currentPath = routerState.matchedLocation;
+
+    return switch (appState) {
+      AppLoggedOut() => _redirectIfNotInPath(
+          currentPath,
+          GlobalRoutes.auth.path,
+        ),
+      AppProfile() => _redirectIfNotInPath(
+          currentPath,
+          GlobalRoutes.profile.path,
+        ),
+      AppLoggedIn() => _redirectIfNotInPath(
+          currentPath,
+          GlobalRoutes.chat.path,
+        ),
+      AppInitial() => null,
+    };
+  }
+
+  String? _redirectIfNotInPath(String currentPath, String targetPath) {
+    return currentPath.contains(targetPath) ? null : targetPath;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppBloc, AppState>(
-      bloc: _appBloc,
-      builder: (context, state) => MaterialApp.router(
-        theme: TalkyThemeData.lightTheme,
-        routerConfig: GoRouter(
-          initialLocation: GlobalRoutes.root.path,
-          redirect: (_, __) => switch (state) {
-            AppLoggedOut() => GlobalRoutes.root.path,
-            AppProfile() => GlobalRoutes.profile.path,
-            AppLoggedIn() => GlobalRoutes.chat.path,
-            _ => null,
-          },
-          routes: widget.modularConfig.routes,
+    return MaterialApp.router(
+      theme: TalkyThemeData.lightTheme,
+      routerConfig: GoRouter(
+        navigatorKey: _navigatorKey,
+        initialLocation: GlobalRoutes.root.path,
+        refreshListenable: _appBloc.stream.toListenable(),
+        redirect: (_, routerState) => handleRedirection(
+          _appBloc.state,
+          routerState,
         ),
-        localizationsDelegates: widget.modularConfig.localizationsDelegates,
-        supportedLocales: widget.modularConfig.supportedLocales,
-        builder: (context, child) {
-          final isInitialState = state is AppInitial;
-
-          return isInitialState ? const _AppLogo() : child!;
-        },
+        routes: [
+          GoRoute(
+            name: GlobalRoutes.root.name,
+            path: GlobalRoutes.root.path,
+            builder: (_, __) => const _SplashPage(),
+          ),
+          GoRoute(
+            name: GlobalRoutes.profile.name,
+            path: GlobalRoutes.profile.path,
+            builder: (_, __) => const Scaffold(
+              body: Center(
+                child: Text('Profile'),
+              ),
+            ),
+          ),
+          GoRoute(
+            name: GlobalRoutes.chat.name,
+            path: GlobalRoutes.chat.path,
+            builder: (_, __) => const Scaffold(
+              body: Center(
+                child: Text('Chat'),
+              ),
+            ),
+          ),
+          ...widget.modularConfig.routes,
+        ],
       ),
+      localizationsDelegates: widget.modularConfig.localizationsDelegates,
+      supportedLocales: widget.modularConfig.supportedLocales,
     );
   }
 }
 
-class _AppLogo extends StatelessWidget {
-  const _AppLogo();
+class _SplashPage extends StatelessWidget {
+  const _SplashPage();
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +116,12 @@ class _AppLogo extends StatelessWidget {
             Image(
               image: TalkyAssets.images.splashLogo(),
             ),
-            Positioned(
+            const Positioned(
               bottom: TKSpacing.x12,
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(context.colors.primary),
+              child: SizedBox(
+                width: TKSpacing.x6,
+                height: TKSpacing.x6,
+                child: CircularProgressIndicator(),
               ),
             ),
           ],
