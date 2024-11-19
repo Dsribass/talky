@@ -48,8 +48,15 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: TKSpacing.x7),
-            child: BlocBuilder<SignUpPasswordBloc, SignUpPasswordState>(
+            child: BlocConsumer<SignUpPasswordBloc, SignUpPasswordState>(
               bloc: _bloc,
+              listener: (_, state) {
+                if (state.completeSignUp) {
+                  GlobalStateNotifier.I.changeState(
+                    GlobalState.waitingForSetupProfile,
+                  );
+                }
+              },
               builder: (context, state) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

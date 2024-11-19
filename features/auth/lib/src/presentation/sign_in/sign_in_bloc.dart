@@ -106,6 +106,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>
         emailInputStatus: inputStatus,
         passwordInputStatus: inputStatus,
         isLoading: false,
+        completeSignIn: signInResult.isSuccess(),
       ),
     );
   }

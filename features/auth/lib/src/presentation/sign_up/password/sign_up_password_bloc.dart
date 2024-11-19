@@ -52,6 +52,10 @@ final class SignUpPasswordBloc
 
     await _signUp(
       (email: event.email, password: event.password),
+    ).onSuccess(
+      (_) => emit(
+        state.copyWith(completeSignUp: true),
+      ),
     );
   }
 

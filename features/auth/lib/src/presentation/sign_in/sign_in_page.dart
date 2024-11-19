@@ -52,8 +52,16 @@ class _SignInPageState extends State<SignInPage> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: TKSpacing.x7),
-            child: BlocBuilder<SignInBloc, SignInState>(
+            child: BlocConsumer<SignInBloc, SignInState>(
               bloc: _bloc,
+              listener: (context, state) {
+                if (state.completeSignIn) {
+                  // TODO(any): check if user already has configured profile
+                  GlobalStateNotifier.I.changeState(
+                    GlobalState.waitingForSetupProfile,
+                  );
+                }
+              },
               builder: (context, state) {
                 return Column(
                   children: [

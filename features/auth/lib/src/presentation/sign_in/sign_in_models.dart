@@ -9,6 +9,7 @@ final class SignInState {
     required this.passwordInputStatus,
     required this.isLoading,
     required this.isObscurePassword,
+    required this.completeSignIn,
   });
 
   const SignInState.initial()
@@ -19,6 +20,7 @@ final class SignInState {
           passwordInputStatus: SignInModelInputStatus.valid,
           isLoading: false,
           isObscurePassword: true,
+          completeSignIn: false,
         );
 
   final String email;
@@ -27,6 +29,7 @@ final class SignInState {
   final SignInModelInputStatus passwordInputStatus;
   final bool isLoading;
   final bool isObscurePassword;
+  final bool completeSignIn;
 
   bool get shouldEnableSignInButton =>
       (emailInputStatus == SignInModelInputStatus.valid &&
@@ -41,6 +44,7 @@ final class SignInState {
     SignInModelInputStatus? passwordInputStatus,
     bool? isLoading,
     bool? isObscurePassword,
+    bool completeSignIn = false,
   }) {
     return SignInState(
       email: email ?? this.email,
@@ -49,6 +53,7 @@ final class SignInState {
       passwordInputStatus: passwordInputStatus ?? this.passwordInputStatus,
       isLoading: isLoading ?? this.isLoading,
       isObscurePassword: isObscurePassword ?? this.isObscurePassword,
+      completeSignIn: completeSignIn,
     );
   }
 }

@@ -5,6 +5,7 @@ final class SignUpPasswordState {
   const SignUpPasswordState({
     required this.password,
     required this.passwordInputStatus,
+    this.completeSignUp = false,
   });
 
   const SignUpPasswordState.initial()
@@ -15,6 +16,7 @@ final class SignUpPasswordState {
 
   final String password;
   final SignUpPasswordModelInputStatus passwordInputStatus;
+  final bool completeSignUp;
 
   bool get shouldEnableSignUpButton =>
       passwordInputStatus == SignUpPasswordModelInputStatus.valid;
@@ -22,10 +24,12 @@ final class SignUpPasswordState {
   SignUpPasswordState copyWith({
     String? password,
     SignUpPasswordModelInputStatus? passwordInputStatus,
+    bool completeSignUp = false,
   }) {
     return SignUpPasswordState(
       password: password ?? this.password,
       passwordInputStatus: passwordInputStatus ?? this.passwordInputStatus,
+      completeSignUp: completeSignUp,
     );
   }
 }
