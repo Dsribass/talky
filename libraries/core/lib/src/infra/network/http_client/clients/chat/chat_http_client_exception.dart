@@ -1,4 +1,4 @@
-import 'package:core/src/infra/network/http_client/clients/chat/chat_error_response.dart';
+import 'package:core/src/infra/network/http_client/clients/chat/chat_api_error_response.dart';
 import 'package:core/src/infra/network/http_client/http_client_exception.dart';
 
 final class ChatHttpClientException extends HttpClientException {
