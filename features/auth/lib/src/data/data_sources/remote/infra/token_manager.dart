@@ -10,15 +10,9 @@ class TokenManager {
   final _accessTokenKey = 'auth_access_token';
   final _refreshTokenKey = 'auth_refresh_token';
 
-  bool isRefreshingToken = false;
-
   bool hasTokenExpired(String token) => JwtDecoder.isExpired(token);
 
-  Future<Map<String, dynamic>> getDecodedAccessToken() async {
-    final accessToken = await getAccessToken();
-
-    return JwtDecoder.decode(accessToken);
-  }
+  Map<String, dynamic> decodeToken(String token) => JwtDecoder.decode(token);
 
   Future<void> deleteToken() => Future.wait([
         _secureStorage.delete(key: _accessTokenKey),

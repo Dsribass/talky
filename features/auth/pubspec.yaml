@@ -12,6 +12,7 @@ dependencies:
     path: ../../libraries/core
   flutter:
     sdk: flutter
+  jwt_decoder: ^2.0.1
   talky_ui_kit:
     path: ../../libraries/talky_ui_kit
 
