@@ -1,8 +1,8 @@
-import 'package:core/src/infra/network/http_client/clients/chat/chat_api_error_response.dart';
+import 'package:core/src/infra/network/http_client/clients/base_api/api_error_response.dart';
 import 'package:core/src/infra/network/http_client/http_client_exception.dart';
 
-final class ChatHttpClientException extends HttpClientException {
-  ChatHttpClientException({
+final class ApiHttpClientException extends HttpClientException {
+  ApiHttpClientException({
     required super.message,
     required super.statusError,
     required super.statusCode,

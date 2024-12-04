@@ -1,23 +1,34 @@
 import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
+import 'package:auth/src/data/data_sources/remote/infra/endpoints.dart';
+import 'package:auth/src/data/data_sources/remote/infra/token_manager.dart';
 import 'package:auth/src/data/exceptions.dart';
 import 'package:auth/src/data/models/token_dto.dart';
 import 'package:auth/src/data/models/user_dto.dart';
 import 'package:core/infra.dart';
 
 final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
-  DefaultAuthRemoteDataSource(this._client);
+  DefaultAuthRemoteDataSource({
+    required HttpClient client,
+    required TokenManager tokenManager,
+  })  : _client = client,
+        _tokenManager = tokenManager;
 
   final HttpClient _client;
+  final TokenManager _tokenManager;
 
   @override
-  Future<TokenRemoteDto> signIn(UserRemoteDTO user) async {
+  Future<void> signIn(UserRemoteDTO user) async {
     try {
       final response = await _client.post<Map<String, dynamic>>(
-        _AuthEndpoints.signIn.path,
+        AuthEndpoints.signIn.path,
         data: user.toJson(),
       );
 
-      return TokenRemoteDto.fromJson(response.data!);
+      final token = TokenRemoteDto.fromJson(response.data!);
+      await _tokenManager.upsertToken(
+        accessToken: token.accessToken,
+        refreshToken: token.refreshToken,
+      );
     } on HttpClientException catch (e) {
       throw switch (e.statusError) {
         HttpStatusError.unauthorized ||
@@ -29,15 +40,19 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
   }
 
   @override
-  Future<TokenRemoteDto> signUp(UserRemoteDTO user) async {
+  Future<void> signUp(UserRemoteDTO user) async {
     try {
       final response = await _client.post<Map<String, dynamic>>(
-        _AuthEndpoints.signUp.path,
+        AuthEndpoints.signUp.path,
         data: user.toJson(),
       );
 
-      return TokenRemoteDto.fromJson(response.data!);
-    } on ChatHttpClientException catch (e) {
+      final token = TokenRemoteDto.fromJson(response.data!);
+      await _tokenManager.upsertToken(
+        accessToken: token.accessToken,
+        refreshToken: token.refreshToken,
+      );
+    } on ApiHttpClientException catch (e) {
       throw switch (e.responseErrorType) {
         ResponseErrorType.itemAlreadyExists =>
           ItemAlreadyExistsException(message: e.message),
@@ -45,14 +60,4 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
       };
     }
   }
-}
-
-enum _AuthEndpoints {
-  signIn('/auth/sign-in'),
-  signUp('/auth/sign-up');
-  // refreshToken('/auth/refresh-token');
-
-  const _AuthEndpoints(this.path);
-
-  final String path;
 }

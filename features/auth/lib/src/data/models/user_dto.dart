@@ -21,4 +21,16 @@ class UserRemoteDTO {
   final String password;
 }
 
-class UserCacheDTO {}
+extension UserRemoteDTOx on UserRemoteDTO {
+  UserLocalDTO toLocal() => UserLocalDTO(email: email, name: name);
+}
+
+class UserLocalDTO {
+  UserLocalDTO({
+    required this.email,
+    required this.name,
+  });
+
+  final String email;
+  final String? name;
+}

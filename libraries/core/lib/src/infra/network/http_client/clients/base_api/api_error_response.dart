@@ -1,20 +1,20 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'chat_api_error_response.g.dart';
+part 'api_error_response.g.dart';
 
 @JsonSerializable()
-class ChatApiErrorResponse {
-  const ChatApiErrorResponse({
+class ApiErrorResponse {
+  const ApiErrorResponse({
     required this.message,
     required this.error,
     required this.inputIssues,
     required this.type,
   });
 
-  factory ChatApiErrorResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChatApiErrorResponseFromJson(json);
+  factory ApiErrorResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiErrorResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ChatApiErrorResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ApiErrorResponseToJson(this);
 
   final String message;
   final String error;

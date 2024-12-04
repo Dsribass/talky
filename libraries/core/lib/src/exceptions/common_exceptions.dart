@@ -27,3 +27,7 @@ final class EmptyInputException extends InputValidationException {
 final class ItemNotFoundException extends CoreException {
   ItemNotFoundException({required super.message});
 }
+
+final class UserUnauthorizedException extends CoreException {
+  UserUnauthorizedException({required super.message});
+}

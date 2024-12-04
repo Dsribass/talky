@@ -1,7 +1,8 @@
-import 'package:auth/src/data/data_sources/local/impl/secure_token_local_data_source.dart';
-import 'package:auth/src/data/data_sources/local/token_local_data_source.dart';
+import 'package:auth/src/data/data_sources/local/impl/secure_user_local_data_source.dart';
+import 'package:auth/src/data/data_sources/local/user_local_data_source.dart';
 import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
 import 'package:auth/src/data/data_sources/remote/impl/default_auth_remote_data_source.dart';
+import 'package:auth/src/data/data_sources/remote/infra/token_manager.dart';
 import 'package:auth/src/data/repositories/default_auth_repository.dart';
 import 'package:auth/src/domain/repositories/auth_repository.dart';
 import 'package:auth/src/domain/use_cases/use_cases.dart';
@@ -18,9 +19,6 @@ final class AuthContainer implements ContainerModule {
   void _registerCoreDependencies(GetIt injector) {
     injector
       ..registerSingleton(
-        ChatApiHttpClient(options: HttpOptions(baseUrl: env.chatApiBaseUrl)),
-      )
-      ..registerSingleton(
         const FlutterSecureStorage(
           aOptions: AndroidOptions(
             encryptedSharedPreferences: true,
@@ -30,21 +28,30 @@ final class AuthContainer implements ContainerModule {
             accountName: 'talky',
           ),
         ),
+      )
+      ..registerSingleton(TokenManager(injector.get()))
+      ..registerFactory<BaseApiHttpClient>(
+        () => BaseApiHttpClient(
+          options: HttpOptions(baseUrl: env.chatApiBaseUrl),
+        ),
       );
   }
 
   void _registerDataDependencies(GetIt injector) {
     injector
-      ..registerCachedFactory<TokenLocalDataSource>(
-        () => SecureTokenLocalDataSource(injector.get()),
+      ..registerCachedFactory<UserLocalDataSource>(
+        () => SecureUserLocalDataSource(injector.get()),
       )
       ..registerCachedFactory<AuthRemoteDataSource>(
-        () => DefaultAuthRemoteDataSource(injector.get<ChatApiHttpClient>()),
+        () => DefaultAuthRemoteDataSource(
+          client: injector.get<BaseApiHttpClient>(),
+          tokenManager: injector.get(),
+        ),
       )
       ..registerCachedFactory<AuthRepository>(
         () => DefaultAuthRepository(
           authRemoteDataSource: injector.get(),
-          tokenLocalDataSource: injector.get(),
+          userLocalDataSource: injector.get(),
         ),
       );
   }
