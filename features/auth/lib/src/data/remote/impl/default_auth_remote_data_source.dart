@@ -1,9 +1,9 @@
-import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
-import 'package:auth/src/data/data_sources/remote/infra/endpoints.dart';
-import 'package:auth/src/data/data_sources/remote/infra/token_manager.dart';
 import 'package:auth/src/data/exceptions.dart';
 import 'package:auth/src/data/models/token_dto.dart';
 import 'package:auth/src/data/models/user_dto.dart';
+import 'package:auth/src/data/remote/auth_remote_data_source.dart';
+import 'package:auth/src/data/remote/infra/endpoints.dart';
+import 'package:auth/src/data/remote/infra/token_manager.dart';
 import 'package:core/infra.dart';
 
 final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {

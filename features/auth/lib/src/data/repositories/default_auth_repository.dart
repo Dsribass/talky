@@ -1,5 +1,5 @@
-import 'package:auth/src/data/data_sources/local/user_local_data_source.dart';
-import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
+import 'package:auth/src/data/local/user_local_data_source.dart';
+import 'package:auth/src/data/remote/auth_remote_data_source.dart';
 import 'package:auth/src/data/models/user_dto.dart';
 import 'package:auth/src/domain/repositories/auth_repository.dart';
 import 'package:core/dependencies.dart';

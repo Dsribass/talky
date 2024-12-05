@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:auth/src/data/data_sources/remote/infra/token_manager.dart';
+import 'package:auth/src/data/remote/infra/token_manager.dart';
 import 'package:core/dependencies.dart';
 import 'package:core/infra.dart';
 

@@ -1,8 +1,8 @@
-import 'package:auth/src/data/data_sources/local/impl/secure_user_local_data_source.dart';
-import 'package:auth/src/data/data_sources/local/user_local_data_source.dart';
-import 'package:auth/src/data/data_sources/remote/auth_remote_data_source.dart';
-import 'package:auth/src/data/data_sources/remote/impl/default_auth_remote_data_source.dart';
-import 'package:auth/src/data/data_sources/remote/infra/token_manager.dart';
+import 'package:auth/src/data/local/impl/secure_user_local_data_source.dart';
+import 'package:auth/src/data/local/user_local_data_source.dart';
+import 'package:auth/src/data/remote/auth_remote_data_source.dart';
+import 'package:auth/src/data/remote/impl/default_auth_remote_data_source.dart';
+import 'package:auth/src/data/remote/infra/token_manager.dart';
 import 'package:auth/src/data/repositories/default_auth_repository.dart';
 import 'package:auth/src/domain/repositories/auth_repository.dart';
 import 'package:auth/src/domain/use_cases/use_cases.dart';
