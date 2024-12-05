@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:collection';
 
+import 'package:auth/src/data/models/token_dto.dart';
+import 'package:auth/src/data/remote/infra/endpoints.dart';
 import 'package:auth/src/data/remote/infra/token_manager.dart';
 import 'package:core/dependencies.dart';
 import 'package:core/infra.dart';
@@ -15,15 +17,12 @@ typedef RetryRequest = ({
 class TokenInterceptor extends Interceptor {
   TokenInterceptor({
     required HttpOptions httpOptions,
-    required Future<void> Function() onRefreshToken,
     required TokenManager tokenManager,
   })  : _tokenManager = tokenManager,
-        _onRefreshToken = onRefreshToken,
         _httpClient = BaseApiHttpClient(options: httpOptions);
 
   final HttpClient _httpClient;
   final TokenManager _tokenManager;
-  final Future<void> Function() _onRefreshToken;
   final Queue<RetryRequest> _queuedRequests = Queue();
 
   Completer<String>? _refreshTokenTask;
@@ -97,9 +96,20 @@ class TokenInterceptor extends Interceptor {
 
   Future<String> _renewAccessToken(RequestOptions options) async {
     try {
-      await _onRefreshToken();
+      final refreshToken = await _tokenManager.getRefreshToken();
 
-      return _tokenManager.getAccessToken();
+      final response = await _httpClient.post<Map<String, dynamic>>(
+        AuthEndpoints.refreshToken.path,
+        data: {'refreshToken': refreshToken},
+      );
+
+      final token = TokenRemoteDto.fromJson(response.data!);
+      await _tokenManager.upsertToken(
+        accessToken: token.accessToken,
+        refreshToken: token.refreshToken,
+      );
+
+      return token.accessToken;
     } catch (error) {
       if (error is DioException && error.response?.statusCode == 401) {
         throw InvalidTokenException.fromDioException(error);
