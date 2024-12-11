@@ -1,5 +1,4 @@
 import 'package:core/dependencies.dart';
-import 'package:core/exceptions.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class TokenManager {
@@ -28,23 +27,8 @@ class TokenManager {
         _secureStorage.write(key: _refreshTokenKey, value: refreshToken),
       ]);
 
-  Future<String> getAccessToken() async {
-    final accessToken = await _secureStorage.read(key: _accessTokenKey);
+  Future<String?> getAccessToken() => _secureStorage.read(key: _accessTokenKey);
 
-    if (accessToken == null) {
-      throw ItemNotFoundException(message: 'Access token not found');
-    }
-
-    return accessToken;
-  }
-
-  Future<String> getRefreshToken() async {
-    final refreshToken = await _secureStorage.read(key: _refreshTokenKey);
-
-    if (refreshToken == null) {
-      throw ItemNotFoundException(message: 'Refresh token not found');
-    }
-
-    return refreshToken;
-  }
+  Future<String?> getRefreshToken() =>
+      _secureStorage.read(key: _refreshTokenKey);
 }

@@ -16,10 +16,10 @@ typedef RetryRequest = ({
 @internal
 class TokenInterceptor extends Interceptor {
   TokenInterceptor({
-    required HttpOptions httpOptions,
+    required HttpClient httpClient,
     required TokenManager tokenManager,
   })  : _tokenManager = tokenManager,
-        _httpClient = BaseApiHttpClient(options: httpOptions);
+        _httpClient = httpClient;
 
   final HttpClient _httpClient;
   final TokenManager _tokenManager;
@@ -36,6 +36,15 @@ class TokenInterceptor extends Interceptor {
   ) async {
     final accessToken = await _tokenManager.getAccessToken();
 
+    if (accessToken == null) {
+      return handler.reject(
+        TokenException(
+          message: 'Access token not found',
+          requestOptions: options,
+        ),
+      );
+    }
+
     if (_tokenManager.hasTokenExpired(accessToken)) {
       return _handleInvalidToken(
         (
@@ -47,7 +56,8 @@ class TokenInterceptor extends Interceptor {
     }
 
     options.headers[_authorizationHeader] = 'Bearer $accessToken';
-    super.onRequest(options, handler);
+
+    return handler.next(options);
   }
 
   @override
@@ -98,6 +108,20 @@ class TokenInterceptor extends Interceptor {
     try {
       final refreshToken = await _tokenManager.getRefreshToken();
 
+      if (refreshToken == null) {
+        throw TokenException(
+          message: 'Refresh token not found',
+          requestOptions: options,
+        );
+      }
+
+      if (_tokenManager.hasTokenExpired(refreshToken)) {
+        throw TokenException(
+          message: 'Refresh token has expired',
+          requestOptions: options,
+        );
+      }
+
       final response = await _httpClient.post<Map<String, dynamic>>(
         AuthEndpoints.refreshToken.path,
         data: {'refreshToken': refreshToken},
@@ -112,7 +136,7 @@ class TokenInterceptor extends Interceptor {
       return token.accessToken;
     } catch (error) {
       if (error is DioException && error.response?.statusCode == 401) {
-        throw InvalidTokenException.fromDioException(error);
+        throw TokenException.fromDioException(error);
       }
 
       rethrow;
@@ -132,7 +156,7 @@ class TokenInterceptor extends Interceptor {
         queuedRequest.reject(
           error is DioException
               ? error.response?.statusCode == 401
-                  ? InvalidTokenException.fromDioException(error)
+                  ? TokenException.fromDioException(error)
                   : error
               : DioException(
                   requestOptions: queuedRequest.options,

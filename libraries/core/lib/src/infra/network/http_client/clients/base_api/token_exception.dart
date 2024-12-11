@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-class InvalidTokenException extends DioException {
-  InvalidTokenException({
+class TokenException extends DioException {
+  TokenException({
     required super.requestOptions,
     super.error,
     super.message,
@@ -10,7 +10,7 @@ class InvalidTokenException extends DioException {
     super.type = DioExceptionType.badResponse,
   });
 
-  InvalidTokenException.fromDioException(DioException dioException)
+  TokenException.fromDioException(DioException dioException)
       : this(
           requestOptions: dioException.requestOptions,
           error: dioException.error,
