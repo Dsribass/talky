@@ -35,7 +35,7 @@ class Environment {
   static Future<Environment> init(FlavorEnv flavor) async {
     final file = switch (flavor) {
       FlavorEnv.dev => '.env.dev',
-      FlavorEnv.staging => '.env.dev',
+      FlavorEnv.staging => '.env.stg',
       FlavorEnv.prod => '.env',
     };
 
