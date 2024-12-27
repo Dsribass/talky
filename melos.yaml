@@ -13,8 +13,24 @@ command:
       build_runner: ^2.4.12
       mocktail: ^1.0.4
       very_good_analysis: ^6.0.0
+    hooks:
+      post:
+        run: melos run initialize
+  clean:
+    hooks:
+      post: |
+        melos exec --flutter --concurrency=3 -- "flutter clean"
+        melos run build_runner:clean
 
 scripts:
+  upgrade:select:
+    run: melos exec -- "flutter pub upgrade"
+    description: "Run `flutter pub upgrade` in selected package."
+    packageFilters:
+      dependsOn: "flutter"
+  upgrade:
+    run: melos run upgrade:select --no-select
+    description: "Run `flutter pub upgrade` in all packages."
   get:
     run: melos run get:select --no-select
     description: "Run `flutter pub get` in all packages that depends on Flutter."
@@ -23,13 +39,34 @@ scripts:
     description: "Run `flutter pub get` in selected package."
     packageFilters:
       dependsOn: flutter
+  build_runner:
+    run: melos run build_runner:select --no-select
+    description: Runs build_runner in all packages that depend on it.
+    packageFilters:
+      dependsOn: build_runner
+  build_runner:select:
+    run: melos exec -- "dart run build_runner build -d"
+    description: "Run build runner in selected package that depends on build_runner."
+    packageFilters:
+      dependsOn:
+        - "build_runner"
+  build_runner:clean:
+    run: melos run build_runner:clean:select --no-select
+    description: "Run build runner clean in all packages that depend on it."
+  build_runner:clean:select:
+    run: melos exec -- "dart run build_runner clean"
+    description: "Run build runner clean in selected package that depends on build_runner."
+    packageFilters:
+      dependsOn:
+        - "build_runner"
   generate_translations:
     run: melos exec -- "flutter gen-l10n"
     description: Generates translation files.
     packageFilters:
       dirExists: "lib/l10n"
-  build_runner:
-    run: melos exec -- "dart run build_runner build -d"
-    description: Runs build_runner.
-    packageFilters:
-      dependsOn: build_runner
+  initialize:
+    run: |
+      melos run get
+      melos run generate_translations
+      melos run build_runner
+    description: Initializes the project.
