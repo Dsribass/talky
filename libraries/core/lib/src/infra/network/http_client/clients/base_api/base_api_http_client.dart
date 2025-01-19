@@ -1,9 +1,9 @@
 import 'package:core/src/exceptions/common_exceptions.dart';
 import 'package:core/src/infra/network/http_client/clients/base_api/api_error_response.dart';
 import 'package:core/src/infra/network/http_client/clients/base_api/api_http_client_exception.dart';
-import 'package:core/src/infra/network/http_client/clients/base_api/token_exception.dart';
 import 'package:core/src/infra/network/http_client/http_client.dart';
 import 'package:core/src/infra/network/http_client/http_error_mapper.dart';
+import 'package:core/src/infra/network/interceptor/token/token_exception.dart';
 import 'package:dio/dio.dart';
 
 class BaseApiHttpClient extends HttpClient {
