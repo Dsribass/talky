@@ -2,7 +2,8 @@ import 'package:auth/src/data/local/impl/secure_user_local_data_source.dart';
 import 'package:auth/src/data/local/user_local_data_source.dart';
 import 'package:auth/src/data/remote/auth_remote_data_source.dart';
 import 'package:auth/src/data/remote/impl/default_auth_remote_data_source.dart';
-import 'package:auth/src/data/remote/infra/token_manager.dart';
+import 'package:auth/src/data/remote/infra/default_token_manager.dart';
+import 'package:auth/src/data/remote/infra/retry_request_list_queue.dart';
 import 'package:auth/src/data/repositories/default_auth_repository.dart';
 import 'package:auth/src/domain/repositories/auth_repository.dart';
 import 'package:auth/src/domain/use_cases/use_cases.dart';
@@ -29,7 +30,6 @@ final class AuthContainer implements ContainerModule {
           ),
         ),
       )
-      ..registerSingleton(TokenManager(injector.get()))
       ..registerFactory<BaseApiHttpClient>(
         () => BaseApiHttpClient(
           options: HttpOptions(baseUrl: env.chatApiBaseUrl),
@@ -39,6 +39,19 @@ final class AuthContainer implements ContainerModule {
 
   void _registerDataDependencies(GetIt injector) {
     injector
+      ..registerSingleton<RetryRequestQueue>(
+        RetryRequestListQueue(httpClient: injector.get<BaseApiHttpClient>()),
+      )
+      ..registerCachedFactory<TokenManager>(
+        () => DefaultTokenManager(injector.get()),
+      )
+      ..registerCachedFactory<TokenInterceptor>(
+        () => TokenInterceptor(
+          refreshToken: injector.get(),
+          tokenManager: injector.get(),
+          queuedRequests: injector.get(),
+        ),
+      )
       ..registerCachedFactory<UserLocalDataSource>(
         () => SecureUserLocalDataSource(injector.get()),
       )

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:core/src/infra/network/interceptor/token/token.dart';
 import 'package:core/src/infra/network/interceptor/token/token_exception.dart';
@@ -16,7 +15,8 @@ typedef RetryRequest = ({
   void Function(DioException) reject,
 });
 
-abstract interface class QueueRetryRequest implements Queue<RetryRequest> {
+abstract interface class RetryRequestQueue {
+  void add(RetryRequest request);
   Future<void> resolveQueue(String accessToken);
   Future<void> rejectQueue(DioException error);
 }
@@ -25,14 +25,14 @@ class TokenInterceptor extends Interceptor {
   TokenInterceptor({
     required RefreshToken refreshToken,
     required TokenManager tokenManager,
-    required QueueRetryRequest queuedRequests,
+    required RetryRequestQueue queuedRequests,
   })  : _tokenManager = tokenManager,
         _refreshToken = refreshToken,
         _queuedRequests = queuedRequests;
 
   final RefreshToken _refreshToken;
   final TokenManager _tokenManager;
-  final QueueRetryRequest _queuedRequests;
+  final RetryRequestQueue _queuedRequests;
 
   Completer<String>? _refreshTokenTask;
 

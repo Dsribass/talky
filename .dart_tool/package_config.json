@@ -260,10 +260,10 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-09-27T02:28:28.517594Z",
+  "generated": "2025-01-20T00:37:04.787203Z",
   "generator": "pub",
-  "generatorVersion": "3.5.3",
+  "generatorVersion": "3.6.1",
   "flutterRoot": "file:///Users/Dsribas/flutter",
-  "flutterVersion": "3.24.3",
+  "flutterVersion": "3.27.2",
   "pubCache": "file:///Users/Dsribas/.pub-cache"
 }

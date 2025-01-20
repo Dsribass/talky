@@ -3,7 +3,6 @@ import 'package:auth/src/data/models/token_dto.dart';
 import 'package:auth/src/data/models/user_dto.dart';
 import 'package:auth/src/data/remote/auth_remote_data_source.dart';
 import 'package:auth/src/data/remote/infra/endpoints.dart';
-import 'package:auth/src/data/remote/infra/token_manager.dart';
 import 'package:core/infra.dart';
 
 final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
@@ -26,8 +25,10 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
 
       final token = TokenRemoteDto.fromJson(response.data!);
       await _tokenManager.upsertToken(
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
+        Token(
+          accessToken: token.accessToken,
+          refreshToken: token.refreshToken,
+        ),
       );
     } on HttpClientException catch (e) {
       throw switch (e.statusError) {
@@ -49,8 +50,10 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
 
       final token = TokenRemoteDto.fromJson(response.data!);
       await _tokenManager.upsertToken(
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
+        Token(
+          accessToken: token.accessToken,
+          refreshToken: token.refreshToken,
+        ),
       );
     } on ApiHttpClientException catch (e) {
       throw switch (e.responseErrorType) {

@@ -6,7 +6,7 @@ class RefreshTokenMock extends Mock implements RefreshToken {}
 
 class TokenManagerMock extends Mock implements TokenManager {}
 
-class QueueRetryRequestMock extends Mock implements QueueRetryRequest {}
+class QueueRetryRequestMock extends Mock implements RetryRequestQueue {}
 
 class RequestInterceptorHandlerMock extends Mock
     implements RequestInterceptorHandler {}
@@ -17,7 +17,7 @@ class ErrorInterceptorHandlerMock extends Mock
 void main() {
   late RefreshToken refreshToken;
   late TokenManager tokenManager;
-  late QueueRetryRequest queuedRequests;
+  late RetryRequestQueue queuedRequests;
 
   late TokenInterceptor tokenInterceptor;
 
