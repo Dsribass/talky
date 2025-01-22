@@ -21,7 +21,7 @@ class _SignUpEmailPageState extends State<SignUpEmailPage> {
 
   @override
   void initState() {
-    _bloc = SignUpEmailBloc();
+    _bloc = SignUpEmailBloc(checkEmailAvailability: inject());
     super.initState();
   }
 
@@ -81,6 +81,7 @@ class _SignUpEmailPageState extends State<SignUpEmailPage> {
                   const Spacer(),
                   TalkyFilledButton(
                     width: double.infinity,
+                    isLoading: state.isLoading,
                     onPressed: state.shouldEnableSignUpButton
                         ? () => _bloc.add(
                               SignUpEmailSubmitted(
@@ -108,6 +109,10 @@ class _SignUpEmailPageState extends State<SignUpEmailPage> {
         SignUpEmailModelInputStatus.invalid =>
           context.l10n.signUpEmailInvalidError,
         SignUpEmailModelInputStatus.empty => context.l10n.signUpEmailEmptyError,
+        SignUpEmailModelInputStatus.unavailable =>
+          context.l10n.signUpEmailUnavailableError,
+        SignUpEmailModelInputStatus.error =>
+          context.l10n.signUpEmailGenericError,
         _ => null,
       };
 }

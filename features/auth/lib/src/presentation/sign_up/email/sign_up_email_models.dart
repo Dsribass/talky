@@ -6,6 +6,7 @@ final class SignUpEmailState {
     required this.email,
     required this.emailInputStatus,
     required this.shouldProceedToNextStep,
+    required this.isLoading,
   });
 
   const SignUpEmailState.initial()
@@ -13,11 +14,13 @@ final class SignUpEmailState {
           email: '',
           emailInputStatus: SignUpEmailModelInputStatus.initial,
           shouldProceedToNextStep: false,
+          isLoading: false,
         );
 
   final String email;
   final SignUpEmailModelInputStatus emailInputStatus;
   final bool shouldProceedToNextStep;
+  final bool isLoading;
 
   bool get shouldEnableSignUpButton =>
       emailInputStatus == SignUpEmailModelInputStatus.valid;
@@ -25,12 +28,14 @@ final class SignUpEmailState {
   SignUpEmailState copyWith({
     String? email,
     SignUpEmailModelInputStatus? emailInputStatus,
+    bool? isLoading,
     bool shouldProceedToNextStep = false,
   }) {
     return SignUpEmailState(
       email: email ?? this.email,
       emailInputStatus: emailInputStatus ?? this.emailInputStatus,
       shouldProceedToNextStep: shouldProceedToNextStep,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 }
@@ -40,6 +45,8 @@ enum SignUpEmailModelInputStatus {
   valid,
   empty,
   invalid,
+  unavailable,
+  error,
 }
 
 sealed class SignUpEmailEvent {

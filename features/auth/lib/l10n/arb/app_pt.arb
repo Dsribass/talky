@@ -76,6 +76,14 @@
     "@signUpEmailEmptyError": {
       "description": "Mensagem de erro quando o campo de email está vazio na tela de cadastro"
     },
+    "signUpEmailUnavailableError": "Email já está em uso",
+    "@signUpEmailUnavailableError": {
+      "description": "Mensagem de erro quando o email já está em uso na tela de cadastro"
+    },
+    "signUpEmailGenericError": "Oops! Algo deu errado",
+    "@signUpEmailGenericError": {
+      "description": "Mensagem de erro quando algo deu errado na tela de cadastro"
+    },
     "signUpPasswordTitle": "Digite sua senha",
     "@signUpPasswordTitle": {
       "description": "Título do campo de senha na tela de cadastro"

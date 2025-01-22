@@ -54,7 +54,7 @@ final class SignUpPasswordBloc
     String password,
   ) {
     final passwordValidator = PasswordInputValidator()
-      ..isValidLength(min: 8)
+      ..isValidLength()
       ..containsLetter()
       ..containsNumber();
 

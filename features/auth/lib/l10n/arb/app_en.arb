@@ -76,6 +76,14 @@
   "@signUpEmailEmptyError": {
     "description": "Error message when the email field is empty on the sign up screen"
   },
+  "signUpEmailUnavailableError": "Email is already in use",
+  "@signUpEmailUnavailableError": {
+    "description": "Error message when the email is already in use on the sign up screen"
+  },
+  "signUpEmailGenericError": "Oops! Something went wrong",
+  "@signUpEmailGenericError": {
+    "description": "Error message when something went wrong on the sign up screen"
+  },
   "signUpPasswordTitle": "Enter your password",
   "@signUpPasswordTitle": {
     "description": "Password field title on the sign up screen"

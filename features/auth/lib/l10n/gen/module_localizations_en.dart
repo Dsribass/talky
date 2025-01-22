@@ -64,6 +64,12 @@ class ModuleLocalizationsEn extends ModuleLocalizations {
   String get signUpEmailEmptyError => 'Field is required';
 
   @override
+  String get signUpEmailUnavailableError => 'Email is already in use';
+
+  @override
+  String get signUpEmailGenericError => 'Oops! Something went wrong';
+
+  @override
   String get signUpPasswordTitle => 'Enter your password';
 
   @override

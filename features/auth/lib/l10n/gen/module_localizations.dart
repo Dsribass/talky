@@ -209,6 +209,18 @@ abstract class ModuleLocalizations {
   /// **'Field is required'**
   String get signUpEmailEmptyError;
 
+  /// Error message when the email is already in use on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Email is already in use'**
+  String get signUpEmailUnavailableError;
+
+  /// Error message when something went wrong on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong'**
+  String get signUpEmailGenericError;
+
   /// Password field title on the sign up screen
   ///
   /// In en, this message translates to:
