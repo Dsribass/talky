@@ -52,9 +52,7 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
               bloc: _bloc,
               listener: (_, state) {
                 if (state.completeSignUp) {
-                  GlobalStateNotifier.I.changeState(
-                    GlobalState.waitingForSetupProfile,
-                  );
+                  GlobalStateNotifier.I.changeState(GlobalState.loggedIn);
                 }
               },
               builder: (context, state) {

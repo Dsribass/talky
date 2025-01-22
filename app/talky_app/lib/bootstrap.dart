@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:auth/auth.dart';
+import 'package:chat/chat.dart';
 import 'package:core/core.dart';
 import 'package:flutter/widgets.dart';
 
@@ -34,6 +35,7 @@ Future<void> bootstrap(
 
   final modules = <Module>{
     AuthModule(),
+    ChatModule(),
   };
 
   runApp(builder(modules));

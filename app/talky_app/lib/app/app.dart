@@ -84,15 +84,6 @@ class _AppState extends State<App> {
               ),
             ),
           ),
-          GoRoute(
-            name: GlobalRoutes.chat.name,
-            path: GlobalRoutes.chat.path,
-            builder: (_, __) => const Scaffold(
-              body: Center(
-                child: Text('Chat'),
-              ),
-            ),
-          ),
           ...widget.modularConfig.routes,
         ],
       ),

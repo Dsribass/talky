@@ -53,9 +53,7 @@ class _SignInPageState extends State<SignInPage> {
               listener: (context, state) {
                 if (state.completeSignIn) {
                   // TODO(any): check if user already has configured profile
-                  GlobalStateNotifier.I.changeState(
-                    GlobalState.waitingForSetupProfile,
-                  );
+                  GlobalStateNotifier.I.changeState(GlobalState.loggedIn);
                 }
               },
               builder: (context, state) {
