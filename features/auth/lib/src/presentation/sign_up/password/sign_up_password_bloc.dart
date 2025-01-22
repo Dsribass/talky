@@ -35,6 +35,8 @@ final class SignUpPasswordBloc
     SignUpFormSubmitted event,
     Emitter<SignUpPasswordState> emit,
   ) async {
+    emit(state.copyWith(isLoading: true));
+
     final errors = _validatePasswordInput(event.password);
 
     if (errors != null) {
@@ -43,9 +45,18 @@ final class SignUpPasswordBloc
 
     await _signUp(
       (email: event.email, password: event.password),
-    ).onSuccess(
+    ).fold(
       (_) => emit(
-        state.copyWith(completeSignUp: true),
+        state.copyWith(
+          completeSignUp: true,
+          isLoading: false,
+        ),
+      ),
+      (failure) => emit(
+        state.copyWith(
+          showError: true,
+          isLoading: false,
+        ),
       ),
     );
   }

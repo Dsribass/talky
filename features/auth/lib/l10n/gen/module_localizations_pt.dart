@@ -85,6 +85,9 @@ class ModuleLocalizationsPt extends ModuleLocalizations {
   String get signUpPasswordEmptyError => 'Campo obrigatório';
 
   @override
+  String get signUpPasswordGenericError => 'Oops! Algo deu errado';
+
+  @override
   String get signUpPasswordRulesTitle => 'A senha deve conter';
 
   @override

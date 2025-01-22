@@ -104,6 +104,10 @@
   "@signUpPasswordEmptyError": {
     "description": "Error message when the password field is empty on the sign up screen"
   },
+  "signUpPasswordGenericError": "Oops! Something went wrong",
+  "@signUpPasswordGenericError": {
+    "description": "Error message when something went wrong on the sign up screen"
+  },
   "signUpPasswordRulesTitle": "Password must contain",
   "@signUpPasswordRulesTitle": {
     "description": "Title of the password rules on the sign up screen"

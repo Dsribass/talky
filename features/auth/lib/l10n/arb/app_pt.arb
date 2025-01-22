@@ -104,6 +104,10 @@
     "@signUpPasswordEmptyError": {
       "description": "Mensagem de erro quando o campo de senha está vazio na tela de cadastro"
     },
+    "signUpPasswordGenericError": "Oops! Algo deu errado",
+    "@signUpPasswordGenericError": {
+      "description": "Mensagem de erro quando algo deu errado na tela de cadastro"
+    },
     "signUpPasswordRulesTitle": "A senha deve conter",
     "@signUpPasswordRulesTitle": {
       "description": "Título das regras de senha na tela de cadastro"

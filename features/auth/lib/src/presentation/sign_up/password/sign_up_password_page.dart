@@ -74,6 +74,9 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
                       decoration: InputDecoration(
                         hintText: context.l10n.signUpPasswordFieldLabel,
                         errorMaxLines: 2,
+                        errorText: state.showError
+                            ? context.l10n.signUpPasswordGenericError
+                            : null,
                       ),
                       onChanged: (value) => _bloc.add(
                         SignUpPasswordPasswordChanged(password: value),
@@ -106,6 +109,7 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
                     const Spacer(),
                     TalkyFilledButton(
                       width: double.infinity,
+                      isLoading: state.isLoading,
                       onPressed: state.shouldEnableSignUpButton
                           ? () => _bloc.add(
                                 SignUpFormSubmitted(

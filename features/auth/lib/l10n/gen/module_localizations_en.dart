@@ -85,6 +85,9 @@ class ModuleLocalizationsEn extends ModuleLocalizations {
   String get signUpPasswordEmptyError => 'Field is required';
 
   @override
+  String get signUpPasswordGenericError => 'Oops! Something went wrong';
+
+  @override
   String get signUpPasswordRulesTitle => 'Password must contain';
 
   @override

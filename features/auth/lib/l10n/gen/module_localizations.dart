@@ -251,6 +251,12 @@ abstract class ModuleLocalizations {
   /// **'Field is required'**
   String get signUpPasswordEmptyError;
 
+  /// Error message when something went wrong on the sign up screen
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong'**
+  String get signUpPasswordGenericError;
+
   /// Title of the password rules on the sign up screen
   ///
   /// In en, this message translates to:
