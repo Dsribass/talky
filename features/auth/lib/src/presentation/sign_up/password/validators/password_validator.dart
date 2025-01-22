@@ -3,15 +3,15 @@ import 'package:core/utils.dart';
 
 class PasswordInputValidator extends InputValidator<String> {
   void isValidLength({required int min}) =>
-      addHandler(LengthValidator(min: min));
+      addHandler(LengthValidation(min: min));
 
-  void containsLetter() => addHandler(AlphabeticValidator());
+  void containsLetter() => addHandler(AlphabeticValidation());
 
-  void containsNumber() => addHandler(NumericValidator());
+  void containsNumber() => addHandler(NumericValidation());
 }
 
-final class LengthValidator implements InputValidationHandler<String> {
-  LengthValidator({required this.min});
+final class LengthValidation implements InputValidationHandler<String> {
+  LengthValidation({required this.min});
 
   final int min;
 
@@ -24,7 +24,7 @@ final class LengthValidator implements InputValidationHandler<String> {
   }
 }
 
-final class AlphabeticValidator implements InputValidationHandler<String> {
+final class AlphabeticValidation implements InputValidationHandler<String> {
   @override
   InputValidationError? validate({required String input}) {
     if (!input.contains(RegExp('[a-zA-Z]'))) {
@@ -34,7 +34,7 @@ final class AlphabeticValidator implements InputValidationHandler<String> {
   }
 }
 
-final class NumericValidator implements InputValidationHandler<String> {
+final class NumericValidation implements InputValidationHandler<String> {
   @override
   InputValidationError? validate({required String input}) {
     if (!input.contains(RegExp('[0-9]'))) {

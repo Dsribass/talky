@@ -21,10 +21,8 @@ class _SignUpEmailPageState extends State<SignUpEmailPage> {
 
   @override
   void initState() {
+    _bloc = SignUpEmailBloc();
     super.initState();
-    _bloc = SignUpEmailBloc(
-      validateEmail: inject(),
-    );
   }
 
   @override

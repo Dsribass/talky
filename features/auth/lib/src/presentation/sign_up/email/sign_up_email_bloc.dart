@@ -1,13 +1,11 @@
-import 'package:auth/src/domain/use_cases/validate_email.dart';
 import 'package:auth/src/presentation/sign_up/email/sign_up_email_models.dart';
+import 'package:auth/src/presentation/sign_up/email/validators/email_validation_error.dart';
+import 'package:auth/src/presentation/sign_up/email/validators/email_validator.dart';
 import 'package:core/core.dart';
 
 final class SignUpEmailBloc extends Bloc<SignUpEmailEvent, SignUpEmailState>
     with RxEventTransformer {
-  SignUpEmailBloc({
-    required ValidateEmail validateEmail,
-  })  : _validateEmail = validateEmail,
-        super(const SignUpEmailState.initial()) {
+  SignUpEmailBloc() : super(const SignUpEmailState.initial()) {
     on<SignUpEmailEmailChanged>(
       _onEmailChanged,
       transformer: debounce(),
@@ -15,13 +13,11 @@ final class SignUpEmailBloc extends Bloc<SignUpEmailEvent, SignUpEmailState>
     on<SignUpEmailSubmitted>(_onEmailSubmitted);
   }
 
-  final ValidateEmail _validateEmail;
-
   Future<void> _onEmailChanged(
     SignUpEmailEmailChanged event,
     Emitter<SignUpEmailState> emit,
   ) async {
-    final emailInputStatus = await _validateEmailInput(event.email);
+    final emailInputStatus = _validateEmailInput(event.email);
 
     emit(
       state.copyWith(
@@ -35,7 +31,7 @@ final class SignUpEmailBloc extends Bloc<SignUpEmailEvent, SignUpEmailState>
     SignUpEmailSubmitted event,
     Emitter<SignUpEmailState> emit,
   ) async {
-    final emailInputStatus = await _validateEmailInput(event.email);
+    final emailInputStatus = _validateEmailInput(event.email);
 
     emit(
       state.copyWith(
@@ -46,15 +42,19 @@ final class SignUpEmailBloc extends Bloc<SignUpEmailEvent, SignUpEmailState>
     );
   }
 
-  Future<SignUpEmailModelInputStatus> _validateEmailInput(String email) =>
-      _validateEmail(
-        (email: email),
-      ).fold(
-        (success) => SignUpEmailModelInputStatus.valid,
-        (error) => switch (error) {
-          EmptyInputException() => SignUpEmailModelInputStatus.empty,
-          InvalidInputException() => SignUpEmailModelInputStatus.invalid,
-          _ => SignUpEmailModelInputStatus.invalid,
-        },
-      );
+  SignUpEmailModelInputStatus _validateEmailInput(String email) {
+    final emailValidator = EmailInputValidator()..isValidEmail();
+
+    final error = emailValidator.validate(email).firstOrNull;
+
+    if (error != null) {
+      return switch (error) {
+        EmptyEmail() => SignUpEmailModelInputStatus.empty,
+        InvalidEmail() => SignUpEmailModelInputStatus.invalid,
+        _ => SignUpEmailModelInputStatus.invalid,
+      };
+    }
+
+    return SignUpEmailModelInputStatus.valid;
+  }
 }
