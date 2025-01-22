@@ -1,6 +1,7 @@
 import 'package:auth/src/presentation/auth_localization.dart';
 import 'package:auth/src/presentation/sign_up/password/sign_up_password_bloc.dart';
 import 'package:auth/src/presentation/sign_up/password/sign_up_password_model.dart';
+import 'package:auth/src/presentation/sign_up/password/validators/password_validation_error.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:talky_ui_kit/talky_ui_kit.dart';
@@ -25,7 +26,6 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
   @override
   void initState() {
     _bloc = SignUpPasswordBloc(
-      validatePassword: inject(),
       signUp: inject(),
     );
     super.initState();
@@ -73,15 +73,6 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
                       style: TalkyTextStyles.paragraph.medium,
                       decoration: InputDecoration(
                         hintText: context.l10n.signUpPasswordFieldLabel,
-                        errorText: switch (state.passwordInputStatus) {
-                          SignUpPasswordModelInputStatus.empty =>
-                            context.l10n.signUpPasswordEmptyError,
-                          SignUpPasswordModelInputStatus.invalid =>
-                            context.l10n.signUpPasswordInvalidTypeError,
-                          SignUpPasswordModelInputStatus.invalidLength =>
-                            context.l10n.signUpPasswordInvalidLengthError,
-                          _ => null,
-                        },
                         errorMaxLines: 2,
                       ),
                       onChanged: (value) => _bloc.add(
@@ -89,7 +80,29 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
                       ),
                     ),
                     const SizedBox(height: TKSpacing.x8),
-                    const _PasswordRules(),
+                    ValidationList(
+                      title: context.l10n.signUpPasswordRulesTitle,
+                      items: [
+                        ValidationItem(
+                          state: _getValidationState<InvalidPasswordLength>(
+                            state.errors,
+                          ),
+                          text: context.l10n.signUpPasswordLengthRule,
+                        ),
+                        ValidationItem(
+                          state: _getValidationState<NoAlphabeticCharacter>(
+                            state.errors,
+                          ),
+                          text: context.l10n.signUpPasswordLetterRule,
+                        ),
+                        ValidationItem(
+                          state: _getValidationState<NoNumericCharacter>(
+                            state.errors,
+                          ),
+                          text: context.l10n.signUpPasswordNumericRule,
+                        ),
+                      ],
+                    ),
                     const Spacer(),
                     TalkyFilledButton(
                       width: double.infinity,
@@ -113,42 +126,13 @@ class _SignUpPasswordPageState extends State<SignUpPasswordPage> {
       ),
     );
   }
-}
 
-class _PasswordRules extends StatelessWidget {
-  const _PasswordRules();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          context.l10n.signUpPasswordRulesTitle,
-          style: TalkyTextStyles.paragraph,
-        ),
-        const SizedBox(height: TKSpacing.x2),
-        Padding(
-          padding: const EdgeInsets.only(left: TKSpacing.x2),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                context.l10n.signUpPasswordRule1,
-                style: TalkyTextStyles.paragraph,
-              ),
-              Text(
-                context.l10n.signUpPasswordRule2,
-                style: TalkyTextStyles.paragraph,
-              ),
-              Text(
-                context.l10n.signUpPasswordRule3,
-                style: TalkyTextStyles.paragraph,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+  ValidationItemState _getValidationState<T extends InputValidationError>(
+    List<InputValidationError>? errors,
+  ) =>
+      errors == null
+          ? ValidationItemState.idle
+          : errors.whereType<T>().isEmpty
+              ? ValidationItemState.valid
+              : ValidationItemState.invalid;
 }

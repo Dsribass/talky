@@ -82,13 +82,13 @@ class ModuleLocalizationsPt extends ModuleLocalizations {
   String get signUpPasswordRulesTitle => 'A senha deve conter';
 
   @override
-  String get signUpPasswordRule1 => '• Pelo menos 8 caracteres';
+  String get signUpPasswordLengthRule => 'Pelo menos 8 caracteres';
 
   @override
-  String get signUpPasswordRule2 => '• Pelo menos um número';
+  String get signUpPasswordNumericRule => 'Pelo menos um número';
 
   @override
-  String get signUpPasswordRule3 => '• Pelo menos uma letra';
+  String get signUpPasswordLetterRule => 'Pelo menos uma letra';
 
   @override
   String get signUpEmailButton => 'Próximo';

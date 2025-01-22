@@ -1,53 +1,44 @@
 import 'package:auth/src/domain/use_cases/sign_up.dart';
-import 'package:auth/src/domain/use_cases/validate_password.dart';
 import 'package:auth/src/presentation/sign_up/password/sign_up_password_model.dart';
+import 'package:auth/src/presentation/sign_up/password/validators/password_validation_error.dart';
+import 'package:auth/src/presentation/sign_up/password/validators/password_validator.dart';
 import 'package:core/core.dart';
 
 final class SignUpPasswordBloc
     extends Bloc<SignUpPasswordEvent, SignUpPasswordState>
     with RxEventTransformer {
   SignUpPasswordBloc({
-    required ValidatePassword validatePassword,
     required SignUp signUp,
-  })  : _validatePassword = validatePassword,
-        _signUp = signUp,
+  })  : _signUp = signUp,
         super(const SignUpPasswordState.initial()) {
     on<SignUpPasswordPasswordChanged>(
       _onPasswordChanged,
-      transformer: debounce(),
+      // transformer: debounce(),
     );
     on<SignUpFormSubmitted>(_onPasswordSubmitted);
   }
 
-  final ValidatePassword _validatePassword;
   final SignUp _signUp;
 
   Future<void> _onPasswordChanged(
     SignUpPasswordPasswordChanged event,
     Emitter<SignUpPasswordState> emit,
-  ) async {
-    final passwordInputStatus = await _validatePasswordInput(event.password);
-
-    emit(
-      state.copyWith(
-        password: event.password,
-        passwordInputStatus: passwordInputStatus,
-      ),
-    );
-  }
+  ) async =>
+      emit(
+        state.copyWith(
+          password: event.password,
+          errors: _validatePasswordInput(event.password),
+        ),
+      );
 
   Future<void> _onPasswordSubmitted(
     SignUpFormSubmitted event,
     Emitter<SignUpPasswordState> emit,
   ) async {
-    final passwordInputStatus = await _validatePasswordInput(event.password);
+    final errors = _validatePasswordInput(event.password);
 
-    if (passwordInputStatus != SignUpPasswordModelInputStatus.valid) {
-      emit(
-        state.copyWith(
-          passwordInputStatus: passwordInputStatus,
-        ),
-      );
+    if (errors != null) {
+      emit(state.copyWith(errors: errors));
     }
 
     await _signUp(
@@ -59,19 +50,17 @@ final class SignUpPasswordBloc
     );
   }
 
-  Future<SignUpPasswordModelInputStatus> _validatePasswordInput(
+  List<PasswordInputValidationError>? _validatePasswordInput(
     String password,
-  ) =>
-      _validatePassword(
-        (password: password),
-      ).fold(
-        (success) => SignUpPasswordModelInputStatus.valid,
-        (error) => switch (error) {
-          EmptyInputException() => SignUpPasswordModelInputStatus.empty,
-          InvalidInputException() => SignUpPasswordModelInputStatus.invalid,
-          InvalidInputLengthException() =>
-            SignUpPasswordModelInputStatus.invalidLength,
-          _ => SignUpPasswordModelInputStatus.invalid,
-        },
-      );
+  ) {
+    final passwordValidator = PasswordInputValidator()
+      ..isValidLength(min: 8)
+      ..containsLetter()
+      ..containsNumber();
+
+    return passwordValidator
+        .validate(password)
+        .whereType<PasswordInputValidationError>()
+        .toList();
+  }
 }

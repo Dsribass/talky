@@ -82,13 +82,13 @@ class ModuleLocalizationsEn extends ModuleLocalizations {
   String get signUpPasswordRulesTitle => 'Password must contain';
 
   @override
-  String get signUpPasswordRule1 => '• Least 8 characters';
+  String get signUpPasswordLengthRule => 'Least 8 characters';
 
   @override
-  String get signUpPasswordRule2 => '• Least one number';
+  String get signUpPasswordNumericRule => 'Least one number';
 
   @override
-  String get signUpPasswordRule3 => '• Least one letter';
+  String get signUpPasswordLetterRule => 'Least one letter';
 
   @override
   String get signUpEmailButton => 'Next';

@@ -15,13 +15,13 @@ import 'package:core/src/utils/validator/input_validation_handler.dart';
 /// final validator = InputValidator<String>()
 ///   ..addHandler(SomeValidator())
 ///   ..addHandler(AnotherValidator());
-/// 
+///
 /// final errors = validator.validate('some input');
-/// if (errors != null) {
+/// if (errors.isNotEmpty) {
 ///   // Handle validation errors
 /// }
 /// ```
-/// 
+///
 /// Also you can create a more specific validator by extending this class:
 /// ```dart
 /// class EmailInputValidator extends InputValidator<String> {
@@ -31,18 +31,18 @@ import 'package:core/src/utils/validator/input_validation_handler.dart';
 ///
 /// Methods:
 /// - [validate]: Validates the input value using all added handlers and
-///   returns a list of errors, or null if there are no errors.
+///   returns a list of errors.
 /// - [addHandler]: Adds a new validation handler to the list of handlers.
 class InputValidator<InputType> {
   final List<InputValidationHandler<InputType>> _handlers = [];
 
-  List<InputValidationError>? validate(InputType value) {
+  List<InputValidationError> validate(InputType value) {
     final errors = _handlers
         .map((handler) => handler.validate(input: value))
         .nonNulls
         .toList();
 
-    return errors.isEmpty ? null : errors;
+    return errors;
   }
 
   void addHandler(InputValidationHandler<InputType> handler) {

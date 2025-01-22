@@ -1,45 +1,37 @@
+import 'package:auth/src/presentation/sign_up/password/validators/password_validation_error.dart';
 import 'package:core/core.dart';
 
 @immutable
 final class SignUpPasswordState {
   const SignUpPasswordState({
     required this.password,
-    required this.passwordInputStatus,
+    required this.errors,
     this.completeSignUp = false,
   });
 
   const SignUpPasswordState.initial()
-      : this(
-          password: '',
-          passwordInputStatus: SignUpPasswordModelInputStatus.initial,
-        );
+      : password = '',
+        errors = null,
+        completeSignUp = false;
 
   final String password;
-  final SignUpPasswordModelInputStatus passwordInputStatus;
+  final List<PasswordInputValidationError>? errors;
   final bool completeSignUp;
 
   bool get shouldEnableSignUpButton =>
-      passwordInputStatus == SignUpPasswordModelInputStatus.valid;
+      errors == null || errors!.isEmpty && password.isNotEmpty;
 
   SignUpPasswordState copyWith({
     String? password,
-    SignUpPasswordModelInputStatus? passwordInputStatus,
+    List<PasswordInputValidationError>? errors,
     bool completeSignUp = false,
   }) {
     return SignUpPasswordState(
       password: password ?? this.password,
-      passwordInputStatus: passwordInputStatus ?? this.passwordInputStatus,
+      errors: errors ?? this.errors,
       completeSignUp: completeSignUp,
     );
   }
-}
-
-enum SignUpPasswordModelInputStatus {
-  initial,
-  valid,
-  invalidLength,
-  invalid,
-  empty,
 }
 
 sealed class SignUpPasswordEvent {

@@ -248,20 +248,20 @@ abstract class ModuleLocalizations {
   /// Password rule 1 on the sign up screen
   ///
   /// In en, this message translates to:
-  /// **'• Least 8 characters'**
-  String get signUpPasswordRule1;
+  /// **'Least 8 characters'**
+  String get signUpPasswordLengthRule;
 
   /// Password rule 2 on the sign up screen
   ///
   /// In en, this message translates to:
-  /// **'• Least one number'**
-  String get signUpPasswordRule2;
+  /// **'Least one number'**
+  String get signUpPasswordNumericRule;
 
   /// Password rule 3 on the sign up screen
   ///
   /// In en, this message translates to:
-  /// **'• Least one letter'**
-  String get signUpPasswordRule3;
+  /// **'Least one letter'**
+  String get signUpPasswordLetterRule;
 
   /// Next button text on the sign up screen
   ///

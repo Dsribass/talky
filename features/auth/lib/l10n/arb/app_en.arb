@@ -100,16 +100,16 @@
   "@signUpPasswordRulesTitle": {
     "description": "Title of the password rules on the sign up screen"
   },
-  "signUpPasswordRule1": "• Least 8 characters",
-  "@signUpPasswordRule1": {
+  "signUpPasswordLengthRule": "Least 8 characters",
+  "@signUpPasswordLengthRule": {
     "description": "Password rule 1 on the sign up screen"
   },
-  "signUpPasswordRule2": "• Least one number",
-  "@signUpPasswordRule2": {
+  "signUpPasswordNumericRule": "Least one number",
+  "@signUpPasswordNumericRule": {
     "description": "Password rule 2 on the sign up screen"
   },
-  "signUpPasswordRule3": "• Least one letter",
-  "@signUpPasswordRule3": {
+  "signUpPasswordLetterRule": "Least one letter",
+  "@signUpPasswordLetterRule": {
     "description": "Password rule 3 on the sign up screen"
   },
   "signUpEmailButton": "Next",
