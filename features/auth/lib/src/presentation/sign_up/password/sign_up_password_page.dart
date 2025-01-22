@@ -1,7 +1,7 @@
 import 'package:auth/src/presentation/auth_localization.dart';
 import 'package:auth/src/presentation/sign_up/password/sign_up_password_bloc.dart';
 import 'package:auth/src/presentation/sign_up/password/sign_up_password_model.dart';
-import 'package:auth/src/presentation/sign_up/password/validators/password_validation_error.dart';
+import 'package:auth/src/presentation/utils/validators/password_validation_error.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:talky_ui_kit/talky_ui_kit.dart';

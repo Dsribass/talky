@@ -1,6 +1,6 @@
 import 'package:auth/src/presentation/sign_up/email/sign_up_email_models.dart';
-import 'package:auth/src/presentation/sign_up/email/validators/email_validation_error.dart';
-import 'package:auth/src/presentation/sign_up/email/validators/email_validator.dart';
+import 'package:auth/src/presentation/utils/validators/email_validation_error.dart';
+import 'package:auth/src/presentation/utils/validators/email_validator.dart';
 import 'package:core/core.dart';
 
 final class SignUpEmailBloc extends Bloc<SignUpEmailEvent, SignUpEmailState>

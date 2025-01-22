@@ -3,8 +3,6 @@ import 'package:flutter/widgets.dart';
 @immutable
 final class SignInState {
   const SignInState({
-    required this.email,
-    required this.password,
     required this.emailInputStatus,
     required this.passwordInputStatus,
     required this.isLoading,
@@ -14,8 +12,6 @@ final class SignInState {
 
   const SignInState.initial()
       : this(
-          email: '',
-          password: '',
           emailInputStatus: SignInModelInputStatus.valid,
           passwordInputStatus: SignInModelInputStatus.valid,
           isLoading: false,
@@ -23,8 +19,6 @@ final class SignInState {
           completeSignIn: false,
         );
 
-  final String email;
-  final String password;
   final SignInModelInputStatus emailInputStatus;
   final SignInModelInputStatus passwordInputStatus;
   final bool isLoading;
@@ -38,8 +32,6 @@ final class SignInState {
       passwordInputStatus == SignInModelInputStatus.incorrect;
 
   SignInState copyWith({
-    String? email,
-    String? password,
     SignInModelInputStatus? emailInputStatus,
     SignInModelInputStatus? passwordInputStatus,
     bool? isLoading,
@@ -47,8 +39,6 @@ final class SignInState {
     bool completeSignIn = false,
   }) {
     return SignInState(
-      email: email ?? this.email,
-      password: password ?? this.password,
       emailInputStatus: emailInputStatus ?? this.emailInputStatus,
       passwordInputStatus: passwordInputStatus ?? this.passwordInputStatus,
       isLoading: isLoading ?? this.isLoading,

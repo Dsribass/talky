@@ -1,4 +1,4 @@
-import 'package:auth/src/presentation/sign_up/email/validators/email_validation_error.dart';
+import 'package:auth/src/presentation/utils/validators/email_validation_error.dart';
 import 'package:core/utils.dart';
 
 class EmailInputValidator extends InputValidator<String> {

@@ -23,11 +23,7 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void initState() {
-    _bloc = SignInBloc(
-      validateEmail: inject(),
-      validatePassword: inject(),
-      signIn: inject(),
-    );
+    _bloc = SignInBloc(signIn: inject());
     super.initState();
   }
 
@@ -84,9 +80,6 @@ class _SignInPageState extends State<SignInPage> {
                           state.emailInputStatus,
                         ),
                       ),
-                      onChanged: (value) => _bloc.add(
-                        SignInEmailChanged(value),
-                      ),
                     ),
                     const SizedBox(height: TKSpacing.x4),
                     TextFormField(
@@ -112,9 +105,6 @@ class _SignInPageState extends State<SignInPage> {
                             const SignInObscurePasswordChanged(),
                           ),
                         ),
-                      ),
-                      onChanged: (value) => _bloc.add(
-                        SignInPasswordChanged(value),
                       ),
                     ),
                     const SizedBox(height: TKSpacing.x4),
