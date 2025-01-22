@@ -18,7 +18,8 @@ class UserRemoteDTO {
   @JsonKey(includeIfNull: false)
   final String? name;
   final String email;
-  final String password;
+  @JsonKey(includeIfNull: false)
+  final String? password;
 }
 
 extension UserRemoteDTOx on UserRemoteDTO {

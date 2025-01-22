@@ -1,6 +1,6 @@
 import 'package:auth/src/data/local/user_local_data_source.dart';
-import 'package:auth/src/data/remote/auth_remote_data_source.dart';
 import 'package:auth/src/data/models/user_dto.dart';
+import 'package:auth/src/data/remote/auth_remote_data_source.dart';
 import 'package:auth/src/domain/repositories/auth_repository.dart';
 import 'package:core/dependencies.dart';
 
@@ -36,5 +36,12 @@ final class DefaultAuthRepository implements AuthRepository {
     );
 
     return unit;
+  }
+
+  @override
+  Future<bool> checkEmailAvailability({required String email}) {
+    final userDTO = UserRemoteDTO(email: email, password: null);
+
+    return _authRemoteDataSource.checkEmailAvailability(userDTO);
   }
 }

@@ -10,4 +10,11 @@ abstract interface class AuthRepository {
     required String email,
     required String password,
   });
+
+  /// Checks if the email is available for registration.
+  /// 
+  /// Returns `true` if the email is available, `false` otherwise.
+  Future<bool> checkEmailAvailability({
+    required String email,
+  });
 }

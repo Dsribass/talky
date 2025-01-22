@@ -63,4 +63,14 @@ final class DefaultAuthRemoteDataSource implements AuthRemoteDataSource {
       };
     }
   }
+
+  @override
+  Future<bool> checkEmailAvailability(UserRemoteDTO user) async {
+    final response = await _client.post<Map<String, dynamic>>(
+      AuthEndpoints.checkEmailAvailability.path,
+      data: user.toJson(),
+    );
+
+    return response.data!['isEmailAvailable'] as bool;
+  }
 }

@@ -29,4 +29,13 @@ class MockAuthRepository implements AuthRepository {
 
     return unit;
   }
+
+  @override
+  Future<bool> checkEmailAvailability({required String email}) {
+    if (email == 'lorem@ipsum.com') {
+      return Future.value(false);
+    } else {
+      return Future.value(true);
+    }
+  }
 }

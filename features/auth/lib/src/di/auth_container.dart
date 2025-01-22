@@ -72,6 +72,12 @@ final class AuthContainer implements ContainerModule {
   void _registerDomainDependencies(GetIt injector) {
     injector
       ..registerCachedFactory(
+        () => CheckEmailAvailability(
+          logger: injector.get(),
+          authRepository: injector.get(),
+        ),
+      )
+      ..registerCachedFactory(
         () => SignIn(logger: injector.get(), authRepository: injector.get()),
       )
       ..registerCachedFactory(
