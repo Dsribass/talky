@@ -8,19 +8,7 @@ final class GenericException extends CoreException {
   });
 }
 
-sealed class InputValidationException extends CoreException {
-  InputValidationException({required super.message});
-}
-
-final class InvalidInputException extends InputValidationException {
-  InvalidInputException({required super.message});
-}
-
-final class InvalidInputLengthException extends InputValidationException {
-  InvalidInputLengthException({required super.message});
-}
-
-final class EmptyInputException extends InputValidationException {
+final class EmptyInputException extends CoreException {
   EmptyInputException({required super.message});
 }
 
