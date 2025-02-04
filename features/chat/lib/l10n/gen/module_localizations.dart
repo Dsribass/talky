@@ -95,6 +95,35 @@ abstract class ModuleLocalizations {
     Locale('pt')
   ];
 
+  /// No description provided for @chatListPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Conversations'**
+  String get chatListPageTitle;
+
+  /// No description provided for @chatListPageDeleteChatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete chat'**
+  String get chatListPageDeleteChatTitle;
+
+  /// No description provided for @chatListPageDeleteChatContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this chat?'**
+  String get chatListPageDeleteChatContent;
+
+  /// No description provided for @chatListPageDeleteChatCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get chatListPageDeleteChatCancel;
+
+  /// No description provided for @chatListPageDeleteChatDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get chatListPageDeleteChatDelete;
 }
 
 class _ModuleLocalizationsDelegate extends LocalizationsDelegate<ModuleLocalizations> {

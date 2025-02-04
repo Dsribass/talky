@@ -1,3 +1,8 @@
 {
-    "@@locale": "pt"
+    "@@locale": "pt",
+    "chatListPageTitle": "Conversas",
+    "chatListPageDeleteChatTitle": "Excluir conversa",
+    "chatListPageDeleteChatContent": "Tem certeza de que deseja excluir esta conversa?",
+    "chatListPageDeleteChatCancel": "Cancelar",
+    "chatListPageDeleteChatDelete": "Excluir"
 }
