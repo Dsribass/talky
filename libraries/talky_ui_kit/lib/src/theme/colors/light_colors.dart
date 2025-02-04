@@ -62,4 +62,10 @@ class TalkyLightColors extends TalkyColors {
 
   @override
   Color get onWarning => yellowSoft;
+
+  @override
+  Color get disabled => black3;
+
+  @override
+  Color get onDisabled => black2;
 }

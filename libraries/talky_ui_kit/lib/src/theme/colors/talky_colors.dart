@@ -21,6 +21,8 @@ abstract class TalkyColors extends ThemeExtension<TalkyColors> {
   Color get onSuccess;
   Color get warning;
   Color get onWarning;
+  Color get disabled;
+  Color get onDisabled;
 
   ColorScheme get colorScheme =>
       ColorScheme.fromSeed(seedColor: primary).copyWith(

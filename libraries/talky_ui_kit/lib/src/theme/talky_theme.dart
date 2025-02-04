@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:talky_ui_kit/src/components/button/button.dart';
+import 'package:talky_ui_kit/src/components/input/input.dart';
 import 'package:talky_ui_kit/src/theme/theme.dart';
 import 'package:talky_ui_kit/src/tokens/tokens.dart';
 
@@ -34,35 +35,36 @@ extension TalkyThemeData on ThemeData {
         ),
         foregroundColor: colors.primary,
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TalkyTextStyles.paragraph.medium,
-        labelStyle: TalkyTextStyles.paragraph.medium,
-        errorStyle: TalkyTextStyles.caption.semibold.copyWith(
-          color: colors.error,
+      inputDecorationTheme: TalkyInputDecorationTheme.getTheme(colors),
+      dialogTheme: DialogThemeData(
+        backgroundColor: colors.surface,
+        titleTextStyle: TalkyTextStyles.headline2.semibold.apply(
+          color: colors.onSurface,
+        ),
+        contentTextStyle: TalkyTextStyles.paragraph.apply(
+          color: colors.onSurfaceVariant,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: TKRadius.sm.borderRadius,
+        ),
+        actionsPadding: const EdgeInsets.symmetric(
+          horizontal: TKSpacing.x4,
+          vertical: TKSpacing.x6,
+        ),
+      ),
+      listTileTheme: ListTileThemeData(
+        titleTextStyle: TalkyTextStyles.headline3.semibold.apply(
+          color: colors.onSurface,
+        ),
+        subtitleTextStyle: TalkyTextStyles.paragraph.apply(
+          color: colors.onSurfaceVariant,
+        ),
+        leadingAndTrailingTextStyle: TalkyTextStyles.caption.apply(
+          color: colors.onSurfaceVariant,
         ),
         contentPadding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 18,
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: TKRadius.sm.borderRadius,
-          borderSide: BorderSide(color: colors.onSurface.withOpacity(0.12)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: TKRadius.sm.borderRadius,
-          borderSide: BorderSide(color: colors.outline),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: TKRadius.sm.borderRadius,
-          borderSide: BorderSide(color: colors.outline),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: TKRadius.sm.borderRadius,
-          borderSide: BorderSide(color: colors.error),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: TKRadius.sm.borderRadius,
-          borderSide: BorderSide(color: colors.error),
+          horizontal: TKSpacing.x7,
+          vertical: TKSpacing.x2,
         ),
       ),
     );
