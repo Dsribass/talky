@@ -10,6 +10,8 @@ abstract class TalkyButton extends StatelessWidget {
     this.iconAlignment = IconAlignment.start,
     this.icon,
     this.width,
+    this.backgroundColor,
+    this.foregroundColor,
     super.key,
   });
 
@@ -19,4 +21,6 @@ abstract class TalkyButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Icon? icon;
   final double? width;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
 }

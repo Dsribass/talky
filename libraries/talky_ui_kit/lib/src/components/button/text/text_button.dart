@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talky_ui_kit/src/components/button/button_content.dart';
 import 'package:talky_ui_kit/src/components/button/talky_button.dart';
-import 'package:talky_ui_kit/src/theme/colors/color_extensions.dart';
-import 'package:talky_ui_kit/src/theme/talky_text_styles.dart';
 import 'package:talky_ui_kit/talky_ui_kit.dart';
 
 class TalkyTextButton extends TalkyButton {
@@ -13,13 +11,17 @@ class TalkyTextButton extends TalkyButton {
     super.iconAlignment,
     super.icon,
     super.width,
+    super.foregroundColor,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      style: TalkyTextButtonStyle.text(context.colors),
+      style: TalkyTextButtonStyle.text(
+        context.colors,
+        foregroundColor: foregroundColor,
+      ),
       icon: icon,
       iconAlignment: iconAlignment,
       onPressed: isLoading ? null : onPressed,
@@ -33,13 +35,25 @@ class TalkyTextButton extends TalkyButton {
 }
 
 extension TalkyTextButtonStyle on ButtonStyle {
-  static ButtonStyle text(TalkyColors colors) {
+  static ButtonStyle text(
+    TalkyColors colors, {
+    Color? foregroundColor,
+  }) {
     return ButtonStyle(
+      overlayColor: WidgetStateProperty.resolveWith((states) {
+        final color = foregroundColor ?? colors.primary;
+        if (states.contains(WidgetState.hovered) ||
+            states.contains(WidgetState.focused) ||
+            states.contains(WidgetState.pressed)) {
+          return color.withOpacity(0.12);
+        }
+        return null;
+      }),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
           return colors.onSurface.withOpacity(0.38);
         }
-        return colors.primary;
+        return foregroundColor ?? colors.primary;
       }),
       textStyle: WidgetStateProperty.all<TextStyle>(
         TalkyTextStyles.paragraph.bold,
