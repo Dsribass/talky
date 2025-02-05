@@ -5,6 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Playground",
+      "request": "launch",
+      "type": "dart",
+      "program": "app/talky_app/lib/playground.dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--target",
+        "lib/playground.dart"
+      ]
+    },
+    {
       "name": "Talky App - DEV",
       "request": "launch",
       "type": "dart",
