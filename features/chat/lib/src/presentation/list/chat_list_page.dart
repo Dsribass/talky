@@ -1,29 +1,10 @@
 import 'dart:developer';
 
 import 'package:chat/chat.dart';
-import 'package:chat/src/presentation/list/components/conversation_tile.dart';
-import 'package:chat/src/presentation/list/components/profile_icon.dart';
+import 'package:chat/src/presentation/components/conversation_tile.dart';
+import 'package:chat/src/presentation/components/profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:talky_ui_kit/talky_ui_kit.dart';
-
-@immutable
-class FakeUser {
-  const FakeUser({
-    required this.id,
-    required this.name,
-    required this.isOnline,
-    required this.lastMessage,
-    required this.unreadMessages,
-    required this.sendAt,
-  });
-
-  final String id;
-  final String name;
-  final bool isOnline;
-  final String? lastMessage;
-  final int unreadMessages;
-  final DateTime sendAt;
-}
 
 class ChatListPage extends StatefulWidget {
   const ChatListPage({super.key});
@@ -37,10 +18,11 @@ class _ChatListPageState extends State<ChatListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Row(
+        leading: Row(
           children: [
-            SizedBox(width: TKSpacing.x4),
-            ProfileIcon(
+            const SizedBox(width: TKSpacing.x4),
+            ProfileImage(
+              imageURL: _fakeUserList.first.imageURL,
               isOnline: false,
               size: 36,
             ),
@@ -73,20 +55,14 @@ class _ChatListPageState extends State<ChatListPage> {
             final user = _fakeUserList[index];
             return ConversationTile(
               tileKey: ValueKey(user.id),
-              imageUrl: null,
+              imageUrl: user.imageURL,
               name: user.name,
               lastMessage: user.lastMessage,
               sendAt: user.sendAt,
               isOnline: user.isOnline,
               unreadMessages: user.unreadMessages,
-              onDeleted: () {
-                setState(() {
-                  _fakeUserList.removeAt(index);
-                });
-              },
-              onTap: () {
-                log('Tapped on ${user.name}');
-              },
+              onDeleted: () => setState(() => _fakeUserList.removeAt(index)),
+              onTap: () => log('Tapped on ${user.name}'),
             );
           },
         ),
@@ -95,56 +71,83 @@ class _ChatListPageState extends State<ChatListPage> {
   }
 }
 
+@immutable
+class _FakeUser {
+  const _FakeUser({
+    required this.id,
+    required this.name,
+    required this.isOnline,
+    required this.lastMessage,
+    required this.imageURL,
+    required this.unreadMessages,
+    required this.sendAt,
+  });
+
+  final String id;
+  final String name;
+  final bool isOnline;
+  final String? lastMessage;
+  final String? imageURL;
+  final int unreadMessages;
+  final DateTime sendAt;
+}
+
 final _fakeUserList = [
-  FakeUser(
+  _FakeUser(
     unreadMessages: 5,
     id: '1',
     name: 'João',
     isOnline: true,
     lastMessage: 'Olá, tudo bem?',
     sendAt: DateTime.now(),
+    imageURL: 'https://picsum.photos/60/60',
   ),
-  FakeUser(
+  _FakeUser(
     unreadMessages: 2,
     id: '2',
     name: 'Maria',
     isOnline: false,
     lastMessage: 'Tudo bem, e você?',
     sendAt: DateTime.now().subtract(const Duration(minutes: 5)),
+    imageURL: 'https://randomuser.me/api/port',
   ),
-  FakeUser(
+  _FakeUser(
     unreadMessages: 0,
     id: '3',
     name: 'Pedro',
     isOnline: true,
     lastMessage: 'Estou bem, obrigado!',
     sendAt: DateTime.now().subtract(const Duration(hours: 6)),
+    imageURL: 'https://picsum.photos/50/50',
   ),
-  FakeUser(
+  _FakeUser(
     unreadMessages: 0,
     id: '4',
     name: 'José',
     isOnline: true,
     lastMessage: 'Estou bem, obrigado!',
     sendAt: DateTime.now().subtract(const Duration(days: 1)),
+    imageURL: 'https://picsum.photos/50/50',
   ),
-  FakeUser(
+  _FakeUser(
     unreadMessages: 0,
     id: '5',
     name: 'Ana',
     isOnline: false,
     lastMessage: 'Que bom!',
     sendAt: DateTime.now().subtract(const Duration(days: 3, hours: 2)),
+    imageURL: null,
   ),
-  FakeUser(
+  _FakeUser(
     unreadMessages: 0,
     id: '6',
     name: 'Carlos',
     isOnline: false,
     lastMessage: 'Que bom!',
     sendAt: DateTime.now().subtract(const Duration(days: 6)),
+    imageURL: 'https://picsum.photos/50/50',
   ),
-  FakeUser(
+  _FakeUser(
     unreadMessages: 0,
     id: '7',
     name: 'Mariana',
@@ -152,13 +155,15 @@ final _fakeUserList = [
     lastMessage:
         'Olha, você não vai acreditar! 😱. Ontem eu descobri que o fulano está fazendo faculdade',
     sendAt: DateTime.now().subtract(const Duration(days: 10)),
+    imageURL: 'https://picsum.photos/50/50',
   ),
-  FakeUser(
+  _FakeUser(
     unreadMessages: 0,
     id: '8',
     name: 'Fernanda',
     isOnline: false,
     lastMessage: null,
     sendAt: DateTime.now().subtract(const Duration(days: 60)),
+    imageURL: null,
   ),
 ];

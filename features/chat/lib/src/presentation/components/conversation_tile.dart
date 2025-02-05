@@ -1,5 +1,5 @@
 import 'package:chat/chat.dart';
-import 'package:chat/src/presentation/list/components/profile_icon.dart';
+import 'package:chat/src/presentation/components/profile_image.dart';
 import 'package:core/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:talky_ui_kit/talky_ui_kit.dart';
@@ -66,8 +66,10 @@ class ConversationTile extends StatelessWidget {
       direction: DismissDirection.endToStart,
       child: ListTile(
         onTap: onTap,
-        // TODO(any): implement imageURL
-        leading: ProfileIcon(isOnline: isOnline),
+        leading: ProfileImage(
+          imageURL: imageUrl,
+          isOnline: isOnline,
+        ),
         title: Text(name),
         subtitle: Text(
           lastMessage ?? '',

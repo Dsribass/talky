@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:talky_ui_kit/talky_ui_kit.dart';
 
-class ProfileIcon extends StatelessWidget {
-  const ProfileIcon({
+class ProfileImage extends StatelessWidget {
+  const ProfileImage({
+    required this.imageURL,
     required this.isOnline,
     this.size = 50,
     this.onTap,
     super.key,
   });
 
+  final String? imageURL;
   final bool isOnline;
   final double size;
   final VoidCallback? onTap;
@@ -17,17 +20,23 @@ class ProfileIcon extends StatelessWidget {
     final statusSize = size * 0.24;
     final statusPadding = statusSize + (statusSize * 0.6);
 
+    final imagePlaceholder = _imagePlaceholder(context);
+
     return GestureDetector(
       onTap: onTap,
       child: Stack(
         children: [
-          Container(
-            width: size,
-            height: size,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.black,
-            ),
+          ClipOval(
+            child: imageURL != null
+                ? CachedNetworkImage(
+                    imageUrl: imageURL!,
+                    width: size,
+                    height: size,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => imagePlaceholder,
+                    errorWidget: (context, url, error) => imagePlaceholder,
+                  )
+                : imagePlaceholder,
           ),
           if (isOnline)
             Positioned(
@@ -44,14 +53,28 @@ class ProfileIcon extends StatelessWidget {
                 child: Container(
                   width: statusSize,
                   height: statusSize,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.green,
+                    color: context.colors.success,
                   ),
                 ),
               ),
             ),
         ],
+      ),
+    );
+  }
+
+  Widget _imagePlaceholder(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      color: context.colors.outline,
+      alignment: Alignment.center,
+      child: Icon(
+        Icons.person,
+        color: context.colors.surface,
+        size: size * 0.5,
       ),
     );
   }
