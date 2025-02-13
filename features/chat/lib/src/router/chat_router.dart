@@ -8,9 +8,6 @@ enum ChatRoutes implements InternalRoutes {
 
   @override
   final String path;
-
-  @override
-  String get name => toString().split('.').last;
 }
 
 final class ChatRouter implements RouterModule {

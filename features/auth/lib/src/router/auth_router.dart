@@ -3,12 +3,7 @@ import 'package:auth/src/presentation/sign_in/sign_in.dart';
 import 'package:auth/src/presentation/sign_up/sign_up.dart';
 import 'package:core/core.dart';
 
-enum AuthRouteParameters implements RouteParameter {
-  email;
-
-  @override
-  String get name => toString().split('.').last;
-}
+enum AuthRouteParameters implements RouteParameter { email }
 
 enum AuthRoutes implements InternalRoutes {
   signIn('sign-in'),
@@ -19,9 +14,6 @@ enum AuthRoutes implements InternalRoutes {
 
   @override
   final String path;
-
-  @override
-  String get name => toString().split('.').last;
 }
 
 final class AuthRouter implements RouterModule {

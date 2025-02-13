@@ -9,9 +9,8 @@ enum GlobalRoutes {
   final String path;
 }
 
-abstract interface class InternalRoutes {
+abstract interface class InternalRoutes implements Enum {
   String get path;
-  String get name;
 }
 
 extension RoutePathBuilder on InternalRoutes {
@@ -25,6 +24,4 @@ extension RoutePathBuilder on InternalRoutes {
   }
 }
 
-abstract interface class RouteParameter {
-  String get name;
-}
+abstract interface class RouteParameter implements Enum {}
